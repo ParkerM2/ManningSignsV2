@@ -56,7 +56,7 @@ const Navbar = ({isLoggedIn, user}) => {
                     <Menu id="simple-menu" anchorEl={anchor} keepMounted open={Boolean(anchor)} onClose={menuClose}>
                         <MenuItem component={LinkS} onClick={menuClose}>About</MenuItem>
                         <MenuItem component={LinkS} onClick={menuClose}>Services</MenuItem>
-                        <MenuItem component={LinkR} onClick={menuClose} to={isLoggedIn ? "/logout" : `/user/${user.userID}`}>{isLoggedIn ? "Logout" : "User Page"}</MenuItem>
+                        <MenuItem component={LinkR} onClick={menuClose} to={isLoggedIn ? "/logout" : `/user/${user.userID}`}>{isLoggedIn ? "Logout" : "Login"}</MenuItem>
                     </Menu>
                 </Toolbar>
             </AppBar>

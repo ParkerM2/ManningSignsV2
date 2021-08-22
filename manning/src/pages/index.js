@@ -11,7 +11,7 @@ import outdoorSigns from '../images/outdoorSign.jpg';
 // This Info will be called using a useEffect -> function(async/await) -> Axios -> DB
 
 // controls navbar for login/logout buttons
-const isLoggedIn = true;
+const isLoggedIn = false;
 // userInfo or Admin info
 const user = {
     userID: 'administrator',

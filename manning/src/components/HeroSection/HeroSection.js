@@ -1,5 +1,7 @@
 import React from 'react';
 import backgroundImage from '../../images/396407.png';
+import backgroundVideo from '../../videos/lights.mp4';
+import VideoPlayer from "react-background-video-player";
 import { Link as LinkS } from 'react-scroll';
 import {
     Typography,
@@ -11,12 +13,13 @@ import {
 
 const useStyles = makeStyles((theme) => ({
     box: {
-        backgroundImage: `url(${backgroundImage})`,
+        // backgroundImage: `url(${backgroundImage})`,
         position: 'relative',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
         minHeight: '95vh',
+        maxWidth: '100%',
     },
     mainFeaturedPost: {
         position: 'relative',
@@ -37,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: 'rgba(0,0,0,.3)',
     },
     mainFeaturedPostContent: {
-        color: 'black',
+        color: 'white',
         position: 'relative',
         padding: theme.spacing(7),
         paddingTop: theme.spacing(12),
@@ -52,6 +55,12 @@ const HeroSection = () => {
         <>
             <div className={classes.hero}>
                 <Paper className={classes.box}>
+                    <VideoPlayer 
+                        className="video"
+                        src={backgroundVideo}
+                        autoPlay={true}
+                        muted={true}
+                    />
                     <Grid container>
                         <Grid item md={8}>
                             <div className={classes.mainFeaturedPostContent}>
