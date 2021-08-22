@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar/Navbar';
 import HeroSection from '../components/HeroSection/HeroSection';
 import About from '../components/About/About';
 import Offers from '../components/Offers/Offers';
+import Quote from '../components/Quote/Quote';
 import shirts from '../images/tShirt.png';
 import vehicle from '../images/vehiclewrap.jpg';
 import carDecals from '../images/vehiclewrap.jpg';
@@ -58,7 +59,8 @@ const Home = () => {
             <Navbar isLoggedIn={isLoggedIn} user={user}/>
             <HeroSection />
             <About />
-            <Offers images={images}/>
+            <Offers images={images} />
+            <Quote />
         </>
     )
 }
