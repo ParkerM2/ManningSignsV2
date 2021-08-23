@@ -12,8 +12,12 @@ import {
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
+    video: {
+        objectFit: 'cover',
+    },
     box: {
         // backgroundImage: `url(${backgroundImage})`,
+        objectFit: 'cover',
         position: 'relative',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
@@ -42,8 +46,9 @@ const useStyles = makeStyles((theme) => ({
     mainFeaturedPostContent: {
         color: 'white',
         position: 'relative',
+        textAlign: 'center',
         padding: theme.spacing(7),
-        paddingTop: theme.spacing(12),
+        paddingTop: '40vh',
     },
 }));
 
@@ -56,15 +61,15 @@ const HeroSection = () => {
             <div className={classes.hero}>
                 <Paper className={classes.box}>
                     <VideoPlayer 
-                        className="video"
+                        className={classes.video}
                         src={backgroundVideo}
                         autoPlay={true}
                         muted={true}
                     />
                     <Grid container>
-                        <Grid item md={8}>
+                        <Grid item md={12}>
                             <div className={classes.mainFeaturedPostContent}>
-                                <Typography variant="h3" style={{ fontFamily: font }} gutterBottom>
+                                <Typography variant="h2" style={{ fontFamily: font }} gutterBottom>
                                     <b>Discover how we can fulfill your sign and shirt needs</b>
                                 </Typography>
                                 <Button component={LinkS} to="services" variant="contained" color="secondary" >

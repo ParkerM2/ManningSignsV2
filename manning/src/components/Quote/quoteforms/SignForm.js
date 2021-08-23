@@ -72,18 +72,8 @@ const SignForm = (values) => {
             label="Description of Sign"
         />  
     </Grid>
-    <br></br>        
-        <Grid container spacing={3}justify="left" alignItems="center" row>
-            <Grid item xs={6}>      
-                <FormLabel item component="legend" color="primary">Check out our gallery for examples</FormLabel>
-            </Grid>
-            <Grid item xs={6}>  
-                <Button item variant="outlined" mx="auto" color="primary" target="__blank" href="/gallery">Sign Gallery</Button>
-            </Grid>
-                   
-       </Grid>
-              
-        </>
+    <br></br>
+    </>
     )
 }
 

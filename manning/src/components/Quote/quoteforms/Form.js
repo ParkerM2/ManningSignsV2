@@ -126,12 +126,9 @@ function QuoteForm() {
   };
 
   return (
-    <div style={{ padding: 16, margin: 'auto', maxWidth: 600 }}>
+    <div style={{ padding: 8, margin: 'auto', maxWidth: 1000, paddingTop: '10vh' }}>
       <CssBaseline />
-      <Typography variant="h4" align="center" component="h1" gutterBottom>
-        Manning Signs
-      </Typography>
-      <Typography variant="h5" align="center" component="h2" gutterBottom>
+      <Typography variant="h2" align="center" component="h2" gutterBottom>
         Quote Request Form
       </Typography>
       <Form
