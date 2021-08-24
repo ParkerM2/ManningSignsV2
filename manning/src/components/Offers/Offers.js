@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
         '& > *': {
         margin: theme.spacing(1),
     },
-    }
+    },
 }));
 
 const font = "'Niconne', cursive";
@@ -62,41 +62,35 @@ const Offers = ({ images }) => {
     const classes = useStyles();
     const [activeImages, setActiveImages] = useState([]);
 
-    const { shirt, vehicle, car, outdoor, window } = images;
+    const { shirt, vehicle, sign } = images;
 
     useEffect(() => {
         setActiveImages(shirt)
     }, [shirt])
 
-    console.log(activeImages)
-
     return (
         <>
             <div className={classes.hero}>
                 <Paper className={classes.box}>
-                    <Grid container spacing={2}>
-                        <Grid item md={5}>
+                        <Grid item md={12}>
                             <div className={classes.mainFeaturedPostContent}>
-                                <Typography variant="h3" style={{ fontFamily: font }} gutterBottom>
+                                <Typography  variant="h3" style={{ fontFamily: font }} >
                                     We offer a wide variety of <b>Sign</b> and <b>Shirt</b> solutions!
                                 </Typography>
                             </div>
                         </Grid>
-                    </Grid>
                     {/* gallery using buttons controlling state, mapping over array from backend axios request */}
                     <Grid className={classes.buttons}>
                     <ButtonGroup size="small" aria-label="small outlined button group">
-                        <Button variant="outlined" color="inherit" onClick={() => setActiveImages(shirt)}>Shirts </Button>
-                        <Button variant="outlined" color="inherit" onClick={() => setActiveImages(vehicle)}>Vehicle Wraps </Button>
-                        <Button variant="outlined" color="inherit" onClick={() => setActiveImages(car)}>Car Decals</Button>
-                        <Button variant="outlined" color="inherit" onClick={() => setActiveImages(window)}>Window Lettering</Button>
-                        <Button variant="outlined" color="inherit" onClick={() => setActiveImages(outdoor)}>Outdoor Signs</Button>
+                        <Button variant="outlined" color="inherit" onClick={() => setActiveImages(shirt)}>Shirts</Button>
+                        <Button variant="outlined" color="inherit" onClick={() => setActiveImages(vehicle)}>Vehicles</Button>
+                        <Button variant="outlined" color="inherit" onClick={() => setActiveImages(sign)}>Signs</Button>
                     </ButtonGroup>
                     </Grid>
                     <Container maxWidth="lg" color="inherit" component="main" className={classes.heroContent}>
                         <Grid container spacing={5} alignItems="flex-end">
                                 {activeImages.map((image) => (
-                                    <Grid item key={image.title} xs={12} md={4}>
+                                    <Grid style={{padding: '4vh'}} item key={image.title} xs={12} md={4}>
                                         <Card className={classes.root}>
                                             <CardMedia
                                                 component="img"

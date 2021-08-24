@@ -3,14 +3,17 @@ import Navbar from '../components/Navbar/Navbar';
 import HeroSection from '../components/HeroSection/HeroSection';
 import About from '../components/About/About';
 import Offers from '../components/Offers/Offers';
+import Quote from '../components/Quote/Quote';
 import shirts from '../images/tShirt.png';
 import vehicle from '../images/vehiclewrap.jpg';
 import carDecals from '../images/vehiclewrap.jpg';
 import outdoorSigns from '../images/outdoorSign.jpg';
+import Footer from '../components/Footer/Footer';
+const font = "'Niconne', cursive";
 // This Info will be called using a useEffect -> function(async/await) -> Axios -> DB
 
 // controls navbar for login/logout buttons
-const isLoggedIn = true;
+const isLoggedIn = false;
 // userInfo or Admin info
 const user = {
     userID: 'administrator',
@@ -31,34 +34,26 @@ const images = {
             url: vehicle
         },
     ],
-    car: [
-        {
-            url: carDecals
-        },
-    ],
-    outdoor: [
+    sign: [
         {
             url: outdoorSigns
         },
     ],
-    window: [
-        {
-            url: outdoorSigns
-        },
-    ]
 }
 
 
 
-const Home = () => {
-
+const Home = (props) => {
+    const { user, isLoggedIn } = props;
     
     return (
         <>
             <Navbar isLoggedIn={isLoggedIn} user={user}/>
             <HeroSection />
             <About />
-            <Offers images={images}/>
+            <Offers images={images} />
+            <Quote />
+            <Footer font={font} />
         </>
     )
 }

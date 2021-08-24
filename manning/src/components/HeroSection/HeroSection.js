@@ -1,5 +1,7 @@
 import React from 'react';
 import backgroundImage from '../../images/396407.png';
+import backgroundVideo from '../../videos/lights.mp4';
+import VideoPlayer from "react-background-video-player";
 import { Link as LinkS } from 'react-scroll';
 import {
     Typography,
@@ -10,13 +12,18 @@ import {
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
+    video: {
+        objectFit: 'cover',
+    },
     box: {
-        backgroundImage: `url(${backgroundImage})`,
+        // backgroundImage: `url(${backgroundImage})`,
+        objectFit: 'cover',
         position: 'relative',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
         minHeight: '95vh',
+        maxWidth: '100%',
     },
     mainFeaturedPost: {
         position: 'relative',
@@ -37,10 +44,11 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: 'rgba(0,0,0,.3)',
     },
     mainFeaturedPostContent: {
-        color: 'black',
+        color: 'white',
         position: 'relative',
+        textAlign: 'center',
         padding: theme.spacing(7),
-        paddingTop: theme.spacing(12),
+        paddingTop: '40vh',
     },
 }));
 
@@ -52,10 +60,16 @@ const HeroSection = () => {
         <>
             <div className={classes.hero}>
                 <Paper className={classes.box}>
+                    <VideoPlayer 
+                        className={classes.video}
+                        src={backgroundVideo}
+                        autoPlay={true}
+                        muted={true}
+                    />
                     <Grid container>
-                        <Grid item md={8}>
+                        <Grid item md={12}>
                             <div className={classes.mainFeaturedPostContent}>
-                                <Typography variant="h3" style={{ fontFamily: font }} gutterBottom>
+                                <Typography variant="h2" style={{ fontFamily: font }} gutterBottom>
                                     <b>Discover how we can fulfill your sign and shirt needs</b>
                                 </Typography>
                                 <Button component={LinkS} to="services" variant="contained" color="secondary" >
