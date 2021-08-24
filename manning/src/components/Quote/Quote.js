@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-        minHeight: '75vh',
+        minHeight: '85vh',
         hero: {
             flexGrow: 1,
         }
@@ -34,7 +34,7 @@ const Quote = () => {
             <div className={classes.hero}>
                 <Paper className={classes.box}>
                     <Grid>
-                        <Form />
+                        <Form font={font}/>
                     </Grid>
                 </Paper>
             </div>

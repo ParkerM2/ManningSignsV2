@@ -8,6 +8,8 @@ import shirts from '../images/tShirt.png';
 import vehicle from '../images/vehiclewrap.jpg';
 import carDecals from '../images/vehiclewrap.jpg';
 import outdoorSigns from '../images/outdoorSign.jpg';
+import Footer from '../components/Footer/Footer';
+const font = "'Niconne', cursive";
 // This Info will be called using a useEffect -> function(async/await) -> Axios -> DB
 
 // controls navbar for login/logout buttons
@@ -32,27 +34,17 @@ const images = {
             url: vehicle
         },
     ],
-    car: [
-        {
-            url: carDecals
-        },
-    ],
-    outdoor: [
+    sign: [
         {
             url: outdoorSigns
         },
     ],
-    window: [
-        {
-            url: outdoorSigns
-        },
-    ]
 }
 
 
 
-const Home = () => {
-
+const Home = (props) => {
+    const { user, isLoggedIn } = props;
     
     return (
         <>
@@ -61,6 +53,7 @@ const Home = () => {
             <About />
             <Offers images={images} />
             <Quote />
+            <Footer font={font} />
         </>
     )
 }

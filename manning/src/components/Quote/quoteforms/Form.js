@@ -40,7 +40,7 @@ const validate = values => {
 
 
 
-function QuoteForm() {
+function QuoteForm({font}) {
     // Check to see if shirts/signs/vehicle wrap are selected to then display the corresponding form beneath.
   const [orderType, setOrderType] = useState('null')
   const [sending, setSending] = useState("Submit for Quote");
@@ -128,7 +128,7 @@ function QuoteForm() {
   return (
     <div style={{ padding: 8, margin: 'auto', maxWidth: 1000, paddingTop: '10vh' }}>
       <CssBaseline />
-      <Typography variant="h2" align="center" component="h2" gutterBottom>
+      <Typography style={{fontFamily: font}} variant="h2" align="center" component="h2" gutterBottom>
         Quote Request Form
       </Typography>
       <Form
