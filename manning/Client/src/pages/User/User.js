@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Footer from '../../components/Footer/Footer';
 import Navbar from '../../components/Navbar/Navbar';
+import api from '../../utils/API';
 import {
     Avatar,
     Button,
@@ -43,6 +44,15 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+// api call to get About info
+const getAboutInfo = () => {
+    api.getAbout().then((res) => {
+        console.log('aboutInfo', res.data[0])
+    }).catch(err => {
+        console.log('aboutInfo error', err)
+    })
+}
+
     
 export default function User (props) {
     const classes = useStyles();
@@ -81,15 +91,22 @@ export default function User (props) {
     // call the backend function to send data to db
     const onSubmit = (values) => {
         console.log(values)
-        
-        let data = {
-            about1: values.about1,
-            about2: values.about2,
-            pictureType: type,
-            imageURL: file,
-        }
 
-        console.log(data, "onsubmit")
+        let aboutInfo = {
+            about1: values.about1,
+            about2: values.about2
+        }
+        
+        // let data = {
+        //     img: values
+        //     pictureType: type,
+
+        //     imageURL: file,
+        // }
+        // update about1/2 fields
+        // add to 
+
+        // console.log(data, "onsubmit")
     };
 
     return (
@@ -101,6 +118,7 @@ export default function User (props) {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
+        <Button onClick={() => getAboutInfo()}>About Info</Button>
         <Typography component="h1" variant="h5">
           User Settings
         </Typography>
@@ -120,7 +138,7 @@ export default function User (props) {
                         autoFocus
                         component={TextField}
 
-                    />
+                    ></Field>
                     <Field
                         variant="outlined"
                         margin="normal"

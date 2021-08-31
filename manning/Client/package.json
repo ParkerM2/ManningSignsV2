@@ -1,0 +1,69 @@
+{
+  "name": "project-3",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-brands-svg-icons": "^5.15.1",
+    "@fortawesome/free-regular-svg-icons": "^5.15.1",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/react-fontawesome": "^0.1.14",
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/icons": "^4.11.2",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.21.1",
+    "bootstrap": "^4.5.3",
+    "dotenv": "^10.0.0",
+    "email-js": "^2.0.2",
+    "emailjs-com": "^3.2.0",
+    "final-form": "^4.20.2",
+    "final-form-material-ui": "^0.3.0",
+    "jquery": "^3.5.1",
+    "material-ui-dropzone": "^3.5.0",
+    "moment-timezone": "^0.5.32",
+    "popper.js": "^1.16.1",
+    "react": "^17.0.1",
+    "react-background-video-player": "^1.1.7",
+    "react-bootstrap": "^1.4.3",
+    "react-dom": "^17.0.1",
+    "react-elastic-carousel": "^0.10.0",
+    "react-final-form": "^6.5.3",
+    "react-icons": "^4.1.0",
+    "react-iframe": "^1.8.0",
+    "react-moment": "^1.1.1",
+    "react-router-dom": "^5.2.1",
+    "react-scripts": "^4.0.1",
+    "react-scroll": "^1.8.3",
+    "react-select": "^4.3.1",
+    "styled-components": "^5.2.1",
+    "swr": "^0.4.0",
+    "web-vitals": "^0.2.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "proxy": "http://localhost:8080"
+}
