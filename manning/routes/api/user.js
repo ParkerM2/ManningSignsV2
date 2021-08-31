@@ -52,8 +52,23 @@ router.get("/api/about", function (req,res ) {
     DBConnection.query('SELECT * FROM `about`', function (err, rows) {
         if (err) {throw err}
         res.json(rows)
-        console.log(res)
     })
+});
+
+
+router.put("/api/about1", function (req, res) {
+    console.log("REQ", Object.keys(req.body)) // <- is the about1 info
+    DBConnection.query(`UPDATE about SET about1 = ? WHERE id = 1`, Object.keys(req.body), function (err, rows) {
+        if (err) { throw err }
+     })
+});
+
+router.put("/api/about2", function (req, res) {
+    console.log("REQ", Object.keys(req.body)) // <- is the about2 info
+    DBConnection.query(`UPDATE about SET about2 = ? WHERE id = 1`, Object.keys(req.body), function (err, rows) {
+        if (err) { throw err }
+
+     })
 });
 
 // add image route

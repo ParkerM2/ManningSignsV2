@@ -19,9 +19,19 @@ let removeImage = (imgId, callback) => {
     DBConnection.query('DELETE FROM `gallery` where id = ?', [imgId], callback)
 };
 
+let addAbout1 = (about1, callback) => {
+    DBConnection.query('UPDATE `about` SET `about1` VALUES (?) WHERE id = `1`', [about1])
+};
+
+let addAbout2 = (about2, callback) => {
+    DBConnection.query('UPDATE `about` SET `about2` VALUES (?) WHERE id = `1`', [about2])
+};
+
 module.exports = {
     listImages,
     addImage,
     removeImage,
-    hasImage
+    hasImage,
+    addAbout1,
+    addAbout2,
 };

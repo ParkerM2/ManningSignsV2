@@ -18,7 +18,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { DropzoneArea } from 'material-ui-dropzone';
 import { Form, Field } from 'react-final-form';
-import { TextField, Checkbox, Select, } from 'final-form-material-ui';
+import { TextField } from 'final-form-material-ui';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -44,14 +44,14 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-// api call to get About info
-const getAboutInfo = () => {
-    api.getAbout().then((res) => {
-        console.log('aboutInfo', res.data[0])
-    }).catch(err => {
-        console.log('aboutInfo error', err)
-    })
-}
+const updateAboutInfo = (info) => {
+    if (info.about1) {
+        api.updateAbout1(info.about1)
+    }
+    if (info.about2) {
+        api.updateAbout2(info.about2)
+    }
+};
 
     
 export default function User (props) {
@@ -72,41 +72,21 @@ export default function User (props) {
         } else {
             setAboutSectionImage(false)
         }
-        console.log(type)
     };
 
-    // handles click or drag of image into dropzone
-    // sets state of file to hold img path(s)
+    // file upload & dropzone
     const handleUploadClick = (event) => {
-    // sets state of File to array of added images paths
-    let imgArray = [];
-    event.map((img) => {
-        imgArray.push(img.path)
-    }); 
-    setFile(imgArray)
+        let imgArray = [];
+        event.map((img) => {
+            imgArray.push(img.path)
+        }); 
+        setFile(imgArray)
     }
 
-    // handles submitting the form
-    // parse out values of form inputs
-    // call the backend function to send data to db
     const onSubmit = (values) => {
-        console.log(values)
-
-        let aboutInfo = {
-            about1: values.about1,
-            about2: values.about2
-        }
-        
-        // let data = {
-        //     img: values
-        //     pictureType: type,
-
-        //     imageURL: file,
-        // }
-        // update about1/2 fields
-        // add to 
-
-        // console.log(data, "onsubmit")
+        updateAboutInfo(values)
+        values.img_type = type;
+        console.log(values);
     };
 
     return (
@@ -118,13 +98,12 @@ export default function User (props) {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Button onClick={() => getAboutInfo()}>About Info</Button>
         <Typography component="h1" variant="h5">
           User Settings
         </Typography>
         <Form
             onSubmit={onSubmit}
-            render={({ handleSubmit, reset, submitting, pristine, values }) => (
+            render={({ handleSubmit }) => (
                 <form className={classes.form} onSubmit={handleSubmit} noValidate>
                     <Field
                         variant="outlined"
