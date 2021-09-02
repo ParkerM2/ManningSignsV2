@@ -14,8 +14,7 @@ const path = require('path');
 require('./passport-config')
 const app = express();
 
- app.use(morgan('tiny'));
-
+app.use(morgan('tiny'));
 //use cookie parser
 app.use(cookieParser('secret'));
 

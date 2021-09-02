@@ -19,6 +19,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { DropzoneArea } from 'material-ui-dropzone';
 import { Form, Field } from 'react-final-form';
 import { TextField } from 'final-form-material-ui';
+import ProgressBar from '../../components/Progressbar/ProgressBar';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -52,13 +53,17 @@ const updateAboutInfo = (info) => {
         api.updateAbout2(info.about2)
     }
 };
+const imgUpload = ( img ) => {
+    api.addImage(img);
+};
 
     
 export default function User (props) {
     const classes = useStyles();
     const [file, setFile] = useState();
-    const [type, setType] = useState()
+    const [type, setType] = useState(null)
     const [aboutSectionImage, setAboutSectionImage] = useState(false);
+    const [error, setError] = useState('');
     const { user, isLoggedIn, font } = props;
 
     // handles change of radio group buttons controlling what type of image
@@ -74,131 +79,143 @@ export default function User (props) {
         }
     };
 
+    const acceptedTypes = ['image/png', 'image/jpeg']
+
     // file upload & dropzone
     const handleUploadClick = (event) => {
-        let imgArray = [];
-        event.map((img) => {
-            imgArray.push(img.path)
-        }); 
-        setFile(imgArray)
+        
+        let selected = event.target.files[0];
+
+        if (selected && acceptedTypes.includes(selected.type)) {
+            console.log(selected)
+            setFile(selected)
+            setError('');
+        } else {
+            setFile(null);
+            setError('Please select an image file (png or jpeg)');
+        };
     }
 
     const onSubmit = (values) => {
         updateAboutInfo(values)
         values.img_type = type;
+        console.log(file)
         console.log(values);
+        imgUpload(file)
     };
 
     return (
         <>
-    <Navbar user={user} isLoggedIn={isLoggedIn}/>
-        <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          User Settings
-        </Typography>
-        <Form
-            onSubmit={onSubmit}
-            render={({ handleSubmit }) => (
-                <form className={classes.form} onSubmit={handleSubmit} noValidate>
-                    <Field
-                        variant="outlined"
-                        margin="normal"
-                        fullWidth
-                        id="about1"
-                        label="About Section 1"
-                        name="about1"
-                        multiline
-                        rows={4}
-                        autoFocus
-                        component={TextField}
-
-                    ></Field>
-                    <Field
-                        variant="outlined"
-                        margin="normal"
-                        fullWidth
-                        name="about2"
-                        label="About Section 2"
-                        type="text"
-                        multiline
-                        rows={4}
-                        id="about2"
-                        component={TextField}
-
-                    />
-                    <Typography style={{ fontFamily: font }}>
-                        Gallery Images
+            <Navbar user={user} isLoggedIn={isLoggedIn} />
+            <Container component="main" maxWidth="xs">
+                <CssBaseline />
+                <div className={classes.paper}>
+                    <Avatar className={classes.avatar}>
+                        <LockOutlinedIcon />
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                        User Settings
                     </Typography>
-                    <Grid item sm={12}>
-                        <FormLabel style={{ fontFamily: font }} component="legend" color="primary">What type of <strong>Image</strong> are you uploading?</FormLabel>
-                        <RadioGroup color="primary.main" onChange={handleChange} name="typeOrder" row>
-                            <FormControlLabel
-                                label="Shirts"
-                                name="shirt"
-                                control={<Radio />}
-                                type="Radio"
-                                value="shirt" 
-                            />
-                            <FormControlLabel
-                                label="Sign"
-                                name="sign"
-                                control={<Radio />}
-                                type="Radio"
-                                value="sign"    
-                            />
-                            <FormControlLabel
-                                label="Vehicle Wrap"
-                                name="vehicle"
-                                control={<Radio />}
-                                type="Radio"
-                                value="vehicle"
-                            />
-                            <FormControlLabel
-                                label="About1"
-                                name="AboutOneImage"
-                                control={<Radio />}
-                                type="Radio"
-                                value="AboutOneImage"
-                            />
-                            <FormControlLabel
-                                label="About2"
-                                name="AboutTwoImage"
-                                control={<Radio />}
-                                type="Radio"
-                                value="aboutTwoImage"
-                            />
-                        </RadioGroup>
-                    </Grid>
-                    <DropzoneArea
-                        accept="image/*"
-                        className={classes.input}
-                        id="contained-button-file"
-                        type="file"
-                        value="image"
-                        onChange={handleUploadClick}
-                        name="image"
-                        maxFileSize={500000000}
-                        filesLimit={aboutSectionImage ? 1 : 4}
-                    />
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                    >
-                        Submit
-                    </Button>
-                </form>
-            )}/>
-      </div>
-    </Container>
-    <Footer className={classes.footer} />
-    </>
-  );
+                    <Form
+                        onSubmit={onSubmit}
+                        render={({ handleSubmit }) => (
+                            <form className={classes.form} onSubmit={handleSubmit} enctype="multipart/form-data" noValidate>
+                                <Field
+                                    variant="outlined"
+                                    margin="normal"
+                                    fullWidth
+                                    id="about1"
+                                    label="About Section 1"
+                                    name="about1"
+                                    multiline
+                                    rows={4}
+                                    autoFocus
+                                    component={TextField}
+
+                                ></Field>
+                                <Field
+                                    variant="outlined"
+                                    margin="normal"
+                                    fullWidth
+                                    name="about2"
+                                    label="About Section 2"
+                                    type="text"
+                                    multiline
+                                    rows={4}
+                                    id="about2"
+                                    component={TextField}
+
+                                />
+                                <Typography style={{ fontFamily: font }}>
+                                    Gallery Images
+                                </Typography>
+                                <Grid item sm={12}>
+                                    <FormLabel style={{ fontFamily: font }} component="legend" color="primary">What type of <strong>Image</strong> are you uploading?</FormLabel>
+                                    <RadioGroup color="primary.main" onChange={handleChange} name="typeOrder" row>
+                                        <FormControlLabel
+                                            label="Shirts"
+                                            name="shirt"
+                                            control={<Radio />}
+                                            type="Radio"
+                                            value="shirt"
+                                        />
+                                        <FormControlLabel
+                                            label="Sign"
+                                            name="sign"
+                                            control={<Radio />}
+                                            type="Radio"
+                                            value="sign"
+                                        />
+                                        <FormControlLabel
+                                            label="Vehicle Wrap"
+                                            name="vehicle"
+                                            control={<Radio />}
+                                            type="Radio"
+                                            value="vehicle"
+                                        />
+                                        <FormControlLabel
+                                            label="About1"
+                                            name="AboutOneImage"
+                                            control={<Radio />}
+                                            type="Radio"
+                                            value="AboutOneImage"
+                                        />
+                                        <FormControlLabel
+                                            label="About2"
+                                            name="AboutTwoImage"
+                                            control={<Radio />}
+                                            type="Radio"
+                                            value="aboutTwoImage"
+                                        />
+                                    </RadioGroup>
+                                </Grid>
+                                <input
+                                    className={classes.input}
+                                    type="file"
+                                    onChange={handleUploadClick}
+                                    name="image"
+                                    maxFileSize={500000000}
+                                    filesLimit={aboutSectionImage ? 1 : 4}
+                                />
+                                <div>
+                                    {error && <div className="error"> {error} </div>}
+                                    {file && <div> {file.name} </div>}
+                                    {file && <ProgressBar file={file} setFile={setFile} /> }
+                                </div>
+                                <Button
+                                    type="submit"
+                                    fullWidth
+                                    variant="contained"
+                                    color="primary"
+                                    className={classes.submit}
+                                >
+                                    Submit
+                                </Button>
+                            </form>
+                        )} />
+                </div>
+            </Container>
+            <Footer className={classes.footer} />
+        </>
+    );
 }

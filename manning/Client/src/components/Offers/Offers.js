@@ -57,12 +57,12 @@ const useStyles = makeStyles((theme) => ({
 const font = "'Niconne', cursive";
 
 
-const Offers = ({ images }) => {
-    console.log(images)
+const Offers = ( props ) => {
+    console.log(props)
     const classes = useStyles();
     const [activeImages, setActiveImages] = useState([]);
 
-    const { shirt, vehicle, sign } = images;
+    const { shirt, vehicle, sign } = props.images;
 
     useEffect(() => {
         setActiveImages(shirt)

@@ -2,7 +2,7 @@ import axios from "axios"
 
 export default {
 
-    addImage: function (data, token) {
+    addImage: function (data) {
         return axios.post("/api/addImage", data);
     },
 

@@ -4,11 +4,13 @@ const passport = require("passport");
 const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 var DBConnection = require('../../config/DBConnection');
-var loginService = require('../../services/login-service');
-var userService = require('../../services/user-service');
-
-
+var loginService = require('../../middlewares/login-service');
+var userService = require('../../middlewares/user-service');
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
 const router = express.Router();
+
+// image routes
 
 
 // login route
@@ -72,19 +74,17 @@ router.put("/api/about2", function (req, res) {
 });
 
 // add image route
-router.post('/api/addImage', passport.authenticate('jwt', { session: false }), function (req, res) {
-    try {
-        userService.addImage(req.body.img_url, req.body.img_title, req.body.about, req.body.tag, function (err, results) {
-            if (err) { throw err }
-            res.status(201).json({ status: 'success', message: 'Created' });
-        });
-    } catch (err) {
-        res.status(400).json({
-            status: 'fail',
-            message: err
-        })
-    }
+router.post('/api/addImage', upload.array('photos', 4), function (req, res, next) {
+    // req.file should be 'photos' array
+    // req.body will hold the text fields, if there were any'
+    console.log(`Inside router.post/addImage req.file>${req.file}`)
+
+    console.log(`Inside router.post/addImage req.body>${req.body}`)
+    DBConnection.query(`INSERT INTO gallery (img_url) VALUES ?`, [req.body], function (err, rows) {
+        if (err) { throw err }
+    });
 });
+
 
 // remove image route
 router.delete('/api/removeImage/:id', passport.authenticate('jwt', { session: false }), function (req, res) {
