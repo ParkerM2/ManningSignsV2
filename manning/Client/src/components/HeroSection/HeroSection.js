@@ -1,8 +1,6 @@
 import React from 'react';
-import backgroundImage from '../../images/396407.png';
 import backgroundVideo from '../../videos/lights.mp4';
 import VideoPlayer from "react-background-video-player";
-import { Link as LinkS } from 'react-scroll';
 import {
     Typography,
     makeStyles,
@@ -23,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
         minHeight: '95vh',
-        maxWidth: '100%',
     },
     mainFeaturedPost: {
         position: 'relative',
@@ -44,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: 'rgba(0,0,0,.3)',
     },
     mainFeaturedPostContent: {
-        color: 'white',
+        color: '',
         position: 'relative',
         textAlign: 'center',
         padding: theme.spacing(7),
@@ -69,10 +66,10 @@ const HeroSection = () => {
                     <Grid container>
                         <Grid item md={12}>
                             <div className={classes.mainFeaturedPostContent}>
-                                <Typography variant="h2" style={{ fontFamily: font }} gutterBottom>
+                                <Typography variant="h2" style={{ fontFamily: font, color : "white" }} gutterBottom>
                                     <b>Discover how we can fulfill your sign and shirt needs</b>
                                 </Typography>
-                                <Button component={LinkS} to="services" variant="contained" color="secondary" >
+                                <Button variant="contained" color="secondary" >
                                     View our Services!
                                 </Button>
                             </div>

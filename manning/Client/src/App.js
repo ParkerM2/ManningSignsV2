@@ -4,19 +4,22 @@ import './App.css';
 import Home from './pages/index';
 import Login from './pages/Login/Login';
 import User from './pages/User/User';
+
+const font = "'Niconne', cursive";
 // controls navbar for login/logout buttons
 const isLoggedIn = true;
 // userInfo or Admin info
 const user = {
-    userID: 'administrator',
-    username: "Parker",
-    // password * 
+  userID: 'administrator',
+  username: "Parker",
+  // password * 
 
-}
+};
 
-const font = "'Niconne', cursive";
+
 
 function App() {
+
   return (
     <>
       <Router>

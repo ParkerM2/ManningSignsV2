@@ -16,7 +16,6 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { DropzoneArea } from 'material-ui-dropzone';
 import { Form, Field } from 'react-final-form';
 import { TextField } from 'final-form-material-ui';
 import ProgressBar from '../../components/Progressbar/ProgressBar';
@@ -53,9 +52,9 @@ const updateAboutInfo = (info) => {
         api.updateAbout2(info.about2)
     }
 };
-const imgUpload = ( img ) => {
-    api.addImage(img);
-};
+// const imgUpload = ( img ) => {
+//     api.addImage(img);
+// };
 
     
 export default function User (props) {
@@ -85,6 +84,8 @@ export default function User (props) {
     const handleUploadClick = (event) => {
         
         let selected = event.target.files[0];
+        selected.list = type;
+        // console.log(`Inside handleuploadclick for image => type = ${type}`)
 
         if (selected && acceptedTypes.includes(selected.type)) {
             console.log(selected)
@@ -99,9 +100,9 @@ export default function User (props) {
     const onSubmit = (values) => {
         updateAboutInfo(values)
         values.img_type = type;
-        console.log(file)
-        console.log(values);
-        imgUpload(file)
+        // console.log(file)
+        // console.log(values);
+        // imgUpload(file)
     };
 
     return (
@@ -189,6 +190,7 @@ export default function User (props) {
                                         />
                                     </RadioGroup>
                                 </Grid>
+                                <Grid container lg={12} >
                                 <input
                                     className={classes.input}
                                     type="file"
@@ -197,11 +199,11 @@ export default function User (props) {
                                     maxFileSize={500000000}
                                     filesLimit={aboutSectionImage ? 1 : 4}
                                 />
-                                <div>
+                                    <Grid>
                                     {error && <div className="error"> {error} </div>}
-                                    {file && <div> {file.name} </div>}
                                     {file && <ProgressBar file={file} setFile={setFile} /> }
-                                </div>
+                                    </Grid>
+                                </Grid>
                                 <Button
                                     type="submit"
                                     fullWidth

@@ -1,10 +1,8 @@
 import React from 'react';
 import Form from './quoteforms/Form';
-import { Link as LinkS } from 'react-scroll';
+// import { Link as LinkS } from 'react-scroll';
 import {
-    Typography,
     makeStyles,
-    CardMedia,
     Grid,
     Paper,
 } from '@material-ui/core';

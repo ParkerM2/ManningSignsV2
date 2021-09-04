@@ -6,11 +6,6 @@ import {
     Button,
     CssBaseline,
     TextField,
-    FormControlLabel,
-    Checkbox,
-    Link,
-    Grid,
-    Box,
     Typography,
     Container
 } from '@material-ui/core';

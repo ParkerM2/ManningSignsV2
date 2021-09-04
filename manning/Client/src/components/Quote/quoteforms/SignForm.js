@@ -6,7 +6,6 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import { TextField } from 'final-form-material-ui';
 import {
   Grid,
-  Button,
 } from '@material-ui/core';
 import getMats from '../../../lib/materials';
 

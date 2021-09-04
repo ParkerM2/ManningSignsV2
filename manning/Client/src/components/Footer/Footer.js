@@ -3,14 +3,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-import Button from '@material-ui/core/Button';
 import VideoPlayer from "react-background-video-player";
 import backgroundVideo from '../../videos/lights.mp4';
 import Paper from '@material-ui/core/Paper';
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="white" align="center">
+    <Typography variant="body2" align="center">
       {'Copyright © '}
       <Link color="inherit" href="/">
         Manning Signs
@@ -31,8 +30,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
     minHeight: '20vh',
-    maxWidth: '100%',
-
 },
     mainFeaturedPostContent: {
         color: 'white',

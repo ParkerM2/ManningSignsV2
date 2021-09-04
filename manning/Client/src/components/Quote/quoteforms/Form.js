@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Form, Field } from 'react-final-form';
-import { TextField, Checkbox, Select, } from 'final-form-material-ui';
+import { TextField, Checkbox } from 'final-form-material-ui';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';

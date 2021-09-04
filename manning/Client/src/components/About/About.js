@@ -1,18 +1,16 @@
 import React from 'react';
-
-import { Link as LinkS } from 'react-scroll';
+import { useFirestore } from '../../hooks/getDocs';
 import {
     Typography,
     makeStyles,
     CardMedia,
     Grid,
     Paper,
-    Card,
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     box: {
-        backgroundColor: 'white',
+        backgroundColor: '',
     },
     paperImg: {
         backgroundImage: `url('https://via.placeholder.com/300/09f/fff.png')`,
@@ -33,9 +31,14 @@ const font = "'Niconne', cursive";
 
 // take in props for about text??
 
-const HeroSection = (props) => {
-    const { aboutInfo } = props;
+const HeroSection = () => {
     const classes = useStyles();
+
+    // returns array of about info:
+    // ex: docs[0].about.alt = image alt ** .id = id ** .text = text field 
+    // ** .title = title * .url = img url
+    const { docs } = useFirestore('about');
+
     return (
         <>
             <div>
@@ -48,26 +51,32 @@ const HeroSection = (props) => {
                         </div>
                     </Grid>
                     {/* Amy / Dale descriptions and pictures w/ links to socials */}
-                    <Grid container justify="space-around" alignItems="center" md={12}>
-                        <Grid style={{ padding: '4vh' }} item md={7} lg={8} >
-                            <Typography variant="h6">
-                                {aboutInfo.about1}
-                            </Typography>
-                        </Grid>
-                        <Grid style={{ padding: '1vh' }} item lg={3} md={3} sm={8} lg={2}>
-                            <CardMedia src="https://via.placeholder.com/150/09f/fff.png" component="img" />
-                        </Grid>
-                    </Grid>
-                    <Grid style={{ paddingBottom: '5vh' }} container justify="space-around" alignItems="center" md={12}>
-                        <Grid style={{ padding: '1vh' }} item lg={2} md={3} sm={8}>
-                            <CardMedia src="https://via.placeholder.com/150/09f/fff.png" component="img" />
-                        </Grid>
-                        <Grid style={{ padding: '4vh' }} item md={7}>
-                            <Typography variant="h6">
-                                {aboutInfo.about2}
-                            </Typography>
-                        </Grid>
-                    </Grid>
+                    {docs &&
+                        docs.map((about) => (
+                            <>
+                                <Grid container alignItems="center" >
+                                    <Grid style={{ padding: '4vh' }} item md={7} lg={8} >
+                                        <Typography variant="h6">
+                                            {about.about1.text}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid style={{ padding: '1vh' }} item lg={3} md={3} sm={8} lg={2}>
+                                        <CardMedia alt={about.about1.alt} src={about.about1.url} component="img" />
+                                    </Grid>
+                                </Grid>
+                                
+                                <Grid style={{ paddingBottom: '5vh' }} container alignItems="center">
+                                    <Grid style={{ padding: '1vh' }} item lg={2} md={3} sm={8}>
+                                        <CardMedia alt={about.about2.alt} src={about.about2.url} component="img" />
+                                    </Grid>
+                                    <Grid style={{ padding: '4vh' }} item md={7}>
+                                        <Typography align="right" variant="h6">
+                                            {about.about2.text}
+                                        </Typography>
+                                    </Grid>
+                                </Grid>
+                            </>
+                        ))}
                 </Paper>
             </div>
         </>
