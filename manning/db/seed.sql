@@ -1,2 +1,0 @@
-INSERT INTO users (email, user_name, user_password) VALUES ('dale@manningsigns.net', 'Dale','Cowboys1')
-INSERT INTO users (email, user_name, user_password) VALUES ('amy@manningsigns.net', 'Amy','ParkersMom!23');
