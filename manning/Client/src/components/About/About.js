@@ -37,7 +37,7 @@ const HeroSection = () => {
     // returns array of about info:
     // ex: docs[0].about.alt = image alt ** .id = id ** .text = text field 
     // ** .title = title * .url = img url
-    const { docs } = useFirestore('about');
+    // const { docs } = useFirestore('about');
 
     return (
         <>
@@ -51,32 +51,32 @@ const HeroSection = () => {
                         </div>
                     </Grid>
                     {/* Amy / Dale descriptions and pictures w/ links to socials */}
-                    {docs &&
+                    {/* {docs &&
                         docs.map((about) => (
                             <>
-                                <Grid container alignItems="center" >
-                                    <Grid style={{ padding: '4vh' }} item md={7} lg={8} >
+                                <Grid style={{ paddingBottom: '5vh' }} container alignItems="center" >
+                                    <Grid style={{ padding: '4vh' }} item md={7} lg={9} >
                                         <Typography variant="h6">
                                             {about.about1.text}
                                         </Typography>
                                     </Grid>
-                                    <Grid style={{ padding: '1vh' }} item lg={3} md={3} sm={8} lg={2}>
+                                    <Grid style={{ padding: '2vh' }} item md={3} sm={8} lg={2}>
                                         <CardMedia alt={about.about1.alt} src={about.about1.url} component="img" />
                                     </Grid>
                                 </Grid>
                                 
-                                <Grid style={{ paddingBottom: '5vh' }} container alignItems="center">
-                                    <Grid style={{ padding: '1vh' }} item lg={2} md={3} sm={8}>
+                                <Grid style={{ paddingBottom: '5vh', paddingLeft: '2vh' }} container alignItems="center">
+                                    <Grid style={{ padding: '4vh'}} item lg={2} md={3} sm={8}>
                                         <CardMedia alt={about.about2.alt} src={about.about2.url} component="img" />
                                     </Grid>
-                                    <Grid style={{ padding: '4vh' }} item md={7}>
+                                    <Grid style={{ padding: '4vh' }} item md={3} sm={8} lg={3}>
                                         <Typography align="right" variant="h6">
                                             {about.about2.text}
                                         </Typography>
                                     </Grid>
                                 </Grid>
                             </>
-                        ))}
+                        ))} */}
                 </Paper>
             </div>
         </>

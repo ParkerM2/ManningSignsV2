@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect} from 'react';
 // import { Link as LinkS } from 'react-scroll';
 import { useFirestore } from '../../hooks/getDocs';
 import {
@@ -12,6 +12,8 @@ import {
     Card,
     ButtonGroup,
 } from '@material-ui/core';
+import { db } from '../../firebase/config';
+import { getDoc, query, doc, collection, onSnapshot, QuerySnapshot, getDocs } from '@firebase/firestore';
 const font = "'Niconne', cursive";
 
 const useStyles = makeStyles((theme) => ({
@@ -59,12 +61,40 @@ const useStyles = makeStyles((theme) => ({
 
 const Offers = () => {
     const classes = useStyles();
-
+    const [shirt, setShirts] = useState();
+    const [vehicle, setVehicles] = useState();
+    const [sign, setSigns] = useState();
+    const [loading, setLoading] = useState(false)
     // currentImages sets the collection to pull from in the gallery db
-    const [currentImages, setCurrentImages] = useState('shirt');
+    const [currentImages, setCurrentImages] = useState();
 
-    // docs is the response from firestore db where the objects containing the image info are stored
-    const { docs } = useFirestore(currentImages);
+    // async function getImages() {
+    //     const gallery = query(collection(db, 'gallery'))
+    //     const queryGallery = await getDocs(gallery)
+    //     queryGallery.forEach((doc) => {
+    //         if (doc.id === 'shirt') {
+    //             setShirts(doc.data())
+    //             setCurrentImages(shirt)
+    //         } else if (doc.id === 'vehicle') {
+    //             setVehicles(doc.data());
+    //         } else {
+    //             setSigns(doc.data())
+    //         };
+
+    //     })
+    // };
+    
+    
+    // useEffect(() => {
+    //     getImages()
+    
+    //     const timer = setTimeout(() => {
+    //         setLoading(true);
+    //         console.log(currentImages)
+    //     }, 7000);
+    //     return () => clearTimeout(timer);
+    // }, [loading])
+
 
     return (
         <>
@@ -80,25 +110,29 @@ const Offers = () => {
                     {/* gallery using buttons controlling state, mapping over array from backend axios request */}
                     <Grid className={classes.buttons}>
                         <ButtonGroup size="small" aria-label="small outlined button group">
-                            <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('shirt')}>Shirts</Button>
-                            <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('vehicle')}>Vehicles</Button>
-                            <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('sign')}>Signs</Button>
+                            <Button variant="outlined" color="inherit" onClick={() => setCurrentImages(shirt)}>Shirts</Button>
+                            <Button variant="outlined" color="inherit" onClick={() => setCurrentImages(vehicle)}>Vehicles</Button>
+                            <Button variant="outlined" color="inherit" onClick={() => setCurrentImages(sign)}>Signs</Button>
                         </ButtonGroup>
                     </Grid>
                     <Container maxWidth="lg" color="inherit" component="main" className={classes.heroContent}>
                         <Grid container spacing={5} alignItems="flex-end">
-                            {docs && docs.map((image) => (
-                                <Grid style={{ padding: '4vh' }} item key={image.image.id} xs={12} md={4}>
-                                    <Card className={classes.root}>
-                                        <CardMedia
-                                            component="img"
-                                            alt={image.image.title}
-                                            height="300"
-                                            src={image.image.url}
-                                        />
-                                    </Card>
-                                </Grid>
-                            ))}
+                            {/* {loading ? (
+                                currentImages.images.map((image) => (
+                                    <Grid style={{ padding: '4vh' }} item key={image.id} xs={12} md={4}>
+                                        <Card className={classes.root}>
+                                            <CardMedia
+                                                component="img"
+                                                alt={image.title}
+                                                height="300"
+                                                src={image.url}
+                                            />
+                                        </Card>
+                                    </Grid>
+                                ))) : (
+                                    <div>no images but I'm supposed to be loading</div>
+                            )
+                            } */}
                         </Grid>
                     </Container>
                 </Paper>
