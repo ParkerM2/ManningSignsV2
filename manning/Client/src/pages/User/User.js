@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import Footer from '../../components/Footer/Footer';
-import Navbar from '../../components/Navbar/Navbar';
-import api from '../../utils/API';
 import {
     Avatar,
     Button,
@@ -19,6 +17,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { Form, Field } from 'react-final-form';
 import { TextField } from 'final-form-material-ui';
 import ProgressBar from '../../components/Progressbar/ProgressBar';
+import { signOut, getAuth } from 'firebase/auth';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -43,18 +42,8 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: '-60px'
   }
 }));
+const auth = getAuth();
 
-const updateAboutInfo = (info) => {
-    if (info.about1) {
-        api.updateAbout1(info.about1)
-    }
-    if (info.about2) {
-        api.updateAbout2(info.about2)
-    }
-};
-// const imgUpload = ( img ) => {
-//     api.addImage(img);
-// };
 
     
 export default function User (props) {
@@ -85,7 +74,7 @@ export default function User (props) {
         
         let selected = event.target.files[0];
         selected.list = type;
-        // console.log(`Inside handleuploadclick for image => type = ${type}`)
+        // console.log(`Inside handleUploadclick for image => type = ${type}`)
 
         if (selected && acceptedTypes.includes(selected.type)) {
             console.log(selected)
@@ -98,7 +87,7 @@ export default function User (props) {
     }
 
     const onSubmit = (values) => {
-        updateAboutInfo(values)
+       
         values.img_type = type;
         // console.log(file)
         // console.log(values);
@@ -107,7 +96,6 @@ export default function User (props) {
 
     return (
         <>
-            <Navbar user={user} isLoggedIn={isLoggedIn} />
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <div className={classes.paper}>
@@ -196,7 +184,6 @@ export default function User (props) {
                                     type="file"
                                     onChange={handleUploadClick}
                                     name="image"
-                                    maxFileSize={500000000}
                                     filesLimit={aboutSectionImage ? 1 : 4}
                                 />
                                     <Grid>
@@ -213,6 +200,7 @@ export default function User (props) {
                                 >
                                     Submit
                                 </Button>
+
                             </form>
                         )} />
                 </div>

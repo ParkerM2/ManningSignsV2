@@ -13,8 +13,8 @@ const useStorage = (file) => {
         const metadata = {
             contentType: 'image/jpeg'
         };
-        // references => separate images by category = file.list
-        const storageRef = ref(storage, 'images/' + file.name);
+        // references => separate images by category = file.list 
+        const storageRef = ref(storage, 'images/' + file.name); 
         const uploadTask = uploadBytesResumable(storageRef, file, metadata);
         // const galleryRef = collection(db, 'gallery');
         // listen for state changes, errors, and completion
@@ -22,6 +22,7 @@ const useStorage = (file) => {
             (snapshot) => {
                 // get task progress, including the number of bytes
                 const progress = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                let array =[];
                 setProgress(progress);
                 
                 switch (snapshot.state) {

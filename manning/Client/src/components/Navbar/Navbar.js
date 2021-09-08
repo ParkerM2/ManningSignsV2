@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
     AppBar,
     Toolbar,
@@ -10,7 +10,9 @@ import {
     Grid,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import { Link as LinkR } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+
+
 // import { Link as LinkS } from 'react-scroll';
 
 const useStyles = makeStyles((theme) => ({
@@ -28,9 +30,17 @@ const useStyles = makeStyles((theme) => ({
 const font = "'Niconne', cursive";
 
 
-const Navbar = ({isLoggedIn, user}) => {
+const Navbar = () => {
     const [anchor, setAnchor] = useState(null);
     const classes = useStyles();
+    const currentUser = {};
+    currentUser.displayName = 'Dale';
+    
+
+
+
+  
+
 
     // open small menu
     const menuClick = (event) => {
@@ -40,6 +50,7 @@ const Navbar = ({isLoggedIn, user}) => {
     const menuClose = (event) => {
         setAnchor(null)
     };
+    
 
     return (
         <>
@@ -47,17 +58,20 @@ const Navbar = ({isLoggedIn, user}) => {
             <AppBar position="static" className={classes.navBar}>
                     <Toolbar>
                     <Typography style={{ fontFamily: font }} color="inherit" variant="h6" className={classes.title} >
-                            <Button component={LinkR} style={{color: 'cyan', textDecoration: 'none'}} to="/">MS</Button>
+                            <Button style={{color: 'cyan', textDecoration: 'none'}} href="/">MS</Button>
                     </Typography>
-                    <Button style={{fontFamily: font}} color="inherit" component={LinkR} to={isLoggedIn ? `/user/${user.userID}` : "/login"}>{isLoggedIn ? `Welcome, ${user.username} !` : "Login"}</Button>
-                    <Button style={{fontFamily: font}} color="inherit" aria-controls="simple-menu" onClick={menuClick}>
-                        <MenuIcon />
-                    </Button>
-                    <Menu id="simple-menu" style={{fontFamily: font}} anchorEl={anchor} keepMounted open={Boolean(anchor)} onClose={menuClose}>
-                        <MenuItem style={{fontFamily: font}} onClick={menuClose}>About</MenuItem>
-                        <MenuItem style={{fontFamily: font}} onClick={menuClose}>Services</MenuItem>
-                        <MenuItem style={{fontFamily: font}} component={LinkR} onClick={menuClose} to={isLoggedIn ? "/logout" : `/user/${user.userID}`}>{isLoggedIn ? "Logout" : "Login"}</MenuItem>
-                    </Menu>
+                        <Button style={{ fontFamily: font }} color="inherit"
+                            href={currentUser ? '/user/administrator' : '/login'}>
+                            {currentUser ? `Welcome, ${currentUser.displayName} !`  : 'Login'}
+                        </Button>
+                        {currentUser ? 
+                            <Button style={{ fontFamily: font }} color="inherit"
+                            href='/user/administrator'>
+                            Admin Page
+                            </Button>
+                            :
+                            null
+                        }
                 </Toolbar>
             </AppBar>
             </Grid>

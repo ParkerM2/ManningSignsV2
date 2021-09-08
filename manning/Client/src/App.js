@@ -1,41 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
-import Home from './pages/index';
+import Navbar from './components/Navbar/Navbar';
+import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import User from './pages/User/User';
-
+import { getAuth, signOut, } from 'firebase/auth';
+import { AuthProvider } from './context/AuthContext';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 const font = "'Niconne', cursive";
-// controls navbar for login/logout buttons
-const isLoggedIn = true;
-// userInfo or Admin info
-const user = {
-  userID: 'administrator',
-  username: "Parker",
-  // password * 
-
-};
-
 
 
 function App() {
 
   return (
     <>
+    <Navbar />
       <Router>
-        <Switch>
-          {/* homepage route */}
-          <Route exact path="/">
-            <Home user={user} isLoggedIn={isLoggedIn} />
-          </Route>
-          {/* login route */}
-          <Route exact path="/login">
-            <Login user={user} isLoggedIn={isLoggedIn}/>
-          </Route>
-          <Route exact path="/user/administrator">
-            <User font={font} user={user} isLoggedIn={isLoggedIn}/>
-          </Route>
-        </Switch>
+        <AuthProvider>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
+            <PrivateRoute path='/user' component={User}/>
+          </Switch>
+        </AuthProvider>
       </Router>
     </>
   );
