@@ -1,6 +1,8 @@
 import React, { useState, useEffect} from 'react';
 // import { Link as LinkS } from 'react-scroll';
 import { useFirestore } from '../../hooks/getDocs';
+import { db } from '../../firebase/config';
+import { doc, getDoc } from 'firebase/firestore';
 import {
     Typography,
     makeStyles,
@@ -12,8 +14,7 @@ import {
     Card,
     ButtonGroup,
 } from '@material-ui/core';
-import { db } from '../../firebase/config';
-import { getDoc, query, doc, collection, onSnapshot, QuerySnapshot, getDocs } from '@firebase/firestore';
+import { SDK_VERSION } from 'firebase/app';
 const font = "'Niconne', cursive";
 
 const useStyles = makeStyles((theme) => ({
@@ -61,40 +62,39 @@ const useStyles = makeStyles((theme) => ({
 
 const Offers = () => {
     const classes = useStyles();
-    const [shirt, setShirts] = useState();
-    const [vehicle, setVehicles] = useState();
-    const [sign, setSigns] = useState();
-    const [loading, setLoading] = useState(false)
+
     // currentImages sets the collection to pull from in the gallery db
-    const [currentImages, setCurrentImages] = useState();
+    const [currentImages, setCurrentImages] = useState('shirt');
+    const [images, setImages] = useState();
+    const [loading, setLoading] = useState(false);
 
-    // async function getImages() {
-    //     const gallery = query(collection(db, 'gallery'))
-    //     const queryGallery = await getDocs(gallery)
-    //     queryGallery.forEach((doc) => {
-    //         if (doc.id === 'shirt') {
-    //             setShirts(doc.data())
-    //             setCurrentImages(shirt)
-    //         } else if (doc.id === 'vehicle') {
-    //             setVehicles(doc.data());
-    //         } else {
-    //             setSigns(doc.data())
-    //         };
+    // docs is the response from firestore db where the objects containing the image info are stored
+    const getData = async () => {
+        const docRef = doc(db, 'gallery', currentImages);
+        const docSnap = await getDoc(docRef);
+    
+        if (docSnap.exists()) {
+            console.log('document data' , docSnap.data().images)
+            setImages(docSnap.data().images)
+            setLoading(false)
+        } else {
+            console.log('no such')
+        }
+    };
 
-    //     })
-    // };
-    
-    
-    // useEffect(() => {
-    //     getImages()
-    
-    //     const timer = setTimeout(() => {
-    //         setLoading(true);
-    //         console.log(currentImages)
-    //     }, 7000);
-    //     return () => clearTimeout(timer);
-    // }, [loading])
 
+    useEffect(() => {
+        setLoading(true)
+        getData();
+
+    }, [currentImages])
+    
+
+
+
+ 
+
+    
 
     return (
         <>
@@ -107,32 +107,34 @@ const Offers = () => {
                             </Typography>
                         </div>
                     </Grid>
-                    {/* gallery using buttons controlling state, mapping over array from backend axios request */}
+                    {/* gallery using buttons controlling state, mapping over array from backend firestore request */}
                     <Grid className={classes.buttons}>
                         <ButtonGroup size="small" aria-label="small outlined button group">
-                            <Button variant="outlined" color="inherit" onClick={() => setCurrentImages(shirt)}>Shirts</Button>
-                            <Button variant="outlined" color="inherit" onClick={() => setCurrentImages(vehicle)}>Vehicles</Button>
-                            <Button variant="outlined" color="inherit" onClick={() => setCurrentImages(sign)}>Signs</Button>
+                            <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('shirt')}>Shirts</Button>
+                            <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('vehicle')}>Vehicles</Button>
+                            <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('sign')}>Signs</Button>
                         </ButtonGroup>
                     </Grid>
                     <Container maxWidth="lg" color="inherit" component="main" className={classes.heroContent}>
                         <Grid container spacing={5} alignItems="flex-end">
-                            {/* {loading ? (
-                                currentImages.images.map((image) => (
-                                    <Grid style={{ padding: '4vh' }} item key={image.id} xs={12} md={4}>
-                                        <Card className={classes.root}>
-                                            <CardMedia
-                                                component="img"
-                                                alt={image.title}
-                                                height="300"
-                                                src={image.url}
-                                            />
-                                        </Card>
-                                    </Grid>
-                                ))) : (
-                                    <div>no images but I'm supposed to be loading</div>
+                            {!loading ? (
+                                images && images.map((image) => (
+                                <Grid style={{ padding: '4vh' }} item key={image.id} xs={12} md={4}>
+                                    <Card className={classes.root}>
+                                        <CardMedia
+                                            component="img"
+                                            alt={image.title}
+                                            height="300"
+                                            src={image.url}
+                                        />
+                                    </Card>
+                                </Grid>
+                            ))) 
+                            : 
+                            (
+                                <div>Loading cunt wait</div>
                             )
-                            } */}
+                        }
                         </Grid>
                     </Container>
                 </Paper>
