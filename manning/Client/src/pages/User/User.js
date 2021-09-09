@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Footer from '../../components/Footer/Footer';
 import {
     Avatar,
@@ -11,104 +11,197 @@ import {
     Radio,
     Typography,
     Container,
+    Divider,
+    Input,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { Form, Field } from 'react-final-form';
 import { TextField } from 'final-form-material-ui';
-import ProgressBar from '../../components/Progressbar/ProgressBar';
 import { signOut, getAuth } from 'firebase/auth';
+import useStorage from '../../hooks/useStorage';
+import { CircularProgress } from '@material-ui/core';
+import { green } from '@material-ui/core/colors';
+import {DropzoneArea} from 'material-ui-dropzone';
+import { db } from '../../firebase/config';
+import { doc, updateDoc} from 'firebase/firestore';
+const font = "'Niconne', cursive";
 
 const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    minHeight: '70vh'
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
+    paper: {
+        marginTop: theme.spacing(8),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        minHeight: '100vh'
+    },
+    avatar: {
+        margin: theme.spacing(1),
+        backgroundColor: theme.palette.secondary.main,
+    },
+    form: {
+        width: '100%', // Fix IE 11 issue.
+        marginTop: theme.spacing(1),
+    },
+    submit: {
+        margin: theme.spacing(3, 0, 2),
     },
     footer: {
-        marginBottom: '-60px'
-  }
+        marginTop: 'auto',
+    },
+    input: {
+        paddingTop: '2vh',
+        paddingBottom: '2vh',
+    },
 }));
-const auth = getAuth();
 
 
+// const ProgressBar = ({ file, setFile }) => {
+//     const [color, setColor] = useState()
+//     const { url, progress } = useStorage(file);
+
+//     const progressColor = (progress) => {
+//         if (progress < 100) {
+//             setColor('primary')
+//         } else if (progress === 100) {
+//             setColor(green[500])
+//             return;
+//         }
+//     }
+
+//     useEffect(() => {
+//         progressColor(progress)
+//         if (url) {
+//             setFile(null);
+//         };
+//     }, [progressColor]);
+
+//     useEffect(() => {
+//         if (url) {
+//             setFile(null)
+//         }  
+//     }, [url, setFile])
     
-export default function User (props) {
+//     return (
+//         <CircularProgress variant="determinate" style={{color: color}} value={progress} />
+//     )
+// }
+
+
+export default function User () {
     const classes = useStyles();
     const [file, setFile] = useState();
     const [type, setType] = useState(null)
-    const [aboutSectionImage, setAboutSectionImage] = useState(false);
     const [error, setError] = useState('');
-    const { user, isLoggedIn, font } = props;
+    const [color, setColor] = useState();
+    const [aboutImage1, setAboutImage1] = useState();
+    const [aboutInfo1, setAboutInfo1] = useState();
+    const [aboutInfo2, setAboutInfo2] = useState();
+    const [aboutImage2, setAboutImage2] = useState();
+    const [galleryImages, setGalleryImages] = useState();
+
+    // update Doc function
+    async function updateFirestore(reference, field, payload) {
+        const ref = doc(db, 'gallery', reference)
+        if (field === 'about1') {
+            await updateDoc(ref, 
+                {
+                    'about1.text': payload
+                }
+            )
+        } else if (field === 'about2') {
+            await updateDoc(ref,
+                {
+                    'about2.text' : payload
+                }
+            )
+        } else {
+            
+        }
+    };
+    
 
     // handles change of radio group buttons controlling what type of image
     const handleChange = (event) => {
         event.preventDefault();
         //  set type of image to value of radio group buttons
         setType(event.target.value);
-        // parse img based on type to allow 1 or multiple images uploaded
-        if (type === 'aboutOneImage' || 'aboutTwoImage') {
-            setAboutSectionImage(true)
-        } else {
-            setAboutSectionImage(false)
-        }
     };
 
     const acceptedTypes = ['image/png', 'image/jpeg']
-
-    // file upload & dropzone
-    const handleUploadClick = (event) => {
-        
-        let selected = event.target.files[0];
-        selected.list = type;
-        // console.log(`Inside handleUploadclick for image => type = ${type}`)
-
-        if (selected && acceptedTypes.includes(selected.type)) {
-            console.log(selected)
-            setFile(selected)
-            setError('');
-        } else {
-            setFile(null);
-            setError('Please select an image file (png or jpeg)');
-        };
-    }
+    
 
     const onSubmit = (values) => {
-       
-        values.img_type = type;
-        // console.log(file)
-        // console.log(values);
-        // imgUpload(file)
+        // parsing about1 image to be prepped to go into storage and have the made url updated to the firestore cloud information
+        if (aboutImage1) {
+            console.log( 'about1 img found', aboutImage1);
+            let data = aboutImage1;
+            // no sure might need to hardcode with url first?
+            data.list = 'about/about1/url';
+            // call function to store image
+            // needs the url from the useStorage Hook
+        } else {
+            console.log('no about1 img found')
+        };
+        
+        // parsing about image 2 to be prepped for storage and have url updated into the firestore cloud
+        if (aboutImage2) {
+            console.log( 'about2 img found', aboutImage2);
+            let data = aboutImage2;
+            data.list = 'about/about2/url'
+            // call function to store image
+            // needs url from useStorage Hook
+        } else {
+            console.log('no about1 img found')
+        };
+
+        //  Using state (type) to add to the gallery images object, so that in storage function it can send the urls to the images to the firestore
+        if (galleryImages) {
+            console.log('gallery image found=>',galleryImages);
+            let data = galleryImages;
+            data.list = type;
+            // call storage function here to send data to firebase storage
+            // storage hook url needed
+        } else { 
+            console.log('no gallery image deteceted')
+        };
+
+        // parsing about info text 
+        if (values.about1) {
+            console.log('about1 value found')
+            updateFirestore('about','about1', values.about1);
+            // call update firestore function here?
+        } else {
+            console.log('about1 value NOT found')
+        };
+    
+        if (values.about2) {
+            updateFirestore('about','about2', values.about2);
+            console.log('about2 value found')
+            // call update firestore function here?
+        } else {
+            console.log('about2 value NOT found')
+        };
+
+
     };
 
     return (
         <>
-            <Container component="main" maxWidth="xs">
+            <Container component="main" maxWidth="md">
                 <CssBaseline />
                 <div className={classes.paper}>
                     <Avatar className={classes.avatar}>
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        User Settings
+                        Admin 
                     </Typography>
                     <Form
                         onSubmit={onSubmit}
                         render={({ handleSubmit }) => (
                             <form className={classes.form} onSubmit={handleSubmit} enctype="multipart/form-data" noValidate>
+                                <Typography variant="h4" style={{fontFamily: font}}>About Section Settings</Typography>
                                 <Field
                                     variant="outlined"
                                     margin="normal"
@@ -119,9 +212,19 @@ export default function User (props) {
                                     multiline
                                     rows={4}
                                     autoFocus
+                                    onChange={setAboutInfo1}
                                     component={TextField}
 
                                 ></Field>
+                                <Grid container style={{padding: '2vh'}}>
+                                    <DropzoneArea 
+                                        filesLimit={1}
+                                        acceptedFiles={['image/jpeg', 'image/png', 'image/bmp']}
+                                        maxFileSize={5000000}
+                                        onChange={setAboutImage1}
+                                    />
+                                </Grid>
+                                <Divider className={classes.divider}/>
                                 <Field
                                     variant="outlined"
                                     margin="normal"
@@ -132,10 +235,20 @@ export default function User (props) {
                                     multiline
                                     rows={4}
                                     id="about2"
+                                    onChange={setAboutInfo2}
                                     component={TextField}
 
                                 />
-                                <Typography style={{ fontFamily: font }}>
+                                <Grid container style={{padding: '2vh'}}>
+                                    <DropzoneArea 
+                                        filesLimit={1}
+                                        acceptedFiles={['image/jpeg', 'image/png', 'image/bmp']}
+                                        maxFileSize={5000000}
+                                        onChange={setAboutImage2}
+                                    />
+                                </Grid>
+                                <Divider className={classes.divider} />
+                                <Typography variant='h4' style={{ fontFamily: font, paddingTop : "2vh", paddingBottom: '2vh' }}>
                                     Gallery Images
                                 </Typography>
                                 <Grid item sm={12}>
@@ -162,34 +275,15 @@ export default function User (props) {
                                             type="Radio"
                                             value="vehicle"
                                         />
-                                        <FormControlLabel
-                                            label="About1"
-                                            name="AboutOneImage"
-                                            control={<Radio />}
-                                            type="Radio"
-                                            value="AboutOneImage"
-                                        />
-                                        <FormControlLabel
-                                            label="About2"
-                                            name="AboutTwoImage"
-                                            control={<Radio />}
-                                            type="Radio"
-                                            value="aboutTwoImage"
-                                        />
                                     </RadioGroup>
                                 </Grid>
-                                <Grid container lg={12} >
-                                <input
-                                    className={classes.input}
-                                    type="file"
-                                    onChange={handleUploadClick}
-                                    name="image"
-                                    filesLimit={aboutSectionImage ? 1 : 4}
+                                <Grid container lg={12} style={{padding: '2vh'}} >
+                                <DropzoneArea 
+                                    filesLimit={4}
+                                    acceptedFiles={['image/jpeg', 'image/png', 'image/bmp']}
+                                    maxFileSize={5000000}
+                                    onChange={setGalleryImages}
                                 />
-                                    <Grid>
-                                    {error && <div className="error"> {error} </div>}
-                                    {file && <ProgressBar file={file} setFile={setFile} /> }
-                                    </Grid>
                                 </Grid>
                                 <Button
                                     type="submit"
@@ -200,12 +294,11 @@ export default function User (props) {
                                 >
                                     Submit
                                 </Button>
-
                             </form>
                         )} />
                 </div>
             </Container>
-            <Footer className={classes.footer} />
+            <Footer className={classes.footer}/>
         </>
     );
 }

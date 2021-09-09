@@ -1,6 +1,5 @@
 import React, { useState, useEffect} from 'react';
 // import { Link as LinkS } from 'react-scroll';
-import { useFirestore } from '../../hooks/getDocs';
 import { db } from '../../firebase/config';
 import { doc, getDoc } from 'firebase/firestore';
 import {
@@ -14,7 +13,7 @@ import {
     Card,
     ButtonGroup,
 } from '@material-ui/core';
-import { SDK_VERSION } from 'firebase/app';
+import CircularProgress from '@material-ui/core/CircularProgress';
 const font = "'Niconne', cursive";
 
 const useStyles = makeStyles((theme) => ({
@@ -131,8 +130,12 @@ const Offers = () => {
                                 </Grid>
                             ))) 
                             : 
-                            (
-                                <div>Loading cunt wait</div>
+                            (   
+                                <Grid style={{ padding: '4vh' }} item xs={12} md={4}>
+                                    <Card className={classes.root}>
+                                        <CircularProgress color="secondary" />
+                                    </Card>
+                                </Grid>
                             )
                         }
                         </Grid>

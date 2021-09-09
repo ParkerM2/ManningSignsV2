@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    height: '70vh'
+    height: '75vh'
   },
   avatar: {
     margin: theme.spacing(1),
@@ -52,7 +52,6 @@ export default function SignIn(props) {
   const [password, setPassword] = useState();
   const { login, logout } = useAuth();
   const [loading, setLoading] = useState(false);
-  const history = useHistory();
   const [errorText, setErrorText] = useState('');
   const [open, setOpen] = useState(false);
   const [error, setError] = useState(false);
@@ -87,7 +86,9 @@ export default function SignIn(props) {
       setErrorText('');
       setLoading(true);
       await login(email, password);
+      setOpen(true)
     } catch {
+      setError(true)
       setErrorText('Failed to log in');
     };
 
@@ -166,12 +167,12 @@ export default function SignIn(props) {
       </div>
         </Container>
      <Grid padding={3}>
-      <Snackbar anchorOrigin={{horizontal: "center", vertical: 'bottom'}} open={open} autoHideDuration={5000} onClose={handleClose}>
+      <Snackbar anchorOrigin={{horizontal: "center", vertical: 'top'}} open={open} autoHideDuration={5000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success">
               Login Successful
         </Alert>
       </Snackbar>
-      <Snackbar anchorOrigin={{horizontal: "center", vertical: 'bottom'}} open={error} autoHideDuration={5000} onClose={handleClose}>
+      <Snackbar anchorOrigin={{horizontal: "center", vertical: 'top'}} open={error} autoHideDuration={5000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="warning">
               {errorText}
         </Alert>
@@ -180,4 +181,4 @@ export default function SignIn(props) {
     <Footer className={classes.footer} />
     </>
   );
-}
+};

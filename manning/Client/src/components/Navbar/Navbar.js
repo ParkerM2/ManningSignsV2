@@ -10,7 +10,8 @@ import {
     Grid,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import { useAuth } from '../../context/AuthContext';
+// 
+import { getAuth, onAuthStateChanged } from '@firebase/auth';
 
 
 // import { Link as LinkS } from 'react-scroll';
@@ -33,13 +34,29 @@ const font = "'Niconne', cursive";
 const Navbar = () => {
     const [anchor, setAnchor] = useState(null);
     const classes = useStyles();
-    const currentUser = {};
-    currentUser.displayName = 'Dale';
-    
+    const [user, setUser] = useState();
+    const [loading, setLoading] = useState(true);
 
+    async function getUser() {
+        const auth = getAuth();
+        const user = auth.currentUser;
+        
 
+        if (!user) {
+            setLoading(true);
+            console.log('no user')
+        } else {
+            setUser(user);
+            setLoading(false)
+            console.log(user);
+        }
+    };
 
-  
+    useEffect(() => {
+        setLoading(true)
+        getUser();
+    }, [])
+
 
 
     // open small menu
@@ -61,10 +78,10 @@ const Navbar = () => {
                             <Button style={{color: 'cyan', textDecoration: 'none'}} href="/">MS</Button>
                     </Typography>
                         <Button style={{ fontFamily: font }} color="inherit"
-                            href={currentUser ? '/user/administrator' : '/login'}>
-                            {currentUser ? `Welcome, ${currentUser.displayName} !`  : 'Login'}
+                            href={!loading ? '/user/administrator' : '/login'}>
+                            {!loading ? `Welcome, ${user.displayName} !`  : 'Login'}
                         </Button>
-                        {currentUser ? 
+                        {!loading ? 
                             <Button style={{ fontFamily: font }} color="inherit"
                             href='/user/administrator'>
                             Admin Page
