@@ -92,13 +92,12 @@ export default function User () {
     const classes = useStyles();
     const [file, setFile] = useState();
     const [type, setType] = useState(null)
-    const [error, setError] = useState('');
     const [color, setColor] = useState();
-    const [aboutImage1, setAboutImage1] = useState();
-    const [aboutInfo1, setAboutInfo1] = useState();
-    const [aboutInfo2, setAboutInfo2] = useState();
-    const [aboutImage2, setAboutImage2] = useState();
-    const [galleryImages, setGalleryImages] = useState();
+    const [aboutImage1, setAboutImage1] = useState(null);
+    const [aboutInfo1, setAboutInfo1] = useState(null);
+    const [aboutInfo2, setAboutInfo2] = useState(null);
+    const [aboutImage2, setAboutImage2] = useState(null);
+    const [galleryImages, setGalleryImages] = useState('noimages');
 
     // update Doc function
     async function updateFirestore(reference, field, payload) {
@@ -119,7 +118,9 @@ export default function User () {
             
         }
     };
-    
+
+ 
+
 
     // handles change of radio group buttons controlling what type of image
     const handleChange = (event) => {
@@ -130,45 +131,61 @@ export default function User () {
 
     const acceptedTypes = ['image/png', 'image/jpeg']
     
+    // setup clear function to set states back to null
 
     const onSubmit = (values) => {
+        let imgData = {};
         // parsing about1 image to be prepped to go into storage and have the made url updated to the firestore cloud information
-        if (aboutImage1) {
-            console.log( 'about1 img found', aboutImage1);
-            let data = aboutImage1;
+        if (aboutImage1.length > 0) {
+            let data = aboutImage1[0];
             // no sure might need to hardcode with url first?
-            data.list = 'about/about1/url';
+            data.list = 'about1'
+            data.field = 'about1.url';
             // call function to store image
             // needs the url from the useStorage Hook
+            
+            console.log(data, 'img1')
         } else {
             console.log('no about1 img found')
         };
         
         // parsing about image 2 to be prepped for storage and have url updated into the firestore cloud
-        if (aboutImage2) {
-            console.log( 'about2 img found', aboutImage2);
-            let data = aboutImage2;
-            data.list = 'about/about2/url'
+        console.log(aboutImage2.length)
+           if (aboutImage2.length > 0) {
+            let data = aboutImage2[0];
+            data.list = 'about2';
+            data.field = 'about2.url';
             // call function to store image
             // needs url from useStorage Hook
+
+            imgData.about2 = data;
+            console.log(data, 'img2')
         } else {
-            console.log('no about1 img found')
+            console.log('no about2 img found')
         };
 
         //  Using state (type) to add to the gallery images object, so that in storage function it can send the urls to the images to the firestore
-        if (galleryImages) {
-            console.log('gallery image found=>',galleryImages);
-            let data = galleryImages;
+        if (galleryImages.length > 0) {
+            let img = [];
+            // loops through array of staged image files
+            // for each img file attach on the type and field(path for url to be sent to firebase server)
+            for (let i = 0; i < galleryImages.length; i++) {
+            let data = galleryImages[i];
             data.list = type;
+            data.field = `${type}[${i}]`;
+            data.id = i;
             // call storage function here to send data to firebase storage
             // storage hook url needed
+            img.push(data)
+            };
+            console.log(img, 'gallery images array')
         } else { 
             console.log('no gallery image deteceted')
+            console.log(galleryImages)
         };
 
         // parsing about info text 
         if (values.about1) {
-            console.log('about1 value found')
             updateFirestore('about','about1', values.about1);
             // call update firestore function here?
         } else {
@@ -177,7 +194,6 @@ export default function User () {
     
         if (values.about2) {
             updateFirestore('about','about2', values.about2);
-            console.log('about2 value found')
             // call update firestore function here?
         } else {
             console.log('about2 value NOT found')
@@ -200,7 +216,7 @@ export default function User () {
                     <Form
                         onSubmit={onSubmit}
                         render={({ handleSubmit }) => (
-                            <form className={classes.form} onSubmit={handleSubmit} enctype="multipart/form-data" noValidate>
+                            <form className={classes.form} onSubmit={handleSubmit} enctype="multipart/form-data" >
                                 <Typography variant="h4" style={{fontFamily: font}}>About Section Settings</Typography>
                                 <Field
                                     variant="outlined"
@@ -253,13 +269,14 @@ export default function User () {
                                 </Typography>
                                 <Grid item sm={12}>
                                     <FormLabel style={{ fontFamily: font }} component="legend" color="primary">What type of <strong>Image</strong> are you uploading?</FormLabel>
-                                    <RadioGroup color="primary.main" onChange={handleChange} name="typeOrder" row>
+                                    <RadioGroup required color="primary.main" onChange={handleChange} name="typeOrder" row>
                                         <FormControlLabel
                                             label="Shirts"
                                             name="shirt"
                                             control={<Radio />}
                                             type="Radio"
                                             value="shirt"
+                                            required
                                         />
                                         <FormControlLabel
                                             label="Sign"
@@ -267,6 +284,7 @@ export default function User () {
                                             control={<Radio />}
                                             type="Radio"
                                             value="sign"
+                                            required
                                         />
                                         <FormControlLabel
                                             label="Vehicle Wrap"
@@ -274,6 +292,7 @@ export default function User () {
                                             control={<Radio />}
                                             type="Radio"
                                             value="vehicle"
+                                            required
                                         />
                                     </RadioGroup>
                                 </Grid>

@@ -63,16 +63,32 @@ const useStorage = (file) => {
                     console.log(`file available at ${downloadURL}`);
                 // storage into db
                     const galleryRef = doc(db, 'gallery', file.list);
-                    console.log(`url ${url}, downloadurl ${downloadURL}, file.list ${file.list}`)
-                    setDoc(galleryRef, {
-                        url: downloadURL
-                        // here we could set up image descriptions, titles, etc
-                    });
+
+                    if (file.list === 'about1' && file.field === 'about1.url') {
+                        console.log('file.list === about1 calling update function')
+                        console.log(file, downloadURL)
+                    } else if (file.list === 'vehicle') {
+                        console.log('file.list === vehicle')
+                        console.log(file, downloadURL)
+                    } else if (file.list === 'sign') {
+                        console.log('file.list = sign')
+                        console.log(file, downloadURL)
+                    } else if (file.list === 'shirt') {
+                        console.log(' file.list = shirt')
+                        console.log( file, downloadURL)
+                    } else (
+                        console.log('else ;alksdjf;a')
+                    )
+                    // console.log(`url ${url}, downloadurl ${downloadURL}, file.list ${file.list}`)
+                    // setDoc(galleryRef, {
+                    //     url: downloadURL
+                    //     // here we could set up image descriptions, titles, etc
+                    // });
 
                 });
             }
         );
-    }, [file,  url]);
+    }, [file]);
 
     return { progress, url, error }
 };
