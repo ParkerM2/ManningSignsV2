@@ -55,7 +55,7 @@ export default function SignIn(props) {
   const [errorText, setErrorText] = useState('');
   const [open, setOpen] = useState(false);
   const [error, setError] = useState(false);
- 
+  let history = useHistory();
 
   const handleClose = (event, reason) => {
       if (reason === 'clickaway') {
@@ -86,6 +86,7 @@ export default function SignIn(props) {
       setErrorText('');
       setLoading(true);
       await login(email, password);
+      history.push('/user/adiministrator')
       setOpen(true)
     } catch {
       setError(true)
@@ -136,7 +137,6 @@ export default function SignIn(props) {
             type="button"
             fullWidth
             onClick={onSubmit}
-            href="/user/administrator"
             variant="contained"
             color="primary"
             className={classes.submit}
@@ -153,7 +153,8 @@ export default function SignIn(props) {
           >
             Log Out
           </Button>
-          <Button
+          {open ? (
+            <Button
             type="button"
             fullWidth
             href="/user/administrator"
@@ -163,6 +164,9 @@ export default function SignIn(props) {
           >
             Admin Page
           </Button>
+          ) : (
+            null
+          )}
             </form>
       </div>
         </Container>

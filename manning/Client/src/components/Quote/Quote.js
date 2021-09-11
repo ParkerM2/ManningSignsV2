@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-        minHeight: '85vh',
+        minHeight: '100vh',
         hero: {
             flexGrow: 1,
         }
