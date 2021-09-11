@@ -73,7 +73,6 @@ const Offers = () => {
         const docSnap = await getDoc(docRef);
     
         if (docSnap.exists()) {
-            console.log('document data' , docSnap.data().images)
             setImages(docSnap.data().images)
             setLoading(false)
         } else {

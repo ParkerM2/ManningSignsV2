@@ -47,7 +47,6 @@ const HeroSection = () => {
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-            console.log('document data' , docSnap.data())
             setCurrentAboutInfo(docSnap.data())
             setLoading(false)
         } else {
@@ -59,9 +58,6 @@ const HeroSection = () => {
     useEffect(() => {
         setLoading(true)
         getData();
-
-        console.log(currentAboutInfo)
-
     }, [])
 
     return (

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import {
     AppBar,
     Toolbar,
@@ -12,7 +12,8 @@ import {
 import MenuIcon from '@material-ui/icons/Menu';
 // 
 import { getAuth, onAuthStateChanged } from '@firebase/auth';
-
+import { useAuth } from '../../context/AuthContext';
+import { useHistory } from 'react-router';
 
 // import { Link as LinkS } from 'react-scroll';
 
@@ -34,30 +35,13 @@ const font = "'Niconne', cursive";
 const Navbar = () => {
     const [anchor, setAnchor] = useState(null);
     const classes = useStyles();
-    const [user, setUser] = useState();
-    const [loading, setLoading] = useState(true);
+    const { currentUser, logout } = useAuth();
+    let history = useHistory();
 
-    async function getUser() {
-        const auth = getAuth();
-        const user = auth.currentUser;
-        
-
-        if (!user) {
-            setLoading(true);
-            console.log('no user')
-        } else {
-            setUser(user);
-            setLoading(false)
-            console.log(user);
-        }
-    };
-
-    useEffect(() => {
-        setLoading(true)
-        getUser();
-    }, [])
-
-
+    function signOut () {
+        history.push('/')
+        logout();
+      };
 
     // open small menu
     const menuClick = (event) => {
@@ -67,10 +51,10 @@ const Navbar = () => {
     const menuClose = (event) => {
         setAnchor(null)
     };
-    
 
     return (
         <>
+           
             <Grid maxwidth="100%">
             <AppBar position="static" className={classes.navBar}>
                     <Toolbar>
@@ -78,13 +62,12 @@ const Navbar = () => {
                             <Button style={{color: 'cyan', textDecoration: 'none'}} href="/">MS</Button>
                     </Typography>
                         <Button style={{ fontFamily: font }} color="inherit"
-                            href={!loading ? '/user/administrator' : '/login'}>
-                            {!loading ? `Welcome, ${user.displayName} !`  : 'Login'}
+                            href={currentUser ? '/user/administrator' : '/login'}>
+                            {currentUser ? `Welcome, ${currentUser.displayName} !`  : 'Login'}
                         </Button>
-                        {!loading ? 
-                            <Button style={{ fontFamily: font }} color="inherit"
-                            href='/user/administrator'>
-                            Admin Page
+                        {currentUser ? 
+                            <Button style={{ fontFamily: font }} color="inherit" onClick={signOut}>
+                            Logout
                             </Button>
                             :
                             null
@@ -92,6 +75,7 @@ const Navbar = () => {
                 </Toolbar>
             </AppBar>
             </Grid>
+            
         </>
     )
 };

@@ -50,7 +50,7 @@ export default function SignIn(props) {
   const classes = useStyles();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const { login, logout } = useAuth();
+  const { login, logout, currentUser } = useAuth();
   const [loading, setLoading] = useState(false);
   const [errorText, setErrorText] = useState('');
   const [open, setOpen] = useState(false);
@@ -78,6 +78,10 @@ export default function SignIn(props) {
         break;
     }
   }
+  function signOut () {
+    history.push('/')
+    logout();
+  };
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -143,16 +147,18 @@ export default function SignIn(props) {
           >
             Sign In
           </Button>
+          {currentUser ? (
           <Button
             type="button"
             fullWidth
-            onClick={logout}
+            onClick={signOut}
             variant="contained"
             color="secondary"
             className={classes.submit}
           >
             Log Out
           </Button>
+          ): null}
           {open ? (
             <Button
             type="button"

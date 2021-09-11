@@ -10,6 +10,7 @@ import {
     ButtonGroup,
     ImageList,
     ImageListItem,
+    Paper,
     Divider
 } from '@material-ui/core';
 import { db } from '../../firebase/config';
@@ -35,6 +36,9 @@ const useStyles = makeStyles((theme) => ({
     header: {
         padding: '4vh',
         backgroundColor: 'grey'
+    },
+    container: {
+        backgroundColor: theme.palette.grey[300],
     }
 
 }))
@@ -72,7 +76,8 @@ const GallerySection = () => {
         <>
            
             {/* gallery using buttons controlling state, mapping over array from backend firestore request */}
-            <Container>
+            <br></br>
+            <Paper elevation={3} className={classes.container}>
                 <div className={classes.root}>
                 <Typography variant="h4">
                         Current Gallery Section
@@ -99,7 +104,7 @@ const GallerySection = () => {
                                 )}
                             </ImageList>
                         </div>
-                    </Container>
+                    </Paper>
 
                     <Divider />
         </>

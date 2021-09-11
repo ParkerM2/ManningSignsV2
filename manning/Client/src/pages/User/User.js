@@ -39,7 +39,7 @@ const font = "'Niconne', cursive";
 const useStyles = makeStyles((theme) => ({
     paper: {
         marginTop: theme.spacing(6),
-        minHeight: '100vh'
+        minHeight: '100vh',
     },
     avatar: {
         margin: theme.spacing(3),
@@ -49,24 +49,11 @@ const useStyles = makeStyles((theme) => ({
         width: '100%', // Fix IE 11 issue.
         marginTop: theme.spacing(1),
     },
-    submit: {
-        margin: theme.spacing(3, 0, 2),
-    },
-    footer: {
-        marginTop: 'auto',
-    },
-    input: {
-        paddingTop: '2vh',
-        paddingBottom: '2vh',
-    },
-    toolbar: {
-        paddingTop: '15vh'
-    },
     topBackground: {
         display:'flex',
         justifyContent: 'center',
-        backgroundColor: theme.palette.grey[600],
-
+        backgroundColor: theme.palette.grey[300],
+        // backgroundColor: 'primary'
     },
     headerContent: {
         display: 'flex',
