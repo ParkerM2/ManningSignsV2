@@ -59,6 +59,8 @@ const AboutSection = () => {
     const [file1, setFile1] = useState();
     const [file2, setFile2] = useState();
     const [clear, setClear] = useState(false)
+    const [about1Title, setAbout1Title] = useState();
+    const [about2Title, setAbout2Title] = useState();
     const galleryRef = doc(db, 'gallery', `about`);
     // docs is the response from firestore db where the objects containing the image info are stored
     const getData = async () => {
@@ -78,7 +80,7 @@ const AboutSection = () => {
         setLoading(true)
         getData();
     }, [])
-
+    
 
     const sendNewImage1 = () => {
         console.log(newImage1)
@@ -97,9 +99,10 @@ const AboutSection = () => {
     const sendNewText1 =() => {
         console.log(about1Text);
         updateDoc(galleryRef, 
-            {'about1.text': about1Text},
+            {'about1.text': about1Text,},
             {merge: true}
         );
+        
     }
 
     const sendNewText2 =() => {
@@ -109,16 +112,21 @@ const AboutSection = () => {
             {merge: true}
         );
     }
+    
+    const sendNewTitle1 = () => {
+        updateDoc(galleryRef,
+            {'about1.title': about1Title},
+            {merge: true}
+        );
+    };
 
-    const submitChange = () => {
-        if (!about1Text === undefined) {
-            // update About 1 text
-        } else if (!about2Text === undefined) {
-            // update about 2 text
-        } else {
-            console.log("something didn't do right")
-        }
-    }
+    const sendNewTitle2 = () => {
+        updateDoc(galleryRef,
+            {'about2.title': about2Title},
+            {merge: true}
+        );
+    };
+
 
     return (
         <>
@@ -138,8 +146,11 @@ const AboutSection = () => {
                         {!loading ? 
                             <>
                                 <Grid item lg={6} md={6}>
+                                    <TextField fullWidth style={{paddingBottom: '2vh'}} label='Title' onChange={(event) => {setAbout1Title(event.target.value)}} variant="outlined" defaultValue={currentAboutInfo.about1.title} />
+                                    <Button type="submit" fullWidth onClick={sendNewTitle1}> Update Title </Button>
+
                                     <TextField fullWidth label="About section text 1" multiline="true" onChange={(event) => {setAbout1Text(event.target.value)}} variant="outlined" id="about1Text" defaultValue={currentAboutInfo.about1.text} />
-                                    <Button type="submit" fullWidth onClick={sendNewText1}> Update </Button>
+                                    <Button type="submit" fullWidth onClick={sendNewText1}> Update Text </Button>
                                 </Grid>
 
                                 <Grid className={classes.centerMeDaddy} item lg={3} md={3}>
@@ -154,8 +165,11 @@ const AboutSection = () => {
                                 </Grid>
 
                                 <Grid item lg={6} md={6}>
+                                    <TextField style={{paddingBottom: '2vh'}} fullWidth label='Title' onChange={(event) => {setAbout2Title(event.target.value)}} variant="outlined" defaultValue={currentAboutInfo.about2.title} />
+                                    <Button type="submit" fullWidth onClick={sendNewTitle2}> Update Title </Button>
+
                                     <TextField fullWidth label="About section text 2" multiline="true" onChange={(event) => {setAbout2Text(event.target.value)}} variant="outlined" id="about2Text" defaultValue={currentAboutInfo.about2.text} />
-                                    <Button type="submit" fullWidth onClick={sendNewText2}> Update </Button>
+                                    <Button type="submit" fullWidth onClick={sendNewText2}> Update Text </Button>
                                 </Grid>
 
                                 <Grid item lg={3} md={3}>
@@ -175,16 +189,8 @@ const AboutSection = () => {
                                     <CircularProgress color="secondary" />
                                 </Container>
                             </Grid> 
-                            
                         }
-                        {
-                            about1Text || about2Text ? (
-                                <Button type="submit" onClick={submitChange}> Submit Changes </Button>
-                            ) : (
-                                null
-                            )
-                        }
-                    </Grid>  
+                </Grid>  
             </Paper>
         </>
     )
