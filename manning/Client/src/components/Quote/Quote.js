@@ -5,20 +5,14 @@ import {
     makeStyles,
     Grid,
     Paper,
+    Typography,
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     box: {
         backgroundColor: '#0276aa',
         color: 'lightblue',
-        position: 'relative',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
         minHeight: '100vh',
-        hero: {
-            flexGrow: 1,
-        }
     }
 }));
 
@@ -30,13 +24,16 @@ const Quote = () => {
     const classes = useStyles();
     return (
         <>
-            <div className={classes.hero}>
                 <Paper className={classes.box}>
+                    <Grid container>
+                        <Typography>
+                            Hello jalkjd;flajdlskjfal;ksjf;aldksjf;
+                        </Typography>
+                    </Grid>
                     <Grid>
                         <Form font={font}/>
                     </Grid>
                 </Paper>
-            </div>
         </>
     )
 };

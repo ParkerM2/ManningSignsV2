@@ -15,7 +15,7 @@ import {
     Avatar,
 } from '@material-ui/core';
 import { useAuth } from '../../context/AuthContext';
-import { getAuth } from 'firebase/auth';
+import { getAuth, updateProfile, updateEmail } from 'firebase/auth';
 const font = "'Niconne', cursive";
 
 const useStyles = makeStyles((theme) => ({
@@ -44,11 +44,29 @@ const HomeSection = () => {
     const { currentUser, logout } = useAuth();
     const auth = getAuth();
 
+
+
     const submitChange = () => {
         if (!name === undefined) {
+            updateProfile(auth.currentUser,{
+                displayName: name
+            }).then(() => {
+            // updated profile
+            }).catch((error) => {
+                console.log(error)
+            })
             console.log(name, 'not undefined')
+        } else if (!email === undefined) {
+            updateEmail(auth.currentUser,{
+                email: email
+            }).then(() => {
+            // updated email
+            }).catch((error) => {
+                console.log(error)
+            })
+            console.log(email, 'undefined should be')
         } else {
-            console.log(name, 'undefined should be')
+            console.log("something didn't do right")
         }
     }
 

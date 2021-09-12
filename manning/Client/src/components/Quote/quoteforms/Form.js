@@ -12,17 +12,23 @@ import {
   Paper,
   Grid,
   Button,
+  Container,
   CssBaseline,
+  makeStyles
 } from '@material-ui/core';
 import SignForm from './SignForm';
 import VehicleForm from './VehicleWrapForm';
 import ShirtForm from './ShirtForm';
 import shirtEmailTemplate from '../../../lib/shirtTemplate';
 import signEmailTemplate from '../../../lib/signTemplate';
-
 const signTemplate = "template_u7olvj9";
 const shirtTemplate = "template_6u0hilf";
 
+const useStyles = makeStyles((theme) => ({
+  container: {
+    paddingTop: '33vh',
+  }
+}))
 
 const validate = values => {
   const errors = {};
@@ -41,6 +47,7 @@ const validate = values => {
 
 
 function QuoteForm({font}) {
+  const classes = useStyles();
     // Check to see if shirts/signs/vehicle wrap are selected to then display the corresponding form beneath.
   const [orderType, setOrderType] = useState('null')
   const [sending, setSending] = useState("Submit for Quote");
@@ -126,7 +133,8 @@ function QuoteForm({font}) {
   };
 
   return (
-    <div style={{ padding: 8, margin: 'auto', maxWidth: 1000, paddingTop: '10vh' }}>
+    <>
+    <Container lg={12} md={12} sm={12} className={classes.container}>
       <Typography style={{fontFamily: font}} variant="h2" align="center" component="h2" gutterBottom>
         Quote Request Form
       </Typography>
@@ -261,7 +269,8 @@ function QuoteForm({font}) {
           </form>
         )}
       />
-    </div>
+      </Container>
+    </>
   );
 }
 
