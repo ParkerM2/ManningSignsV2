@@ -25,15 +25,14 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
     },
     navBar: {
-        background: "black",
-        color: "cyan"
+        background: "lightblue",
+        color: "#0276aa"
     }
 }));
 const font = "'Niconne', cursive";
 
 
 const Navbar = () => {
-    const [anchor, setAnchor] = useState(null);
     const classes = useStyles();
     const { currentUser, logout } = useAuth();
     let history = useHistory();
@@ -43,15 +42,6 @@ const Navbar = () => {
         logout();
       };
 
-    // open small menu
-    const menuClick = (event) => {
-        setAnchor(event.currentTarget)
-    }; 
-    // close small menu
-    const menuClose = (event) => {
-        setAnchor(null)
-    };
-
     return (
         <>
            
@@ -59,7 +49,7 @@ const Navbar = () => {
             <AppBar position="static" className={classes.navBar}>
                     <Toolbar>
                     <Typography style={{ fontFamily: font }} color="inherit" variant="h6" className={classes.title} >
-                            <Button style={{color: 'cyan', textDecoration: 'none'}} href="/">MS</Button>
+                            <Button style={{color: '#0276aa', textDecoration: 'none'}} href="/">MS</Button>
                     </Typography>
                         <Button style={{ fontFamily: font }} color="inherit"
                             href={currentUser ? '/user/administrator' : '/login'}>

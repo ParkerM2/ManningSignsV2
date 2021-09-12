@@ -1,4 +1,5 @@
-import React, { useContext, useState, useEffect, createContext, useHistory } from 'react';
+import React, { useContext, useState, useEffect, createContext } from 'react';
+import { useHistory } from 'react-router';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail, setPersistence, browserSessionPersistence } from 'firebase/auth';
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -35,6 +36,7 @@ export function useAuth() {
 export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState();
     const [loading, setLoading] = useState(true);
+    const history = useHistory();
     
 
     function signup(email, password) {
@@ -66,6 +68,7 @@ export function AuthProvider({ children }) {
     };
 
     function logout() {
+        history.push('/login');
         return signOut(auth);
     };
 

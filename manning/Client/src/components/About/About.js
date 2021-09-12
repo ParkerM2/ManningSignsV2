@@ -13,7 +13,9 @@ import { doc, getDoc } from 'firebase/firestore';
 
 const useStyles = makeStyles((theme) => ({
     box: {
-        backgroundColor: '',
+        backgroundColor: '#0276aa',
+        color: 'lightblue',
+        minHeight: '100vh'
     },
     paperImg: {
         backgroundImage: `url('https://via.placeholder.com/300/09f/fff.png')`,
@@ -21,9 +23,10 @@ const useStyles = makeStyles((theme) => ({
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
+        color: 'lightblue'
     },
     mainFeaturedPostContent: {
-        color: 'black',
+        color: 'lightblue',
         position: 'relative',
         padding: theme.spacing(6),
         paddingTop: theme.spacing(8),

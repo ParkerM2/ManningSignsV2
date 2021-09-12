@@ -18,13 +18,13 @@ const font = "'Niconne', cursive";
 
 const useStyles = makeStyles((theme) => ({
     box: {
-        backgroundColor: 'black',
-        color: 'white',
+        backgroundColor: 'lightblue',
+        color: '#0276aa',
         position: 'relative',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-        minHeight: '95vh',
+        minHeight: '100vh',
     },
     mainFeaturedPost: {
         position: 'relative',
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
         
     },
     mainFeaturedPostContent: {
-        color: 'cyan',
+        color: '#0276aa',
         position: 'relative',
         padding: theme.spacing(7),
         paddingTop: theme.spacing(12),

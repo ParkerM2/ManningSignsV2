@@ -5,17 +5,26 @@ import {
     Typography,
     Button,
     Card,
+    FormControl,
     CardMedia,
     CircularProgress,
     ButtonGroup,
     ImageList,
     ImageListItem,
     Paper,
-    Divider
+    Divider,
+    Radio,
+    RadioGroup,
+    FormLabel,
+    FormControlLabel,
 } from '@material-ui/core';
 import { db } from '../../firebase/config';
 import { doc, getDoc } from 'firebase/firestore';
 import { makeStyles } from '@material-ui/core';
+import { DropzoneArea } from 'material-ui-dropzone';
+import useStorage from '../../hooks/useStorage';
+import Progress from '../../components/Progress/Progress';
+const font = "'Niconne', cursive";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -35,12 +44,12 @@ const useStyles = makeStyles((theme) => ({
     },
     header: {
         padding: '4vh',
-        backgroundColor: 'grey'
+        backgroundColor: 'lightblue'
     },
     container: {
-        backgroundColor: theme.palette.grey[300],
-    }
-
+        backgroundColor: 'lightblue',
+        color: '#0276aa'
+    },
 }))
 
 
@@ -49,7 +58,10 @@ const GallerySection = () => {
     const [currentImages, setCurrentImages] = useState('shirt');
     const [loading, setLoading] = useState(true);
     const [images, setImages] = useState();
-
+    const [value, setValue] = useState();
+    const [file, setFile] = useState(null);
+    
+    
     
     // docs is the response from firestore db where the objects containing the image info are stored
     const getData = async () => {
@@ -57,7 +69,6 @@ const GallerySection = () => {
         const docSnap = await getDoc(docRef);
     
         if (docSnap.exists()) {
-            console.log('document data' , docSnap.data().images)
             setImages(docSnap.data().images)
             setLoading(false)
         } else {
@@ -72,6 +83,35 @@ const GallerySection = () => {
 
     }, [currentImages])
 
+
+    // radio group controller
+    const handleChange = (event) => {
+        event.preventDefault();
+        setValue(event.target.value)
+    };
+
+    const submit = (e) =>{
+        e.preventDefault();
+         if (value && images) {
+             console.log('top of if')
+             console.log(value , images )
+             if (images) {
+                // loops through array of staged image files
+                // for each img file attach on the type and field(path for url to be sent to firebase server)
+                    let data = images[0];
+                    data.list = value;
+                   
+                    setFile(data);
+            };
+                console.log(images)
+            } else { 
+                console.log('no gallery image deteceted')
+                console.log(images)
+            };
+    };
+
+    
+
     return (
         <>
            
@@ -79,9 +119,54 @@ const GallerySection = () => {
             <br></br>
             <Paper elevation={3} className={classes.container}>
                 <div className={classes.root}>
-                <Typography variant="h4">
-                        Current Gallery Section
-                    </Typography>
+                    <Grid lg={6} spacing={3}>
+                    <FormControl component="fieldset">
+                        <FormLabel style={{ fontFamily: font }} component="legend" color="primary">What type of <strong>Image</strong> are you uploading?</FormLabel>
+                            <RadioGroup required color="primary.main" value={value} onChange={handleChange} name="typeOrder" row>
+                                <FormControlLabel
+                                    label="Shirts"
+                                    name="shirt"
+                                    control={<Radio />}
+                                    type="Radio"
+                                    value="shirt"
+                                    required
+                                />
+                                <FormControlLabel
+                                    label="Sign"
+                                    name="sign"
+                                    control={<Radio />}
+                                    type="Radio"
+                                    value="sign"
+                                    required
+                                />
+                                <FormControlLabel
+                                    label="Vehicle Wrap"
+                                    name="vehicle"
+                                    control={<Radio />}
+                                    type="Radio"
+                                    value="vehicle"
+                                    required
+                                />
+                            </RadioGroup>
+                        </FormControl>
+                    <DropzoneArea
+                        filesLimit={1}
+                        acceptedFiles={['image/jpeg', 'image/png', 'image/bmp']}
+                        maxFileSize={5000000}
+                        onChange={setImages}
+                    />
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        onClick={submit}
+                        className={classes.submit}
+                    >
+                        Submit
+                    </Button>
+                    {file && <Progress file={file} setFile={setFile} />}
+                    </Grid>
                     <ButtonGroup size="small" orientation="vertical" aria-label="small outlined button group">
                         <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('shirt')}>Shirts</Button>
                         <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('vehicle')}>Vehicles</Button>
@@ -105,7 +190,6 @@ const GallerySection = () => {
                             </ImageList>
                         </div>
                     </Paper>
-
                     <Divider />
         </>
     )

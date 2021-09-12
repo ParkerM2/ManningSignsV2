@@ -37,8 +37,10 @@ import HomeSection from './homeSection';
 const font = "'Niconne', cursive";
 
 const useStyles = makeStyles((theme) => ({
-    paper: {
-        marginTop: theme.spacing(6),
+    root: {
+        backgroundColor: '#0276aa',
+        position: 'relative',
+        backgroundSize: 'cover',
         minHeight: '100vh',
     },
     avatar: {
@@ -47,17 +49,18 @@ const useStyles = makeStyles((theme) => ({
     },
     form: {
         width: '100%', // Fix IE 11 issue.
-        marginTop: theme.spacing(1),
+        marginTop: theme.spacing(0),
     },
     topBackground: {
+        // marginTop: theme.spacing(4),
         display:'flex',
         justifyContent: 'center',
-        backgroundColor: theme.palette.grey[300],
-        // backgroundColor: 'primary'
+        backgroundColor: 'lightblue'
     },
     headerContent: {
         display: 'flex',
         justifyContent: 'center',
+        color: 'cyan',
     }
 
 }));
@@ -106,7 +109,9 @@ export default function User () {
 
     return (
         <>
-            <div className={classes.paper}>
+        <CssBaseline/>
+            <Grid className={classes.root}>
+                <br></br>
                 <Container>
                     <Paper elevation={3} className={classes.topBackground}>
                         <Grid container>
@@ -136,7 +141,7 @@ export default function User () {
                         <Divider variant="middle"/>
                         {handleCurrentSection(section)}
                 </Container>
-            </div>
+            </Grid>
             {/* based on state of button click return Home, About section, Gallery Info */}
         </>
     );

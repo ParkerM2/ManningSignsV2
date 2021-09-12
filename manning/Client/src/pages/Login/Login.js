@@ -101,6 +101,10 @@ export default function SignIn(props) {
 
   };
 
+  function goHome() {
+    history.push('/')
+  }
+
     return (
   <>
     <Container component="main" maxWidth="xs">
@@ -173,6 +177,16 @@ export default function SignIn(props) {
           ) : (
             null
           )}
+          <Button
+            type="button"
+            fullWidth
+            onClick={goHome}
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Home
+          </Button>
             </form>
       </div>
         </Container>

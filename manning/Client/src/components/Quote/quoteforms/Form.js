@@ -127,7 +127,6 @@ function QuoteForm({font}) {
 
   return (
     <div style={{ padding: 8, margin: 'auto', maxWidth: 1000, paddingTop: '10vh' }}>
-      <CssBaseline />
       <Typography style={{fontFamily: font}} variant="h2" align="center" component="h2" gutterBottom>
         Quote Request Form
       </Typography>

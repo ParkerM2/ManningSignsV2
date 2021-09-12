@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-        minHeight: '95vh',
+        minHeight: '100vh',
     },
     mainFeaturedPost: {
         position: 'relative',

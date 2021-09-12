@@ -9,7 +9,8 @@ import {
 
 const useStyles = makeStyles((theme) => ({
     box: {
-        backgroundColor: 'white',
+        backgroundColor: '#0276aa',
+        color: 'lightblue',
         position: 'relative',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
