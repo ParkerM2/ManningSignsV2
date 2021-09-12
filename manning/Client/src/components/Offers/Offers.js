@@ -11,9 +11,13 @@ import {
     Button,
     Container,
     Card,
+    CardContent,
     ButtonGroup,
 } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import tshirt from '../Quote/quoteforms/tshirt1.png';
+import vehicle from '../Quote/quoteforms/vehicle.png';
+import sign from '../Quote/quoteforms/sign.png';
 const font = "'Niconne', cursive";
 
 const useStyles = makeStyles((theme) => ({
@@ -56,6 +60,9 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1),
     },
     },
+    cover: {
+        width: 200,
+    }
 }));
 
 
@@ -108,9 +115,45 @@ const Offers = () => {
                     {/* gallery using buttons controlling state, mapping over array from backend firestore request */}
                     <Grid className={classes.buttons}>
                         <ButtonGroup size="small" aria-label="small outlined button group">
-                            <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('shirt')}>Shirts</Button>
-                            <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('vehicle')}>Vehicles</Button>
-                            <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('sign')}>Signs</Button>
+                            <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('sign')}>
+                            <CardMedia
+                                className={classes.cover}
+                                component="img"
+                                alt="sign"
+                                height="160"
+                                image={sign}
+                                title="sign"
+                                />
+                            <Typography gutterBottom variant="h5" component="h2">
+                                Signs
+                            </Typography>
+                            </Button>
+                            <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('shirt')}>
+                            <CardMedia
+                                className={classes.cover}
+                                component="img"
+                                alt="blank t-shirt"
+                                height="160"
+                                image={tshirt}
+                                title="tshirt"
+                                />
+                            <Typography gutterBottom variant="h5" component="h2">
+                                Shirts
+                            </Typography>
+                            </Button>
+                            <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('vehicle')}>
+                            <CardMedia
+                                className={classes.cover}
+                                component="img"
+                                alt="vehicle"
+                                height="160"
+                                image={vehicle}
+                                title="vehicle"
+                                />
+                            <Typography gutterBottom variant="h5" component="h2">
+                                Vehicles
+                            </Typography>
+                            </Button>
                         </ButtonGroup>
                     </Grid>
                     <Container maxWidth="lg" color="inherit" component="main" className={classes.heroContent}>

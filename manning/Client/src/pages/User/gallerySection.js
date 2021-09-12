@@ -1,12 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {
-    Container,
     Grid,
-    Typography,
     Button,
     Card,
     FormControl,
-    CardMedia,
     CircularProgress,
     ButtonGroup,
     ImageList,
@@ -22,15 +19,13 @@ import { db } from '../../firebase/config';
 import { doc, getDoc } from 'firebase/firestore';
 import { makeStyles } from '@material-ui/core';
 import { DropzoneArea } from 'material-ui-dropzone';
-import useStorage from '../../hooks/useStorage';
-import Progress from '../../components/Progress/Progress';
+import Progress from '../../components/Progress/ProgressGallery';
 const font = "'Niconne', cursive";
 
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
         flexWrap: 'wrap',
-        justifyContent: 'space-around',
         overflow: 'hidden',
         padding: '4vh'
     },
@@ -63,7 +58,7 @@ const GallerySection = () => {
     
     
     
-    // docs is the response from firestore db where the objects containing the image info are stored
+    // grab images from firebase 
     const getData = async () => {
         const docRef = doc(db, 'gallery', currentImages);
         const docSnap = await getDoc(docRef);
@@ -119,78 +114,82 @@ const GallerySection = () => {
             <br></br>
             <Paper elevation={3} className={classes.container}>
                 <div className={classes.root}>
-                    <Grid lg={6} spacing={3}>
-                    <FormControl component="fieldset">
-                        <FormLabel style={{ fontFamily: font }} component="legend" color="primary">What type of <strong>Image</strong> are you uploading?</FormLabel>
-                            <RadioGroup required color="primary.main" value={value} onChange={handleChange} name="typeOrder" row>
-                                <FormControlLabel
-                                    label="Shirts"
-                                    name="shirt"
-                                    control={<Radio />}
-                                    type="Radio"
-                                    value="shirt"
-                                    required
-                                />
-                                <FormControlLabel
-                                    label="Sign"
-                                    name="sign"
-                                    control={<Radio />}
-                                    type="Radio"
-                                    value="sign"
-                                    required
-                                />
-                                <FormControlLabel
-                                    label="Vehicle Wrap"
-                                    name="vehicle"
-                                    control={<Radio />}
-                                    type="Radio"
-                                    value="vehicle"
-                                    required
-                                />
-                            </RadioGroup>
-                        </FormControl>
-                    <DropzoneArea
-                        filesLimit={1}
-                        acceptedFiles={['image/jpeg', 'image/png', 'image/bmp']}
-                        maxFileSize={5000000}
-                        onChange={setImages}
-                    />
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        onClick={submit}
-                        className={classes.submit}
-                    >
-                        Submit
-                    </Button>
-                    {file && <Progress file={file} setFile={setFile} />}
-                    </Grid>
-                    <ButtonGroup size="small" orientation="vertical" aria-label="small outlined button group">
-                        <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('shirt')}>Shirts</Button>
-                        <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('vehicle')}>Vehicles</Button>
-                        <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('sign')}>Signs</Button>
-                    </ButtonGroup>
-                            <ImageList rowHeight={160} cols={3} className={classes.imageList}>
-                                {!loading ? (
-                                    images && images.map((image) => (
-                                            <ImageListItem key={image.id} cols={1}>
-                                                <img src={image.url} alt={image.title} />
-                                            </ImageListItem>
-                                ))) 
-                                : 
-                                (   
-                                    <Grid style={{ padding: '4vh' }} item xs={12} md={4}>
-                                        <Card>
-                                            <CircularProgress color="secondary" />
-                                        </Card>
-                                    </Grid>
-                                )}
-                            </ImageList>
-                        </div>
-                    </Paper>
-                    <Divider />
+                    <Grid container lg={12} spacing={6} alignContent="center">
+                        <Grid item lg={6}>
+                            <FormControl component="fieldset">
+                                <FormLabel style={{ fontFamily: font }} component="legend" color="primary">What type of <strong>Image</strong> are you uploading?</FormLabel>
+                                    <RadioGroup required color="primary.main" value={value} onChange={handleChange} name="typeOrder" row>
+                                        <FormControlLabel
+                                            label="Shirts"
+                                            name="shirt"
+                                            control={<Radio />}
+                                            type="Radio"
+                                            value="shirt"
+                                            required
+                                        />
+                                        <FormControlLabel
+                                            label="Sign"
+                                            name="sign"
+                                            control={<Radio />}
+                                            type="Radio"
+                                            value="sign"
+                                            required
+                                        />
+                                        <FormControlLabel
+                                            label="Vehicle Wrap"
+                                            name="vehicle"
+                                            control={<Radio />}
+                                            type="Radio"
+                                            value="vehicle"
+                                            required
+                                        />
+                                    </RadioGroup>
+                            </FormControl>
+                            <DropzoneArea
+                                filesLimit={1}
+                                acceptedFiles={['image/jpeg', 'image/png', 'image/bmp']}
+                                maxFileSize={5000000}
+                                onChange={setImages}
+                            />
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                                onClick={submit}
+                                className={classes.submit}
+                            >
+                                Submit
+                            </Button>
+                            {file && <Progress file={file} setFile={setFile} />}
+                        </Grid>
+                        <Grid item>
+                            <ButtonGroup style={{padding: '1vh'}} size="small" aria-label="small outlined button group">
+                                <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('shirt')}>Shirts</Button>
+                                <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('vehicle')}>Vehicles</Button>
+                                <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('sign')}>Signs</Button>
+                            </ButtonGroup>
+                                <ImageList rowHeight={160} cols={3} className={classes.imageList}>
+                                    {!loading ? (
+                                        images && images.map((image) => (
+                                                <ImageListItem key={image.id} cols={1}>
+                                                    <img src={image.url} alt={image.title} />
+                                                </ImageListItem>
+                                    ))) 
+                                    : 
+                                    (   
+                                        <Grid style={{ padding: '4vh' }} item xs={12} md={4}>
+                                            <Card>
+                                                <CircularProgress color="secondary" />
+                                            </Card>
+                                        </Grid>
+                                    )}
+                                </ImageList>
+                            </Grid>
+                        </Grid>
+                    </div>
+                </Paper>
+            <Divider />
         </>
     )
 }

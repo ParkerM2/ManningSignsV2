@@ -48,8 +48,8 @@ const Navbar = () => {
             <Grid maxwidth="100%">
             <AppBar position="static" className={classes.navBar}>
                     <Toolbar>
-                    <Typography style={{ fontFamily: font }} color="inherit" variant="h6" className={classes.title} >
-                            <Button style={{color: '#0276aa', textDecoration: 'none'}} href="/">MS</Button>
+                    <Typography color="inherit" className={classes.title} >
+                            <Button style={{color: '#0276aa', fontFamily: font}} href="/">Home</Button>
                     </Typography>
                         <Button style={{ fontFamily: font }} color="inherit"
                             href={currentUser ? '/user/administrator' : '/login'}>

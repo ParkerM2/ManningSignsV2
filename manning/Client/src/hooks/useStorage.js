@@ -8,7 +8,6 @@ const useStorage = (file) => {
     const [error, setError] = useState(null);
     const [url, setUrl] = useState(null);
 
-
     useEffect(() => {
         const metadata = {
             contentType: 'image/jpeg'
