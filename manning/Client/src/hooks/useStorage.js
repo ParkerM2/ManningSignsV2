@@ -61,7 +61,7 @@ const useStorage = (file) => {
                     setUrl(downloadURL);
                     console.log(`file available at ${downloadURL}`);
                 // storage into db
-                    const galleryRef = doc(db, 'gallery', `${file.list}`);
+                    // const galleryRef = doc(db, 'gallery', `${file.list}`);
 
                     // if (file.list === 'about1' && file.field === 'about1.url') {
                     //     console.log('file.list === about1 calling update function')
@@ -79,16 +79,6 @@ const useStorage = (file) => {
                     //     console.log('else ;alksdjf;a')
                     // )
                     console.log(`url ${url}, downloadurl ${downloadURL}, file.list ${file.list}`)
-                    if(file.list === 'sign' || file.list === 'vehicle' || file.list === 'shirt') {
-                        updateDoc(galleryRef, {
-                            'images':arrayUnion(
-                                {
-                                    url: downloadURL,
-                                    title: file.list
-                                }
-                        )},
-                        { merge: true }
-                    )}
                 });
             }
         );

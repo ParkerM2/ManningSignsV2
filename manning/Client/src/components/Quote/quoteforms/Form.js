@@ -26,7 +26,7 @@ const shirtTemplate = "template_6u0hilf";
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    paddingTop: '33vh',
+    
   }
 }))
 

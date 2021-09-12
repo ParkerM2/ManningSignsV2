@@ -7,6 +7,7 @@ import {
     Divider,
     makeStyles,
 } from '@material-ui/core';
+const font = "'Niconne', cursive";
 
 const useStyles = makeStyles((theme) => ({
     container: {

@@ -7,37 +7,42 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import tshirt1 from '../../../images/tshirt1.png'
 
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
+    alignContent: 'center'
   },
+  cover: {
+      width: 200,
+  }
 });
 
-export default function ServiceCard() {
+export default function ServiceCard({img, primaryText, secondaryText, key}) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+      <>
+    <Card className={classes.root} key={key}>
       <CardActionArea>
         <CardMedia
+          className={classes.cover}
           component="img"
           alt="blank t-shirt"
-          height="140"
-          image={tshirt1}
+          height="160"
+          image={img}
           title="tshirt"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            Apparel
+            {primaryText}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica blah blah blah lakjd;lakjf
+            {secondaryText}
           </Typography>
         </CardContent>
       </CardActionArea>
     </Card>
+    </>
   );
 }

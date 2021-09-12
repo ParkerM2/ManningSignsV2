@@ -14,9 +14,9 @@ const Home = () => {
     return (
         <>
             <HeroSection />
-            <About />
-            <Offers/>
             <Quote />
+            <Offers/>
+            <About />
             <Footer/>
         </>
     )

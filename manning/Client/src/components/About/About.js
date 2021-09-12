@@ -7,6 +7,7 @@ import {
     Paper,
     CircularProgress,
     Container,
+    Divider,
 } from '@material-ui/core';
 import { db } from '../../firebase/config';
 import { doc, getDoc } from 'firebase/firestore';
@@ -15,7 +16,8 @@ const useStyles = makeStyles((theme) => ({
     box: {
         backgroundColor: '#0276aa',
         color: 'lightblue',
-        minHeight: '100vh'
+        minHeight: '100vh',
+        flexGrow: 1,
     },
     paperImg: {
         backgroundImage: `url('https://via.placeholder.com/300/09f/fff.png')`,
@@ -31,6 +33,14 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(6),
         paddingTop: theme.spacing(8),
     },
+    aboutText: {
+        // height: 600,
+        // width: 600,
+        padding: '4vh'
+    },
+    divider: {
+        padding: '4vh'
+    }
 }));
 
 const font = "'Niconne', cursive";
@@ -77,27 +87,33 @@ const HeroSection = () => {
                     {/* Amy / Dale descriptions and pictures w/ links to socials */}
                             {!loading ? 
                                 <>
-                                <Grid style={{ paddingBottom: '5vh' }} container alignItems="center" >
-                                    <Grid style={{ padding: '4vh' }} item md={7} lg={9} >
-                                        <Typography variant="h6">
+                                <Grid item className={classes.divider}>
+                                    <Divider />
+                                </Grid>
+                                <Grid container justifyContent="center" spacing={8}>
+                                    <Grid lg={6} md={12} sm={12} item>
+                                        <Typography className={classes.aboutText} variant="h6">
                                             {currentAboutInfo.about1.text}
                                         </Typography>
                                     </Grid>
-                                    <Grid style={{ padding: '2vh' }} item md={3} sm={8} lg={2}>
-                                        <CardMedia alt={currentAboutInfo.alt} src={currentAboutInfo.about1.url} component="img" />
+                                    <Grid item >
+                                        <CardMedia alt={currentAboutInfo.about2.alt} src={currentAboutInfo.about1.url} component="img" />
+                                    </Grid>
+                                </Grid>
+                                <Grid item className={classes.divider}>
+                                    <Divider />
+                                </Grid>
+                                <Grid container justifyContent="center" spacing={8}>
+                                    <Grid lg={6} md={12} sm={12} item>
+                                        <Typography className={classes.aboutText} variant="h6">
+                                            {currentAboutInfo.about1.text}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item >
+                                        <CardMedia alt={currentAboutInfo.about2.alt} src={currentAboutInfo.about1.url} component="img" />
                                     </Grid>
                                 </Grid>
                                 
-                                <Grid style={{ paddingBottom: '5vh', paddingLeft: '2vh' }} container alignItems="center">
-                                    <Grid style={{ padding: '4vh'}} item lg={2} md={3} sm={8}>
-                                        <CardMedia alt={currentAboutInfo.about2.alt} src={currentAboutInfo.about2.url} component="img" />
-                                    </Grid>
-                                    <Grid style={{ padding: '4vh' }} item md={3} sm={8} lg={3}>
-                                        <Typography align="right" variant="h6">
-                                            {currentAboutInfo.about2.text}
-                                        </Typography>
-                                    </Grid>
-                                </Grid>
                             </>
                             : 
                             <Grid style={{ padding: '5vh'}} container alignItems="center">
