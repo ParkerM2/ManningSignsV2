@@ -75,7 +75,6 @@ const GallerySection = () => {
     useEffect(() => {
         setLoading(true)
         getData();
-
     }, [currentImages])
 
 

@@ -13,6 +13,8 @@ import {
     Card,
     CardContent,
     ButtonGroup,
+    ImageList,
+    ImageListItem,
 } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import tshirt from '../Quote/quoteforms/tshirt1.png';
@@ -50,7 +52,11 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
     },
     heroContent: {
-    padding: theme.spacing(8, 0, 6),
+        padding: '4vh',
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        overflow: 'hidden',
     },
     buttons: {
         display: 'flex',
@@ -62,6 +68,11 @@ const useStyles = makeStyles((theme) => ({
     },
     cover: {
         width: 200,
+    },
+    imageList: {
+        backgroundColor: 'lightblue',
+        width: 1000,
+        height: 800,
     }
 }));
 
@@ -156,20 +167,16 @@ const Offers = () => {
                             </Button>
                         </ButtonGroup>
                     </Grid>
+
                     <Container maxWidth="lg" color="inherit" component="main" className={classes.heroContent}>
-                        <Grid container spacing={5} alignItems="flex-end">
+                        <ImageList rowHeight={420} className={classes.imageList}>
                             {!loading ? (
                                 images && images.map((image) => (
-                                <Grid style={{ padding: '4vh' }} item key={image.id} xs={12} md={4}>
-                                    <Card className={classes.root}>
-                                        <CardMedia
-                                            component="img"
-                                            alt={image.title}
-                                            height="300"
-                                            src={image.url}
-                                        />
-                                    </Card>
-                                </Grid>
+                                        <ImageListItem key={image.id}>
+                                            <Paper elevation={3}>
+                                                <img src={image.url} alt={image.title} />
+                                            </Paper>
+                                        </ImageListItem>
                             ))) 
                             : 
                             (   
@@ -180,8 +187,9 @@ const Offers = () => {
                                 </Grid>
                             )
                         }
-                        </Grid>
+                        </ImageList>
                     </Container>
+                    
                 </Paper>
             </div>
         </>

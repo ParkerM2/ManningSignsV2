@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import Footer from '../../components/Footer/Footer';
 import {
   Avatar,
@@ -14,7 +14,7 @@ import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { useAuth } from '../../context/AuthContext';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -51,7 +51,6 @@ export default function SignIn(props) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const { login, logout, currentUser } = useAuth();
-  const [loading, setLoading] = useState(false);
   const [errorText, setErrorText] = useState('');
   const [open, setOpen] = useState(false);
   const [error, setError] = useState(false);
@@ -88,7 +87,6 @@ export default function SignIn(props) {
     
     try {
       setErrorText('');
-      setLoading(true);
       await login(email, password);
       history.push('/user/adiministrator')
       setOpen(true)
@@ -96,8 +94,6 @@ export default function SignIn(props) {
       setError(true)
       setErrorText('Failed to log in');
     };
-
-    setLoading(false);
 
   };
 

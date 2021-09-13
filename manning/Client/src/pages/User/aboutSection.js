@@ -10,13 +10,12 @@ import {
     TextField,
     Button,
     CardMedia,
-    CardHeader,
 } from '@material-ui/core';
 import { ProgressAbout1Img, ProgressAbout2Img } from '../../components/Progress/ProgressAbout';
 import { db } from '../../firebase/config';
 import { getDoc, doc, updateDoc } from '@firebase/firestore';
 import { DropzoneArea } from 'material-ui-dropzone';
-const font = "'Niconne', cursive";
+
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -47,7 +46,6 @@ const useStyles = makeStyles((theme) => ({
     }, 
 }))
 
-
 const AboutSection = () => {
     const classes = useStyles();
     const [currentAboutInfo, setCurrentAboutInfo] = useState();
@@ -58,7 +56,6 @@ const AboutSection = () => {
     const [newImage2, setNewImage2] = useState(null);
     const [file1, setFile1] = useState();
     const [file2, setFile2] = useState();
-    const [clear, setClear] = useState(false)
     const [about1Title, setAbout1Title] = useState();
     const [about2Title, setAbout2Title] = useState();
     const galleryRef = doc(db, 'gallery', `about`);
@@ -179,7 +176,7 @@ const AboutSection = () => {
 
                                 <Grid item lg={3} md={3}>
                                     <DropzoneArea filesLimit={1} onChange={setNewImage2}/>
-                                    <Button clearOnUnmount={clear} fullWidth type="submit" onClick={sendNewImage2}> Update </Button>
+                                    <Button fullWidth type="submit" onClick={sendNewImage2}> Update </Button>
                                     {file2 && <ProgressAbout2Img file2={file2} setFile2={setFile2} />}
                                 </Grid>
                             </>
