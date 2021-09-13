@@ -25,8 +25,8 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
     },
     navBar: {
-        background: "lightblue",
-        color: "#0276aa"
+        background: "#0276aa",
+        color: "lightblue"
     }
 }));
 const font = "'Niconne', cursive";
@@ -49,7 +49,7 @@ const Navbar = () => {
             <AppBar position="static" className={classes.navBar}>
                     <Toolbar>
                     <Typography color="inherit" className={classes.title} >
-                            <Button style={{color: '#0276aa', fontFamily: font}} href="/">Home</Button>
+                            <Button style={{color: 'lightblue', fontFamily: font}} href="/">Home</Button>
                     </Typography>
                         <Button style={{ fontFamily: font }} color="inherit"
                             href={currentUser ? '/user/administrator' : '/login'}>

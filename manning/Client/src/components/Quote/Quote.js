@@ -19,11 +19,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#0276aa',
         color: 'lightblue',
         minHeight: '100vh',
-        flexGrow: 1,
     },
-    // serviceCardContainer: {
-    //     paddingTop: '0vh'
-    // },
     header: {
         padding:'4vh'
     },
@@ -59,7 +55,7 @@ const Quote = () => {
     const classes = useStyles();
     return (
         <>
-            <Paper className={classes.box}>
+            <Grid className={classes.box}>
                 <Grid container className={classes.header} justifyContent="center">
                     <Grid item>
                         <Typography variant="h2">
@@ -77,7 +73,7 @@ const Quote = () => {
                     <Grid item className={classes.quoteFormContainer}>
                         <Form font={font}/>
                     </Grid>
-            </Paper>
+            </Grid>
         </>
     )
 };

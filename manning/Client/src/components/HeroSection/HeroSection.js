@@ -56,7 +56,7 @@ const HeroSection = () => {
     return (
         <>
             <div className={classes.hero}>
-                <Paper className={classes.box}>
+                <Grid className={classes.box}>
                     <VideoPlayer 
                         className={classes.video}
                         src={backgroundVideo}
@@ -69,14 +69,14 @@ const HeroSection = () => {
                                 <Typography variant="h2" style={{ fontFamily: font, color : "white" }} gutterBottom>
                                     <b>Discover how we can fulfill your sign and shirt needs</b>
                                 </Typography>
-                                <Button variant="contained" color="secondary" >
+                                <Button variant="contained" style={{backgroundColor: "#0276aa", color: 'white'}} >
                                     View our Services!
                                 </Button>
                             </div>
                         </Grid>
                     </Grid>
                     {/* ADD BUTTON TO GO DOWN */}
-                </Paper>
+                </Grid>
             </div>
         </>
     )

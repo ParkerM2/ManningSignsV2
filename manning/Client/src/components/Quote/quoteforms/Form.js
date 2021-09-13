@@ -136,7 +136,7 @@ function QuoteForm({font}) {
     <>
     <Container lg={12} md={12} sm={12} className={classes.container}>
       <Typography style={{fontFamily: font}} variant="h2" align="center" component="h2" gutterBottom>
-        Quote Request Form
+        Feel Free to Request a Quote!
       </Typography>
       <Form
         onSubmit={onSubmit}

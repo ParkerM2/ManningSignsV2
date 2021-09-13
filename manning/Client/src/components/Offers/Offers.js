@@ -115,7 +115,8 @@ const Offers = () => {
     return (
         <>
             <div className={classes.hero}>
-                <Paper className={classes.box}>
+                <Grid className={classes.box}>
+
                     <Grid item md={12}>
                         <div className={classes.mainFeaturedPostContent}>
                             <Typography variant="h3" style={{ fontFamily: font }} >
@@ -123,7 +124,7 @@ const Offers = () => {
                             </Typography>
                         </div>
                     </Grid>
-                    {/* gallery using buttons controlling state, mapping over array from backend firestore request */}
+                    
                     <Grid className={classes.buttons}>
                         <ButtonGroup size="small" aria-label="small outlined button group">
                             <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('sign')}>
@@ -172,11 +173,11 @@ const Offers = () => {
                         <ImageList rowHeight={420} className={classes.imageList}>
                             {!loading ? (
                                 images && images.map((image) => (
+
                                         <ImageListItem key={image.id}>
-                                            <Paper elevation={3}>
                                                 <img src={image.url} alt={image.title} />
-                                            </Paper>
                                         </ImageListItem>
+
                             ))) 
                             : 
                             (   
@@ -189,8 +190,8 @@ const Offers = () => {
                         }
                         </ImageList>
                     </Container>
-                    
-                </Paper>
+
+                </Grid>
             </div>
         </>
     )

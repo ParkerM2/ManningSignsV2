@@ -80,7 +80,7 @@ const HeroSection = () => {
     return (
         <>
             <div>
-                <Paper className={classes.box}>
+                <Grid className={classes.box}>
                     <Grid item md={12}>
                         <div className={classes.mainFeaturedPostContent}>
                             <Typography variant="h3" style={{ fontFamily: font }} gutterBottom>
@@ -94,8 +94,12 @@ const HeroSection = () => {
                                 <Grid item className={classes.divider}>
                                     <Divider />
                                 </Grid>
+
+                                <Grid style={{paddingLeft: '4vh'}}>
+                                        <Typography variant="h3">{currentAboutInfo.about1.title}</Typography>
+                                </Grid>
+
                                 <Grid container justifyContent="center" spacing={8}>
-                                    <Typography variant="h4">{currentAboutInfo.about1.title}</Typography>
                                     <Grid lg={6} md={12} sm={12} item>
                                         <Typography className={classes.aboutText} variant="h6">
                                             {currentAboutInfo.about1.text}
@@ -105,16 +109,22 @@ const HeroSection = () => {
                                         <CardMedia className={classes.media} alt={currentAboutInfo.about1.alt} src={currentAboutInfo.about1.url} component="img" />
                                     </Grid>
                                 </Grid>
+
                                 <Grid item className={classes.divider}>
                                     <Divider />
                                 </Grid>
+
+                                <Grid style={{paddingLeft: '4vh'}}>
+                                        <Typography variant="h3">{currentAboutInfo.about2.title}</Typography>
+                                </Grid>
+
                                 <Grid container justifyContent="center" spacing={8}>
-                                    <Typography variant="h4">{currentAboutInfo.about2.title}</Typography>
                                     <Grid lg={6} md={12} sm={12} item>
                                         <Typography className={classes.aboutText} variant="h6">
                                             {currentAboutInfo.about2.text}
                                         </Typography>
                                     </Grid>
+
                                     <Grid item >
                                         <CardMedia className={classes.media} alt={currentAboutInfo.about2.alt} src={currentAboutInfo.about2.url} component="img" />
                                     </Grid>
@@ -128,7 +138,7 @@ const HeroSection = () => {
                                 </Container>
                             </Grid> 
                             }
-                </Paper>
+                </Grid>
             </div>
         </>
     )
