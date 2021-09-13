@@ -175,7 +175,7 @@ const Offers = () => {
                                 images && images.map((image) => (
 
                                         <ImageListItem key={image.id}>
-                                                <img src={image.url} alt={image.title} />
+                                            <img src={image.url} alt={image.title} />
                                         </ImageListItem>
 
                             ))) 

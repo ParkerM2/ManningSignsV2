@@ -134,8 +134,8 @@ function QuoteForm({font}) {
 
   return (
     <>
-    <Container lg={12} md={12} sm={12} className={classes.container}>
-      <Typography style={{fontFamily: font}} variant="h2" align="center" component="h2" gutterBottom>
+    <Container lg={12} md={12} sm={12}>
+      <Typography style={{fontFamily: font}} variant="h4" align="center" component="h2" gutterBottom>
         Feel Free to Request a Quote!
       </Typography>
       <Form
@@ -144,7 +144,7 @@ function QuoteForm({font}) {
         render={({ handleSubmit, reset, submitting, pristine, values }) => (
           <form onSubmit={handleSubmit} >
             <Paper elevation={3} style={{ padding: 16 }}>
-              <Grid container alignItems="flex-start" spacing={2}>
+              <Grid container spacing={2}>
                 <Grid item xs={6}>
                   <Field
                     fullWidth

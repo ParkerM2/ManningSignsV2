@@ -19,12 +19,18 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#0276aa',
         color: 'lightblue',
         minHeight: '100vh',
+        padding: '4vh'
     },
     header: {
         padding:'4vh'
     },
     quoteFormContainer:{
-        paddingTop: '6vh'
+        paddingTop: '6vh',
+        paddingBottom: '4vh',
+    },
+    paper: {
+        backgroundColor: 'lightblue',
+        color: '#0276aa',
     }
 }));
 
@@ -55,8 +61,10 @@ const Quote = () => {
     const classes = useStyles();
     return (
         <>
-            <Grid className={classes.box}>
-                <Grid container className={classes.header} justifyContent="center">
+            <Grid container className={classes.box} justifyContent="center">
+                <Grid  item xl={7} lg={10} md={12} sm={12}>
+                <Paper className={classes.paper}>
+                <Grid container className={classes.header}>
                     <Grid item>
                         <Typography variant="h2">
                             Services
@@ -65,14 +73,19 @@ const Quote = () => {
                 </Grid>
                 <Grid container className={classes.serviceCardContainer} justifyContent="center" spacing={3}>
                         {data && data.map((item) => (   
-                                <Grid item>
+                                <Grid item lg={3}>
                                     <ServiceCard key={item.id} img={item.img} primaryText={item.primaryText} secondaryText={item.secondaryText} />
                                 </Grid>
                         ))}
-                </Grid>
-                    <Grid item className={classes.quoteFormContainer}>
-                        <Form font={font}/>
+                
+                    <Grid container lg={10} className={classes.quoteFormContainer}>
+                        <Grid item>
+                            <Form font={font}/>
+                        </Grid>
                     </Grid>
+                </Grid>
+                </Paper>
+                </Grid>
             </Grid>
         </>
     )
