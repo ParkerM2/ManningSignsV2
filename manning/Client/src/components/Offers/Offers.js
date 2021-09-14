@@ -24,29 +24,24 @@ const font = "'Niconne', cursive";
 
 const useStyles = makeStyles((theme) => ({
     box: {
-        backgroundColor: 'lightblue',
-        color: '#0276aa',
-        position: 'relative',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        minHeight: '100vh',
+        backgroundColor: 'white',
+        color: 'lightblue',
+        minHeight: '80vh',
+        padding: '4vh',
     },
+    
     mainFeaturedPost: {
         position: 'relative',
         backgroundColor: theme.palette.grey[800],
         color: theme.palette.common.white,
-        marginBottom: theme.spacing(4),
-        backgroundSize: 'fit-to-size',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        
+        marginBottom: theme.spacing(4),      
     },
     mainFeaturedPostContent: {
+        display: 'flex',
+        alignItems: 'center',
         color: '#0276aa',
-        position: 'relative',
-        padding: theme.spacing(7),
-        paddingTop: theme.spacing(12),
+        padding: theme.spacing(4),
+        paddingTop: theme.spacing(4),
     },
     hero: {
         flexGrow: 1,
@@ -62,17 +57,18 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        '& > *': {
-        margin: theme.spacing(1),
-    },
     },
     cover: {
-        width: 200,
+        maxWidth: 200,
+        minHeight: 100
     },
     imageList: {
         backgroundColor: 'lightblue',
-        width: 1000,
-        height: 800,
+        maxWidth: 800,
+        maxHeight: 800,
+    },
+    paper: {
+        minWidth: '80%'
     }
 }));
 
@@ -114,85 +110,79 @@ const Offers = () => {
 
     return (
         <>
-            <div className={classes.hero}>
-                <Grid className={classes.box}>
+                <Grid container justifyContent="center" className={classes.box} xl={12} lg={12} md={12} sm={12} >
+                    <Grid item>
+                        <Paper style={{backgroundColor: 'lightblue'}} className={classes.paper}>
+                            <Grid item md={12} lg={12} sm={12} xs={12} className={classes.mainFeaturedPostContent}>
+                                <Container>
+                                    <Typography align="center" variant="h5" style={{ fontFamily: font }} >
+                                        We offer a wide variety of <b>Sign</b> and <b>Shirt</b> solutions!
+                                    </Typography>
+                                </Container>
+                            </Grid>
+                        
+                            <Grid item xs={3} lg={12} md={!2} sm={12} className={classes.buttons}>
+                                <ButtonGroup style={{padding:'1vh'}}>
+                                    <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('sign')}>
+                                    <CardMedia
+                                        className={classes.cover}
+                                        component="img"
+                                        alt="sign"
+                                        
+                                        image={sign}
+                                        title="sign"
+                                        />
+                                
+                                    </Button>
+                                    <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('shirt')}>
+                                    <CardMedia
+                                        className={classes.cover}
+                                        component="img"
+                                        alt="blank t-shirt"
+                                        
+                                        image={tshirt}
+                                        title="tshirt"
+                                        />
+                                    
+                                    </Button>
+                                    <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('vehicle')}>
+                                    <CardMedia
+                                        className={classes.cover}
+                                        component="img"
+                                        alt="vehicle"
+                                        
+                                        image={vehicle}
+                                        title="vehicle"
+                                        />
+                                    
+                                    </Button>
+                                </ButtonGroup>
+                            </Grid>
 
-                    <Grid item md={12}>
-                        <div className={classes.mainFeaturedPostContent}>
-                            <Typography variant="h3" style={{ fontFamily: font }} >
-                                We offer a wide variety of <b>Sign</b> and <b>Shirt</b> solutions!
-                            </Typography>
-                        </div>
+                            <Grid maxWidth="lg" color="inherit" component="main" className={classes.heroContent}>
+                                <ImageList rowHeight={200} cols={4} className={classes.imageList}>
+                                    {!loading ? (
+                                        images && images.map((image) => (
+
+                                                <ImageListItem  key={image.id}>
+                                                    <img src={image.url} alt={image.title} />
+                                                </ImageListItem>
+
+                                    ))) 
+                                    : 
+                                    (   
+                                        <Grid style={{ padding: '4vh' }} item xs={12} md={4}>
+                                            <Card className={classes.root}>
+                                                <CircularProgress color="secondary" />
+                                            </Card>
+                                        </Grid>
+                                    )
+                                }
+                                </ImageList>
+                            </Grid>
+                        </Paper>
                     </Grid>
-                    
-                    <Grid className={classes.buttons}>
-                        <ButtonGroup size="small" aria-label="small outlined button group">
-                            <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('sign')}>
-                            <CardMedia
-                                className={classes.cover}
-                                component="img"
-                                alt="sign"
-                                height="160"
-                                image={sign}
-                                title="sign"
-                                />
-                            <Typography gutterBottom variant="h5" component="h2">
-                                Signs
-                            </Typography>
-                            </Button>
-                            <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('shirt')}>
-                            <CardMedia
-                                className={classes.cover}
-                                component="img"
-                                alt="blank t-shirt"
-                                height="160"
-                                image={tshirt}
-                                title="tshirt"
-                                />
-                            <Typography gutterBottom variant="h5" component="h2">
-                                Shirts
-                            </Typography>
-                            </Button>
-                            <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('vehicle')}>
-                            <CardMedia
-                                className={classes.cover}
-                                component="img"
-                                alt="vehicle"
-                                height="160"
-                                image={vehicle}
-                                title="vehicle"
-                                />
-                            <Typography gutterBottom variant="h5" component="h2">
-                                Vehicles
-                            </Typography>
-                            </Button>
-                        </ButtonGroup>
-                    </Grid>
-
-                    <Container maxWidth="lg" color="inherit" component="main" className={classes.heroContent}>
-                        <ImageList rowHeight={420} className={classes.imageList}>
-                            {!loading ? (
-                                images && images.map((image) => (
-
-                                        <ImageListItem key={image.id}>
-                                            <img src={image.url} alt={image.title} />
-                                        </ImageListItem>
-
-                            ))) 
-                            : 
-                            (   
-                                <Grid style={{ padding: '4vh' }} item xs={12} md={4}>
-                                    <Card className={classes.root}>
-                                        <CircularProgress color="secondary" />
-                                    </Card>
-                                </Grid>
-                            )
-                        }
-                        </ImageList>
-                    </Container>
-
                 </Grid>
-            </div>
         </>
     )
 };

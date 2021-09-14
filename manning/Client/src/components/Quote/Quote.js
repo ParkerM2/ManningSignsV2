@@ -16,10 +16,10 @@ const font = "'Niconne', cursive";
 
 const useStyles = makeStyles((theme) => ({
     box: {
-        backgroundColor: '#0276aa',
+        backgroundColor: 'white',
         color: 'lightblue',
         minHeight: '100vh',
-        padding: '4vh'
+        padding: '4vh',
     },
     header: {
         padding:'4vh'
@@ -27,10 +27,24 @@ const useStyles = makeStyles((theme) => ({
     quoteFormContainer:{
         paddingTop: '6vh',
         paddingBottom: '4vh',
+        alignContent: 'center',
+        alignItems: 'center'
     },
     paper: {
         backgroundColor: 'lightblue',
         color: '#0276aa',
+    },
+    root: {
+            maxWidth: 345,
+            alignContent: 'center',
+            alignItems: 'center',
+            justifyContent: 'center'
+    },
+    cover: {
+        width: 200,  
+    },
+    serviceCardContainer: {
+        alignItems: 'center'
     }
 }));
 
@@ -61,29 +75,29 @@ const Quote = () => {
     const classes = useStyles();
     return (
         <>
-            <Grid container className={classes.box} justifyContent="center">
-                <Grid  item xl={7} lg={10} md={12} sm={12}>
+            <Grid container lg={12} md={12} sm={12} className={classes.box} justifyContent="center">
+                <Grid  item >
                 <Paper className={classes.paper}>
                 <Grid container className={classes.header}>
-                    <Grid item>
-                        <Typography variant="h2">
+                    <Container>
+                        <Typography style={{fontFamily: font}} align="center" variant="h2">
                             Services
                         </Typography>
-                    </Grid>
+                    </Container>
                 </Grid>
                 <Grid container className={classes.serviceCardContainer} justifyContent="center" spacing={3}>
                         {data && data.map((item) => (   
-                                <Grid item lg={3}>
-                                    <ServiceCard key={item.id} img={item.img} primaryText={item.primaryText} secondaryText={item.secondaryText} />
+                                <Grid item lg={3} sm={10} md={3} xs={12}>
+                                    <ServiceCard root={classes.root} cover={classes.cover} image={classes.image} key={item.id} img={item.img} primaryText={item.primaryText} secondaryText={item.secondaryText} />
                                 </Grid>
                         ))}
-                
-                    <Grid container lg={10} className={classes.quoteFormContainer}>
+                </Grid>
+                    <Grid container lg={12} md={12} xl={12} justifyContent="center" className={classes.quoteFormContainer}>
                         <Grid item>
                             <Form font={font}/>
                         </Grid>
                     </Grid>
-                </Grid>
+                
                 </Paper>
                 </Grid>
             </Grid>

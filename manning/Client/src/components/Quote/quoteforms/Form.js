@@ -132,6 +132,7 @@ function QuoteForm({font}) {
     setSending("Sent!")
   };
 
+
   return (
     <>
     <Container lg={12} md={12} sm={12}>

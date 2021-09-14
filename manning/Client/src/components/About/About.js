@@ -8,30 +8,27 @@ import {
     CircularProgress,
     Container,
     Divider,
+    CardContent,
+    Card,
 } from '@material-ui/core';
 import { db } from '../../firebase/config';
 import { doc, getDoc } from 'firebase/firestore';
+import ServiceCard from '../Quote/quoteforms/ServicesCard';
 
 const useStyles = makeStyles((theme) => ({
     box: {
-        backgroundColor: '#0276aa',
+        backgroundColor: 'white',
         color: 'lightblue',
-        minHeight: '100vh',
-        flexGrow: 1,
+        minHeight: '80vh',
+        padding: '4vh',
     },
-    paperImg: {
-        backgroundImage: `url('https://via.placeholder.com/300/09f/fff.png')`,
-        position: 'relative',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        color: 'lightblue'
+    paper: {
+        backgroundColor: 'lightblue'
     },
     mainFeaturedPostContent: {
         color: 'lightblue',
-        position: 'relative',
-        padding: theme.spacing(6),
-        paddingTop: theme.spacing(8),
+        padding: theme.spacing(4),
+        paddingTop: theme.spacing(4),
     },
     aboutText: {
         // height: 600,
@@ -41,9 +38,22 @@ const useStyles = makeStyles((theme) => ({
     divider: {
         padding: '4vh'
     },
-    media: {
-        height: 400,
-        width: 400
+    cover: {
+        width: 300
+    },
+    content: {
+        flex: '1 0 auto',
+        inlineSize: "min-content",
+        whiteSpace: 'wrap'
+    },
+    root: {
+        display: 'flex',
+        backgroundColor: 'white',
+        color: 'primary',
+    },
+    details: {
+        display: 'flex',
+        flexDirection: 'column',
     }
 }));
 
@@ -73,73 +83,70 @@ const HeroSection = () => {
 
 
     useEffect(() => {
-        setLoading(true)
-        getData();
+        const unsub = () => {
+            setLoading(true)
+            getData();
+            console.log(currentAboutInfo)
+        }
+
+        return unsub();
+        
     }, [])
 
     return (
         <>
-            <div>
-                <Grid className={classes.box}>
-                    <Grid item md={12}>
-                        <div className={classes.mainFeaturedPostContent}>
-                            <Typography variant="h3" style={{ fontFamily: font }} gutterBottom>
-                                Manning Signs <b>family</b> owned and operated
-                            </Typography>
-                        </div>
-                    </Grid>
+            
+                <Grid container direction="column" justifyContent="center" className={classes.box} >
                     {/* Amy / Dale descriptions and pictures w/ links to socials */}
-                            {!loading ? 
-                                <>
-                                <Grid item className={classes.divider}>
-                                    <Divider />
+                    <Paper className={classes.paper}>
+                        <Container align="center">
+                    <Typography variant="h4" style={{padding: '3vh', fontFamily: font}}> Meet Our Crew </Typography>
+                            {!loading ? (
+                            <>
+                            <Grid container justifyContent="center" spacing={2}>
+                                <Grid item xl={12} lg={12} md={12} sm={12} xs={12} >
+                                    <Card className={classes.root}>
+                                            <CardContent className={classes.content}>
+                                                <Typography  style={{fontFamily: font}} variant="h3">
+                                                    {currentAboutInfo.about1.title}
+                                                </Typography>
+                                                <Typography style={{fontFamily: font}} variant="p">
+                                                    {currentAboutInfo.about1.text}
+                                                </Typography>
+                                            </CardContent>
+                                        
+                                        <CardMedia className={classes.cover} image={currentAboutInfo.about1.url} title={currentAboutInfo.about1.title} />
+                                    </Card>
                                 </Grid>
 
-                                <Grid style={{paddingLeft: '4vh'}}>
-                                        <Typography variant="h3">{currentAboutInfo.about1.title}</Typography>
+                                <Grid item xl={12} lg={12} md={12} sm={12} xs={12} >
+                                    <Card className={classes.root}>
+                                            <CardContent className={classes.content}>
+                                                <Typography  style={{fontFamily: font}} variant="h3">
+                                                    {currentAboutInfo.about2.title}
+                                                </Typography>
+                                                <Typography style={{fontFamily: font}} variant="p">
+                                                    {currentAboutInfo.about2.text}
+                                                </Typography>
+                                            </CardContent>
+                                        <CardMedia className={classes.cover} image={currentAboutInfo.about2.url} title={currentAboutInfo.about1.title} />
+                                    </Card>
                                 </Grid>
-
-                                <Grid container justifyContent="center" spacing={8}>
-                                    <Grid lg={6} md={12} sm={12} item>
-                                        <Typography className={classes.aboutText} variant="h6">
-                                            {currentAboutInfo.about1.text}
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item >
-                                        <CardMedia className={classes.media} alt={currentAboutInfo.about1.alt} src={currentAboutInfo.about1.url} component="img" />
-                                    </Grid>
-                                </Grid>
-
-                                <Grid item className={classes.divider}>
-                                    <Divider />
-                                </Grid>
-
-                                <Grid style={{paddingLeft: '4vh'}}>
-                                        <Typography variant="h3">{currentAboutInfo.about2.title}</Typography>
-                                </Grid>
-
-                                <Grid container justifyContent="center" spacing={8}>
-                                    <Grid lg={6} md={12} sm={12} item>
-                                        <Typography className={classes.aboutText} variant="h6">
-                                            {currentAboutInfo.about2.text}
-                                        </Typography>
-                                    </Grid>
-
-                                    <Grid item >
-                                        <CardMedia className={classes.media} alt={currentAboutInfo.about2.alt} src={currentAboutInfo.about2.url} component="img" />
-                                    </Grid>
-                                </Grid>
-                                
-                            </>
-                            : 
+                            </Grid>
+                           </>
+                            
+                            ) : (
                             <Grid style={{ padding: '5vh'}} container alignItems="center">
                                 <Container>
                                     <CircularProgress color="secondary" />
                                 </Container>
                             </Grid> 
-                            }
+                            )
+                        }
+                        </Container>
+                    </Paper>
                 </Grid>
-            </div>
+            
         </>
     )
 };

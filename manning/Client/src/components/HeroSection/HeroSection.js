@@ -55,7 +55,7 @@ const HeroSection = () => {
     const classes = useStyles();
     return (
         <>
-            <div className={classes.hero}>
+            
                 <Grid className={classes.box}>
                     <VideoPlayer 
                         className={classes.video}
@@ -77,7 +77,7 @@ const HeroSection = () => {
                     </Grid>
                     {/* ADD BUTTON TO GO DOWN */}
                 </Grid>
-            </div>
+            
         </>
     )
 };

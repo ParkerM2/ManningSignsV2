@@ -11,28 +11,36 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
-    alignContent: 'center'
+    alignContent: 'center',
+    alignItems: 'center'
   },
   cover: {
-      width: 200,
+      width: '100%',  
+  },
+  img: {
+    display: 'flex',
+    alignContent: 'center',
+    alignItems: 'center'
   }
 });
 
-export default function ServiceCard({img, primaryText, secondaryText, key}) {
+export default function ServiceCard({img, primaryText, secondaryText, key, root, cover}) {
   const classes = useStyles();
 
   return (
       <>
-    <Card className={classes.root} key={key}>
+    <Card className={root} key={key}>
       <CardActionArea>
+        <div className={classes.img}>
         <CardMedia
-          className={classes.cover}
+          className={cover}
           component="img"
           alt="blank t-shirt"
           height="160"
           image={img}
           title="tshirt"
         />
+        </div>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {primaryText}

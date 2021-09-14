@@ -6,6 +6,7 @@ import Link from '@material-ui/core/Link';
 import VideoPlayer from "react-background-video-player";
 import backgroundVideo from '../../videos/lights.mp4';
 import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
 function Copyright() {
   return (
@@ -42,6 +43,7 @@ export default function Footer() {
   const classes = useStyles();
 
   return (
+      <Grid>
       <Paper className={classes.footer}>
         <VideoPlayer 
             className={classes.video}
@@ -59,6 +61,7 @@ export default function Footer() {
         <Copyright />
       </Container>
     </Paper>
+    </Grid>
   );
 }
 
