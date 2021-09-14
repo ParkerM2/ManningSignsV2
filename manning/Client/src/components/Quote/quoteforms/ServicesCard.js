@@ -12,7 +12,8 @@ const useStyles = makeStyles({
   root: {
     maxWidth: 345,
     alignContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    
   },
   cover: {
       width: '100%',  

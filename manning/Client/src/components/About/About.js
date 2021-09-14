@@ -17,8 +17,7 @@ import ServiceCard from '../Quote/quoteforms/ServicesCard';
 
 const useStyles = makeStyles((theme) => ({
     box: {
-        backgroundColor: 'white',
-        color: 'lightblue',
+        color: '#0276aa',
         minHeight: '80vh',
         padding: '4vh',
     },
@@ -26,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: 'lightblue'
     },
     mainFeaturedPostContent: {
-        color: 'lightblue',
         padding: theme.spacing(4),
         paddingTop: theme.spacing(4),
     },
@@ -48,8 +46,8 @@ const useStyles = makeStyles((theme) => ({
     },
     root: {
         display: 'flex',
-        backgroundColor: 'white',
-        color: 'primary',
+        background: 'linear-gradient(to right bottom, #4dabf5, #0e4686)',
+        color: 'black',
     },
     details: {
         display: 'flex',
@@ -98,7 +96,6 @@ const HeroSection = () => {
             
                 <Grid container direction="column" justifyContent="center" className={classes.box} >
                     {/* Amy / Dale descriptions and pictures w/ links to socials */}
-                    <Paper className={classes.paper}>
                         <Container align="center">
                     <Typography variant="h4" style={{padding: '3vh', fontFamily: font}}> Meet Our Crew </Typography>
                             {!loading ? (
@@ -125,7 +122,7 @@ const HeroSection = () => {
                                                 <Typography  style={{fontFamily: font}} variant="h3">
                                                     {currentAboutInfo.about2.title}
                                                 </Typography>
-                                                <Typography style={{fontFamily: font}} variant="p">
+                                                <Typography style={{fontFamily: font, color: 'black'}} variant="p">
                                                     {currentAboutInfo.about2.text}
                                                 </Typography>
                                             </CardContent>
@@ -144,7 +141,6 @@ const HeroSection = () => {
                             )
                         }
                         </Container>
-                    </Paper>
                 </Grid>
             
         </>

@@ -24,7 +24,7 @@ const font = "'Niconne', cursive";
 
 const useStyles = makeStyles((theme) => ({
     box: {
-        backgroundColor: 'white',
+        backgroundColor: '',
         color: 'lightblue',
         minHeight: '80vh',
         padding: '4vh',
@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
         padding: '4vh',
         display: 'flex',
         flexWrap: 'wrap',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         overflow: 'hidden',
     },
     buttons: {
@@ -60,15 +60,13 @@ const useStyles = makeStyles((theme) => ({
     },
     cover: {
         maxWidth: 200,
-        minHeight: 100
+        minHeight: 100,
     },
     imageList: {
-        backgroundColor: 'lightblue',
-        maxWidth: 800,
-        maxHeight: 800,
+        maxWidth: 700,
+        maxHeight: 500,
     },
     paper: {
-        minWidth: '80%'
     }
 }));
 
@@ -112,7 +110,7 @@ const Offers = () => {
         <>
                 <Grid container justifyContent="center" className={classes.box} xl={12} lg={12} md={12} sm={12} >
                     <Grid item>
-                        <Paper style={{backgroundColor: 'lightblue'}} className={classes.paper}>
+            
                             <Grid item md={12} lg={12} sm={12} xs={12} className={classes.mainFeaturedPostContent}>
                                 <Container>
                                     <Typography align="center" variant="h5" style={{ fontFamily: font }} >
@@ -159,8 +157,9 @@ const Offers = () => {
                                 </ButtonGroup>
                             </Grid>
 
-                            <Grid maxWidth="lg" color="inherit" component="main" className={classes.heroContent}>
-                                <ImageList rowHeight={200} cols={4} className={classes.imageList}>
+                            <Grid maxWidth="lg" component="main" className={classes.heroContent}>
+                                <Paper elevation={3} style={{padding: '2vh', background: 'linear-gradient(to right bottom, #4dabf5, #0e4686)',}}>
+                                <ImageList rowHeight={200} cols={3} className={classes.imageList}>
                                     {!loading ? (
                                         images && images.map((image) => (
 
@@ -179,10 +178,12 @@ const Offers = () => {
                                     )
                                 }
                                 </ImageList>
+                                </Paper>
                             </Grid>
-                        </Paper>
+                        
                     </Grid>
                 </Grid>
+                
         </>
     )
 };

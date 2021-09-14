@@ -16,8 +16,8 @@ const font = "'Niconne', cursive";
 
 const useStyles = makeStyles((theme) => ({
     box: {
-        backgroundColor: 'white',
-        color: 'lightblue',
+        backgroundColor: '',
+        color: '#0276aa',
         minHeight: '100vh',
         padding: '4vh',
     },
@@ -38,13 +38,14 @@ const useStyles = makeStyles((theme) => ({
             maxWidth: 345,
             alignContent: 'center',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            background: 'linear-gradient(to right bottom, #4dabf5, #0e4686)',
     },
     cover: {
         width: 200,  
     },
     serviceCardContainer: {
-        alignItems: 'center'
+        alignItems: 'center',
     }
 }));
 
@@ -77,7 +78,7 @@ const Quote = () => {
         <>
             <Grid container lg={12} md={12} sm={12} className={classes.box} justifyContent="center">
                 <Grid  item >
-                <Paper className={classes.paper}>
+                
                 <Grid container className={classes.header}>
                     <Container>
                         <Typography style={{fontFamily: font}} align="center" variant="h2">
@@ -98,7 +99,7 @@ const Quote = () => {
                         </Grid>
                     </Grid>
                 
-                </Paper>
+               
                 </Grid>
             </Grid>
         </>
