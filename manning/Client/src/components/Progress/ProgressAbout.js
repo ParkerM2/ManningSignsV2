@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import useStorage from '../../hooks/useStorage';
-import { updateDoc,doc, arrayUnion, } from '@firebase/firestore';
+import { updateDoc,doc } from '@firebase/firestore';
 import { db } from '../../firebase/config';
 
 const ProgressAbout1Img = ({file1 , setFile1}) => {

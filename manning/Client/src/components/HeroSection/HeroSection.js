@@ -5,7 +5,6 @@ import {
     Typography,
     makeStyles,
     Grid,
-    Paper,
     Button,
 } from '@material-ui/core';
 

@@ -4,16 +4,13 @@ import {
     makeStyles,
     CardMedia,
     Grid,
-    Paper,
     CircularProgress,
     Container,
-    Divider,
     CardContent,
     Card,
 } from '@material-ui/core';
 import { db } from '../../firebase/config';
 import { doc, getDoc } from 'firebase/firestore';
-import ServiceCard from '../Quote/quoteforms/ServicesCard';
 
 const useStyles = makeStyles((theme) => ({
     box: {

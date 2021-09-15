@@ -1,17 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
     AppBar,
     Toolbar,
     Typography,
     Button,
     makeStyles,
-    Menu,
-    MenuItem,
     Grid,
 } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
-// 
-import { getAuth, onAuthStateChanged } from '@firebase/auth';
 import { useAuth } from '../../context/AuthContext';
 import { useHistory } from 'react-router';
 

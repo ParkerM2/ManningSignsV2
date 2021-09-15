@@ -4,7 +4,6 @@ import Form from './quoteforms/Form';
 import {
     makeStyles,
     Grid,
-    Paper,
     Typography,
     Container,
 } from '@material-ui/core';

@@ -55,8 +55,6 @@ export function AuthProvider({ children }) {
             })
             .catch((error) => {
                 // Handle Errors here.
-                const errorCode = error.code;
-                const errorMessage = error.message;
             });
     return signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
             // signed in

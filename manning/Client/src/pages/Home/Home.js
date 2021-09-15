@@ -4,7 +4,6 @@ import About from '../../components/About/About';
 import Offers from '../../components/Offers/Offers';
 import Quote from '../../components/Quote/Quote';
 import Footer from '../../components/Footer/Footer';
-import backgroundImg from '../../images/background.jpg';
 import {
     Container,
     Paper,

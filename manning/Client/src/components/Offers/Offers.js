@@ -11,7 +11,6 @@ import {
     Button,
     Container,
     Card,
-    CardContent,
     ButtonGroup,
     ImageList,
     ImageListItem,

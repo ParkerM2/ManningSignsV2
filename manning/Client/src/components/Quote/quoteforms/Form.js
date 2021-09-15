@@ -13,8 +13,6 @@ import {
   Grid,
   Button,
   Container,
-  CssBaseline,
-  makeStyles
 } from '@material-ui/core';
 import SignForm from './SignForm';
 import VehicleForm from './VehicleWrapForm';
@@ -24,11 +22,6 @@ import signEmailTemplate from '../../../lib/signTemplate';
 const signTemplate = "template_u7olvj9";
 const shirtTemplate = "template_6u0hilf";
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    
-  }
-}))
 
 const validate = values => {
   const errors = {};
@@ -47,7 +40,6 @@ const validate = values => {
 
 
 function QuoteForm({font}) {
-  const classes = useStyles();
     // Check to see if shirts/signs/vehicle wrap are selected to then display the corresponding form beneath.
   const [orderType, setOrderType] = useState('null')
   const [sending, setSending] = useState("Submit for Quote");
@@ -75,7 +67,7 @@ function QuoteForm({font}) {
           setOrderType('vehicle')
           setRecipient("parkerlmanning@hotmail.com")
               return <VehicleForm onSubmit={onSubmit} />
-          case null:
+          default:
               return <Typography>Please Select an Option!</Typography>
       }
   }
