@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3,0,0),
+    backgroundColor: "#0276aa"
     },
     footer: {
         marginBottom: '-60px'
@@ -153,7 +154,7 @@ export default function SignIn(props) {
             fullWidth
             onClick={signOut}
             variant="contained"
-            color="secondary"
+            color="#0e4686"
             className={classes.submit}
           >
             Log Out

@@ -118,7 +118,7 @@ const Offers = () => {
                                 </Container>
                             </Grid>
                         
-                            <Grid item xs={3} lg={12} md={!2} sm={12} className={classes.buttons}>
+                            <Grid item xs={12} lg={12} md={12} sm={12} className={classes.buttons}>
                                 <ButtonGroup style={{padding:'1vh'}}>
                                     <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('sign')}>
                                     <CardMedia

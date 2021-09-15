@@ -32,13 +32,11 @@ const Home = () => {
             <HeroSection />
             
             <Grid className={classes.background}>
-            <Container >
-            <Paper elevation={3} className={classes.paper} >
+            <Paper  elevation={3} className={classes.paper} >
             <Quote />
             <Offers/>
             <About />
-            </Paper>
-            </Container>
+            </Paper>           
             </Grid>
             <Footer/>
         </>

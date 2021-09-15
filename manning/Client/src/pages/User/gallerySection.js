@@ -71,7 +71,7 @@ const GallerySection = () => {
         }
     };
 
-    
+
 // should be changed to make one call and parse out images to state
 // so that a new server request doesn't happen each time a button 
 // is pressed
