@@ -52,13 +52,19 @@ export default function Footer() {
             muted={true}
         />
       <Container className={classes.mainFeaturedPostContent} maxWidth="lg">
-        <Typography variant="h6" align="center" gutterBottom>
+        <Typography variant="h7" align="center" gutterBottom>
             Website Designed by{" "}
-            <Link color="inherit" target="__blank" href="/https://parkermanning.netlify.app/">
+            <Link color="inherit" target="__blank" href="https://parkermanning.netlify.app/">
             Parker Manning
             </Link>
         </Typography>
         <Copyright />
+        <Typography variant="h7" align="center" gutterBottom>
+            View our location:{" "}
+            <Link color="inherit" target="__blank" href="https://www.google.com/maps/dir//manningsigns+location+greenville+ms/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x862becf6f2c61895:0x23b56afddb407098?sa=X&ved=2ahUKEwiH6fK984bzAhX3lmoFHevuAoEQ9Rd6BAhPEAU">
+            Here
+            </Link>
+        </Typography>
       </Container>
     </Paper>
     </Grid>

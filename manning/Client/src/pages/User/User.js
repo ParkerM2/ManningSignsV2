@@ -16,7 +16,7 @@ import AboutSection from './aboutSection';
 import GallerySection from './gallerySection';
 import HomeSection from './homeSection';
 
-const font = "'Niconne', cursive";
+const font = 'Niconne';
 
 const useStyles = makeStyles((theme) => ({
     root: {

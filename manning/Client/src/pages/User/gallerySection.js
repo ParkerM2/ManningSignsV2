@@ -20,7 +20,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { makeStyles } from '@material-ui/core';
 import { DropzoneArea } from 'material-ui-dropzone';
 import Progress from '../../components/Progress/ProgressGallery';
-const font = "'Niconne', cursive";
+const font = "Niconne";
 
 const useStyles = makeStyles((theme) => ({
     root: {

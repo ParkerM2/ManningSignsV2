@@ -15,8 +15,8 @@ import {
     Avatar,
 } from '@material-ui/core';
 import { useAuth } from '../../context/AuthContext';
-import { getAuth, updateProfile, updateEmail } from 'firebase/auth';
-const font = "'Niconne', cursive";
+import { getAuth, updateProfile } from 'firebase/auth';
+const font = 'Niconne';
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -40,14 +40,16 @@ const useStyles = makeStyles((theme) => ({
 const HomeSection = () => {
     const classes = useStyles();
     const [name, setName] = useState();
-    const [email, setEmail] = useState();
     const { currentUser, logout } = useAuth();
     const auth = getAuth();
 
 
+    const changeName = (e) => {
+        setName(e.target.value)
+    }
 
     const submitChange = () => {
-        if (!name === undefined) {
+        if (name !== currentUser.displayName) {
             updateProfile(auth.currentUser,{
                 displayName: name
             }).then(() => {
@@ -55,20 +57,8 @@ const HomeSection = () => {
             }).catch((error) => {
                 console.log(error)
             })
-            console.log(name, 'not undefined')
-        } else if (!email === undefined) {
-            updateEmail(auth.currentUser,{
-                email: email
-            }).then(() => {
-            // updated email
-            }).catch((error) => {
-                console.log(error)
-            })
-            console.log(email, 'undefined should be')
-        } else {
-            console.log("something didn't do right")
         }
-    }
+    };
 
     return (
         <>
@@ -98,8 +88,8 @@ const HomeSection = () => {
                             />
                             <CardContent>
                                 <form>
-                                    <TextField label="Display Name:" onChange={(event) => {setName(event.target.value)}} variant="outlined" id="name" defaultValue={currentUser.displayName} />
-                                    <TextField label="Email Address" onChange={(event) => {setEmail(event.target.value)}} variant="outlined" id="Email Address" defaultValue={currentUser.email} />     
+                                    <TextField label="Display Name:" onChange={changeName} variant="outlined" id="name" defaultValue={currentUser.displayName} />
+                                    <Typography> Email :{" "} {currentUser.email} </Typography>     
                                 </form>
                             </CardContent>
                             <CardActions>
