@@ -18,7 +18,7 @@ const style = {
 };
 
 
-export default function SmallModal({image}) {
+export default function SmallModal({imageUrl, imageAlt}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -37,7 +37,10 @@ export default function SmallModal({image}) {
         aria-describedby="parent-modal-description"
       >
         <Box sx={{ ...style, width: 400 }}>
-            {image}
+            <img
+                src={imageUrl}
+                alt={imageAlt}
+            />
         </Box>
       </Modal>
     </div>
