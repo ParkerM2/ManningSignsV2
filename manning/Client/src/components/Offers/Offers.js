@@ -103,7 +103,7 @@ const Offers = () => {
     return (
         <>
                 <Grid container justifyContent="center" className={classes.box} xl={12} lg={12} md={12} sm={12} >
-                    <Grid item>
+                    
                         <Grid item md={12} lg={12} sm={12} xs={12} className={classes.mainFeaturedPostContent}>
                             <Container>
                                 <Typography align="center" variant="h5" style={{ fontFamily: font }} >
@@ -148,8 +148,8 @@ const Offers = () => {
                                 </Button>
                             </ButtonGroup>
                         </Grid>
-                    </Grid>
-                                          
+                      
+
                     <Grid item className={classes.scrollingWrapper}>
                         {!loading ? (
                             images && images.map((image) => (   
@@ -172,6 +172,7 @@ const Offers = () => {
                         )
                     }
                     </Grid> 
+                    
             </Grid>    
         </>
     )
