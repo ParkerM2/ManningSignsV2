@@ -18,9 +18,6 @@ const useStyles = makeStyles((theme) => ({
         minHeight: '80vh',
         padding: '4vh',
     },
-    paper: {
-        backgroundColor: 'lightblue'
-    },
     mainFeaturedPostContent: {
         padding: theme.spacing(4),
         paddingTop: theme.spacing(4),
@@ -123,7 +120,7 @@ const HeroSection = () => {
                                                     {currentAboutInfo.about2.text}
                                                 </Typography>
                                             </CardContent>
-                                        <CardMedia className={classes.cover} image={currentAboutInfo.about2.url} title={currentAboutInfo.about1.title} />
+                                        <CardMedia sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'block' }}} className={classes.cover} image={currentAboutInfo.about2.url} title={currentAboutInfo.about1.title} />
                                     </Card>
                                 </Grid>
                             </Grid>

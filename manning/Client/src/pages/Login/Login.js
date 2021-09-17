@@ -9,6 +9,7 @@ import {
   Container,
   Grid,
   Snackbar,
+  Paper,
 } from '@material-ui/core';
 import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
@@ -23,6 +24,16 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     height: '75vh'
+  },
+  paperbackground:{
+    background: 'linear-gradient(to right bottom, #4dabf5, #0e4686)',
+  },
+  background: {
+    background: '#e0e0e0',
+    objectFit: 'cover',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'repeat',
+    padding: '4vh'
   },
   avatar: {
     margin: theme.spacing(1),
@@ -104,102 +115,106 @@ export default function SignIn(props) {
 
     return (
   <>
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-            Admin Sign in
-            </Typography>
-          <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            onChange={handleChange}
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            onChange={handleChange}
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <Button
-            type="button"
-            fullWidth
-            onClick={onSubmit}
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign In
-          </Button>
-          {currentUser ? (
-          <Button
-            type="button"
-            fullWidth
-            onClick={signOut}
-            variant="contained"
-            color="#0e4686"
-            className={classes.submit}
-          >
-            Log Out
-          </Button>
-          ): null}
-          {open ? (
-            <Button
-            type="button"
-            fullWidth
-            href="/user/administrator"
-            variant="contained"
-            color="secondary"
-            className={classes.submit}
-          >
-            Admin Page
-          </Button>
-          ) : (
-            null
-          )}
-          <Button
-            type="button"
-            fullWidth
-            onClick={goHome}
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Home
-          </Button>
-            </form>
-      </div>
-        </Container>
-     <Grid padding={3}>
-      <Snackbar anchorOrigin={{horizontal: "center", vertical: 'top'}} open={open} autoHideDuration={5000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success">
-              Login Successful
-        </Alert>
-      </Snackbar>
-      <Snackbar anchorOrigin={{horizontal: "center", vertical: 'top'}} open={error} autoHideDuration={5000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="warning">
-              {errorText}
-        </Alert>
-      </Snackbar>
-      </Grid>
-    <Footer className={classes.footer} />
+    <Grid className={classes.background}>
+      <Paper elevation={3} className={classes.paperbackground}>
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <div className={classes.paper}>
+            <Avatar className={classes.avatar}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+                Admin Sign in
+                </Typography>
+              <form className={classes.form} noValidate>
+              <TextField
+                variant="filled"
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                onChange={handleChange}
+                autoFocus
+              />
+              <TextField
+                variant="filled"
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                onChange={handleChange}
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+              <Button
+                type="button"
+                fullWidth
+                onClick={onSubmit}
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+              >
+                Sign In
+              </Button>
+              {currentUser ? (
+              <Button
+                type="button"
+                fullWidth
+                onClick={signOut}
+                variant="contained"
+                color="#0e4686"
+                className={classes.submit}
+              >
+                Log Out
+              </Button>
+              ): null}
+              {open ? (
+                <Button
+                type="button"
+                fullWidth
+                href="/user/administrator"
+                variant="contained"
+                color="secondary"
+                className={classes.submit}
+              >
+                Admin Page
+              </Button>
+              ) : (
+                null
+              )}
+              <Button
+                type="button"
+                fullWidth
+                onClick={goHome}
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+              >
+                Home
+              </Button>
+                </form>
+          </div>
+            </Container>
+        <Grid padding={3}>
+          <Snackbar anchorOrigin={{horizontal: "center", vertical: 'top'}} open={open} autoHideDuration={5000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="success">
+                  Login Successful
+            </Alert>
+          </Snackbar>
+          <Snackbar anchorOrigin={{horizontal: "center", vertical: 'top'}} open={error} autoHideDuration={5000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="warning">
+                  {errorText}
+            </Alert>
+          </Snackbar>
+          </Grid>
+          </Paper>
+    </Grid>
+        <Footer className={classes.footer} />
     </>
   );
 };

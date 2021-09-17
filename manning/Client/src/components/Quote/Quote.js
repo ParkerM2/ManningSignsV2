@@ -75,7 +75,7 @@ const Quote = () => {
     const classes = useStyles();
     return (
         <>
-            <Grid container lg={12} md={12} sm={12} className={classes.box} justifyContent="center">
+            <Grid id="service" container lg={12} md={12} sm={12} className={classes.box} justifyContent="center">
                 <Grid  item >
                 
                 <Grid container className={classes.header}>
@@ -87,7 +87,7 @@ const Quote = () => {
                 </Grid>
                 <Grid container className={classes.serviceCardContainer} justifyContent="center" spacing={3}>
                         {data && data.map((item) => (   
-                                <Grid item lg={3} sm={10} md={3} xs={12}>
+                                <Grid item lg={4} sm={6} md={4} xs={10}>
                                     <ServiceCard root={classes.root} cover={classes.cover} image={classes.image} key={item.id} img={item.img} primaryText={item.primaryText} secondaryText={item.secondaryText} />
                                 </Grid>
                         ))}
@@ -96,9 +96,7 @@ const Quote = () => {
                         <Grid item>
                             <Form font={font}/>
                         </Grid>
-                    </Grid>
-                
-               
+                    </Grid> 
                 </Grid>
             </Grid>
         </>

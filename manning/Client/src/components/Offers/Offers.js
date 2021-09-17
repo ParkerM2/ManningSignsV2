@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, useRef} from 'react';
 // import { Link as LinkS } from 'react-scroll';
 import { db } from '../../firebase/config';
 import { doc, getDoc } from 'firebase/firestore';
@@ -14,19 +14,35 @@ import {
     ButtonGroup,
     ImageList,
     ImageListItem,
+    Box,
+    ImageListItemBar,
 } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import tshirt from '../Quote/quoteforms/tshirt1.png';
 import vehicle from '../Quote/quoteforms/vehicle.png';
 import sign from '../Quote/quoteforms/sign.png';
+import Modal from '../modal/modal';
 const font = "'Niconne', cursive";
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    pt: 2,
+    px: 4,
+    pb: 3,
+  };
 
 const useStyles = makeStyles((theme) => ({
     box: {
-        backgroundColor: '',
-        color: 'lightblue',
         minHeight: '80vh',
         padding: '4vh',
+        color: '#0276aa'
     },
     
     mainFeaturedPost: {
@@ -45,13 +61,6 @@ const useStyles = makeStyles((theme) => ({
     hero: {
         flexGrow: 1,
     },
-    heroContent: {
-        padding: '4vh',
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-between',
-        overflow: 'hidden',
-    },
     buttons: {
         display: 'flex',
         flexDirection: 'column',
@@ -61,9 +70,18 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: 200,
         minHeight: 100,
     },
-    imageList: {
-        maxWidth: 700,
-        maxHeight: 500,
+    scrollingWrapper: {
+        overflowX: 'scroll',
+        overflowY: 'hidden',
+        whiteSpace: 'nowrap',
+        maxWidth: 800,
+        minWidth: 100,
+        maxHeight: 500
+    },
+    imgCard: {
+        display: 'inline-block',
+        paddingRight: '1vh',
+        paddingLeft: '1vh'
     },
     paper: {
     }
@@ -72,11 +90,20 @@ const useStyles = makeStyles((theme) => ({
 
 const Offers = () => {
     const classes = useStyles();
-
+    const serviceRef = useRef();
     // currentImages sets the collection to pull from in the gallery db
     const [currentImages, setCurrentImages] = useState('shirt');
     const [images, setImages] = useState();
     const [loading, setLoading] = useState(false);
+    const [open, setOpen] = useState(false);
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+
 
     // docs is the response from firestore db where the objects containing the image info are stored
     const getData = async () => {
@@ -125,7 +152,6 @@ const Offers = () => {
                                         className={classes.cover}
                                         component="img"
                                         alt="sign"
-                                        
                                         image={sign}
                                         title="sign"
                                         />
@@ -155,17 +181,23 @@ const Offers = () => {
                                     </Button>
                                 </ButtonGroup>
                             </Grid>
-
-                            <Grid maxWidth="lg" component="main" className={classes.heroContent}>
-                                <Paper elevation={3} style={{padding: '2vh', background: 'linear-gradient(to right bottom, #4dabf5, #0e4686)',}}>
-                                <ImageList rowHeight={200} cols={3} className={classes.imageList}>
+                            </Grid>
+                
+                                
+                                {/* <Paper elevation={3} style={{padding: '2vh', background: 'linear-gradient(to right bottom, #4dabf5, #0e4686)',}}> */}
+                                <Grid item className={classes.scrollingWrapper}>
                                     {!loading ? (
                                         images && images.map((image) => (
-
-                                                <ImageListItem  key={image.id}>
-                                                    <img src={image.url} alt={image.title} />
-                                                </ImageListItem>
-
+                                            
+                                            <div className={classes.imgCard}>
+                                            <img
+                                              srcSet={`${image.url}`}
+                                              src={`${image.url}`}
+                                              alt={image.title}
+                                              loading="lazy"
+                                            />
+                                            </div>
+                                                
                                     ))) 
                                     : 
                                     (   
@@ -176,15 +208,14 @@ const Offers = () => {
                                         </Grid>
                                     )
                                 }
-                                </ImageList>
-                                </Paper>
+                                </Grid> 
+                                {/* </Paper> */}
                             </Grid>
-                        
-                    </Grid>
-                </Grid>
+                            
+                
                 
         </>
     )
 };
 
-export default Offers;
+export default Offers; 

@@ -1,6 +1,7 @@
 import React from 'react';
 import backgroundVideo from '../../videos/lights.mp4';
 import VideoPlayer from "react-background-video-player";
+import {Link} from 'react-scroll';
 import {
     Typography,
     makeStyles,
@@ -68,9 +69,11 @@ const HeroSection = () => {
                                 <Typography variant="h2" style={{ fontFamily: font, color : "white" }} gutterBottom>
                                     <b>Discover how we can fulfill your sign and shirt needs</b>
                                 </Typography>
-                                <Button variant="contained" style={{backgroundColor: "#0276aa", color: 'white'}} >
+                                <Link to="service" smooth={true}>
+                                <Button  variant="contained" style={{backgroundColor: "#0276aa", color: 'white'}} >
                                     View our Services!
                                 </Button>
+                                </Link>
                             </div>
                         </Grid>
                     </Grid>
