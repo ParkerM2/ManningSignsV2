@@ -11,7 +11,7 @@ import ServiceCard from './quoteforms/ServicesCard';
 import tshirt from './quoteforms/tshirt1.png'
 import sign from './quoteforms/sign.png';
 import vehicle from './quoteforms/vehicle.png';
-const font = "'Niconne', cursive";
+const font = "Niconne";
 
 const useStyles = makeStyles((theme) => ({
     box: {

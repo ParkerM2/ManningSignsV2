@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const font = "'Niconne', cursive";
+const font = "Niconne";
 
 // take in props for about text??
 

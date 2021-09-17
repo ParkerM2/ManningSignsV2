@@ -21,22 +21,8 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import tshirt from '../Quote/quoteforms/tshirt1.png';
 import vehicle from '../Quote/quoteforms/vehicle.png';
 import sign from '../Quote/quoteforms/sign.png';
-import Modal from '../modal/modal';
-const font = "'Niconne', cursive";
+const font = "Niconne";
 
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    pt: 2,
-    px: 4,
-    pb: 3,
-  };
 
 const useStyles = makeStyles((theme) => ({
     box: {
@@ -90,22 +76,10 @@ const useStyles = makeStyles((theme) => ({
 
 const Offers = () => {
     const classes = useStyles();
-    const serviceRef = useRef();
-    // currentImages sets the collection to pull from in the gallery db
     const [currentImages, setCurrentImages] = useState('shirt');
     const [images, setImages] = useState();
     const [loading, setLoading] = useState(false);
-    const [open, setOpen] = useState(false);
 
-    const handleOpen = () => {
-        setOpen(true);
-    };
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-
-    // docs is the response from firestore db where the objects containing the image info are stored
     const getData = async () => {
         const docRef = doc(db, 'gallery', currentImages);
         const docSnap = await getDoc(docRef);
@@ -126,94 +100,79 @@ const Offers = () => {
     }, [currentImages])
     
 
-
-
- 
-
-    
-
     return (
         <>
                 <Grid container justifyContent="center" className={classes.box} xl={12} lg={12} md={12} sm={12} >
                     <Grid item>
-            
-                            <Grid item md={12} lg={12} sm={12} xs={12} className={classes.mainFeaturedPostContent}>
-                                <Container>
-                                    <Typography align="center" variant="h5" style={{ fontFamily: font }} >
-                                        We offer a wide variety of <b>Sign</b> and <b>Shirt</b> solutions!
-                                    </Typography>
-                                </Container>
-                            </Grid>
-                        
-                            <Grid item xs={12} lg={12} md={12} sm={12} className={classes.buttons}>
-                                <ButtonGroup style={{padding:'1vh'}}>
-                                    <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('sign')}>
-                                    <CardMedia
-                                        className={classes.cover}
-                                        component="img"
-                                        alt="sign"
-                                        image={sign}
-                                        title="sign"
-                                        />
-                                
-                                    </Button>
-                                    <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('shirt')}>
-                                    <CardMedia
-                                        className={classes.cover}
-                                        component="img"
-                                        alt="blank t-shirt"
-                                        
-                                        image={tshirt}
-                                        title="tshirt"
-                                        />
-                                    
-                                    </Button>
-                                    <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('vehicle')}>
-                                    <CardMedia
-                                        className={classes.cover}
-                                        component="img"
-                                        alt="vehicle"
-                                        
-                                        image={vehicle}
-                                        title="vehicle"
-                                        />
-                                    
-                                    </Button>
-                                </ButtonGroup>
-                            </Grid>
-                            </Grid>
-                
-                                
-                                {/* <Paper elevation={3} style={{padding: '2vh', background: 'linear-gradient(to right bottom, #4dabf5, #0e4686)',}}> */}
-                                <Grid item className={classes.scrollingWrapper}>
-                                    {!loading ? (
-                                        images && images.map((image) => (
-                                            
-                                            <div className={classes.imgCard}>
-                                            <img
-                                              srcSet={`${image.url}`}
-                                              src={`${image.url}`}
-                                              alt={image.title}
-                                              loading="lazy"
-                                            />
-                                            </div>
-                                                
-                                    ))) 
-                                    : 
-                                    (   
-                                        <Grid style={{ padding: '4vh' }} item xs={12} md={4}>
-                                            <Card className={classes.root}>
-                                                <CircularProgress color="secondary" />
-                                            </Card>
-                                        </Grid>
-                                    )
-                                }
-                                </Grid> 
-                                {/* </Paper> */}
-                            </Grid>
+                        <Grid item md={12} lg={12} sm={12} xs={12} className={classes.mainFeaturedPostContent}>
+                            <Container>
+                                <Typography align="center" variant="h5" style={{ fontFamily: font }} >
+                                    We offer a wide variety of <b>Sign</b> and <b>Shirt</b> solutions!
+                                </Typography>
+                            </Container>
+                        </Grid>
+                    
+                        <Grid item xs={12} lg={12} md={12} sm={12} className={classes.buttons}>
+                            <ButtonGroup style={{padding:'1vh'}}>
+                                <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('sign')}>
+                                <CardMedia
+                                    className={classes.cover}
+                                    component="img"
+                                    alt="sign"
+                                    image={sign}
+                                    title="sign"
+                                    />
                             
-                
-                
+                                </Button>
+                                <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('shirt')}>
+                                <CardMedia
+                                    className={classes.cover}
+                                    component="img"
+                                    alt="blank t-shirt"
+                                    
+                                    image={tshirt}
+                                    title="tshirt"
+                                    />
+                                
+                                </Button>
+                                <Button variant="outlined" color="inherit" onClick={() => setCurrentImages('vehicle')}>
+                                <CardMedia
+                                    className={classes.cover}
+                                    component="img"
+                                    alt="vehicle"
+                                    
+                                    image={vehicle}
+                                    title="vehicle"
+                                    />
+                                
+                                </Button>
+                            </ButtonGroup>
+                        </Grid>
+                    </Grid>
+                                          
+                    <Grid item className={classes.scrollingWrapper}>
+                        {!loading ? (
+                            images && images.map((image) => (   
+                                <div className={classes.imgCard}>
+                                <img
+                                    srcSet={`${image.url}`}
+                                    src={`${image.url}`}
+                                    alt={image.title}
+                                    loading="lazy"
+                                />
+                                </div>   
+                        ))) 
+                        : 
+                        (   
+                        <Grid style={{ padding: '4vh' }} item xs={12} md={4}>
+                            <Card className={classes.root}>
+                                <CircularProgress color="secondary" />
+                            </Card>
+                        </Grid>
+                        )
+                    }
+                    </Grid> 
+            </Grid>    
         </>
     )
 };

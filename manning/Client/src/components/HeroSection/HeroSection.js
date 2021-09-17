@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const font = "'Niconne', cursive";
+const font = "Niconne";
 
 const HeroSection = () => {
     const classes = useStyles();

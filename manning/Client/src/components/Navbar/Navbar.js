@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
         color: "lightblue"
     }
 }));
-const font = "'Niconne', cursive";
+const font = "Niconne";
 
 
 const Navbar = () => {
