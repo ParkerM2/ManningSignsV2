@@ -18,6 +18,14 @@
 ![Project Admin About Section](https://github.com/ParkerM2/ManningSignsV2/blob/main/manning/Client/src/images/about.PNG)
 
 ---
+### Admin Gallery Section
+![Project Admin About Section](https://github.com/ParkerM2/ManningSignsV2/blob/main/manning/Client/src/images/gallery.PNG)
+
+---
+### Admin Profile Section
+![Project Admin About Section](https://github.com/ParkerM2/ManningSignsV2/blob/main/manning/Client/src/images/home.PNG)
+
+---
 ## ✍ Creator
 
 **Parker Manning - https://github.com/ParkerM2**
