@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+<h1 align="center" class="fas fa-microscope">Manning Signs</h1>
+<p align="center">
+  <img alt="Version" src="https://img.shields.io/badge/version-2.0.0-blue.svg?cacheSeconds=2592000" />
+  <a href="https://github.com/ParkerM2/GamesList#readme" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+</p>
 
-## Available Scripts
+## [Click here to go to the Website!](https://manningsigns.netlify.app/)
 
-In the project directory, you can run:
+![HomePage](https://github.com/ParkerM2/EcommercePractice/blob/addcc809a2fef5688f7a5beee512c93d500a4b63/reactecommerceproject/src/assets/Updatedhomepage.PNG)
 
-### `yarn start`
+### 🏠 [Project Homepage](https://github.com/ParkerM2/Manningsigns)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
+## ✍ Creator
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+**Parker Manning - https://github.com/ParkerM2**
 
-### `yarn test`
+---
+## 👀 Description 👀
+**The Manning Signs website has multiple purposes**
+<div>
+   1. Creating an easier way to Quote orders - Previously, all orders were done in-person or over the phone. This simplifies the process allowing the owner to specify the requirements of an order beforehand. This saves valuable time during the work day.  
+</div>
+<br></br>
+<div>
+    2. Gives the owners a Point Of Sale - This new revenue stream will take the place of an outdated system of selling shirts and election signs through a singular facebook post. This online store is centered around commerce.js API. CommerceJS offers a back-end solution for the store and gallery. The checkout form and checkout information are built utilizing StripeJS software.
+</div>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `yarn build`
+## Techonologies Used
+![CommerceJS](https://github.com/ParkerM2/EcommercePractice/blob/b0881018892ede4aef17f9b91809bd56ea7eacdb/reactecommerceproject/src/assets/Commercejslogo.png)
+![React](https://github.com/ParkerM2/EcommercePractice/blob/b0881018892ede4aef17f9b91809bd56ea7eacdb/reactecommerceproject/src/assets/ReactJs.png)
+![Node](https://github.com/ParkerM2/EcommercePractice/blob/b0881018892ede4aef17f9b91809bd56ea7eacdb/reactecommerceproject/src/assets/Nodejs.png)
+![Material UI](https://github.com/ParkerM2/EcommercePractice/blob/b0881018892ede4aef17f9b91809bd56ea7eacdb/reactecommerceproject/src/assets/materialuilogo.png)
+![Stripe](https://github.com/ParkerM2/EcommercePractice/blob/b0881018892ede4aef17f9b91809bd56ea7eacdb/reactecommerceproject/src/assets/Stripelogo.png)
+![Node](https://github.com/ParkerM2/EcommercePractice/blob/b0881018892ede4aef17f9b91809bd56ea7eacdb/reactecommerceproject/src/assets/Nodejs.png)
+---
+## Installation 🔧
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+npm install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
+## Usage 🔱
 
-### `yarn eject`
+To be able to start the application:
+type `npm start`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+---
+## 👨‍👨‍👦‍👦 Contributing
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<br />Checkout this link to see my [contributions and commits](https://github.com/ParkerM2/ManningSignsV2/graphs/contributors).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+---
+## Like the App?
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Give a 👍🏻 if you would use this application!
 
-## Learn More
+<h2>Checkout My LinkedIn:</h2>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+😀 [Parker Manning](https://www.linkedin.com/in/parkerm2/)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+***
