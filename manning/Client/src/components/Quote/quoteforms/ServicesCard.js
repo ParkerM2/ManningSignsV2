@@ -34,10 +34,10 @@ export default function ServiceCard({img, primaryText, secondaryText, key, root,
         <CardMedia
           className={cover}
           component="img"
-          alt="blank t-shirt"
           height="160"
+          alt={primaryText}
           image={img}
-          title="tshirt"
+          title={primaryText}
         />
         </div>
         <CardContent>
