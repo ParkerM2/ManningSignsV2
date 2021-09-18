@@ -31,7 +31,11 @@ const useStyles = makeStyles((theme) => ({
         padding: '4vh'
     },
     cover: {
-        width: 300
+        width: 300,
+        [theme.breakpoints.down('md')]: {
+            width: 0,
+        },
+        height: 180,
     },
     content: {
         flex: '1 0 auto',
@@ -106,12 +110,13 @@ const HeroSection = () => {
                                                 </Typography>
                                             </CardContent>
                                         
-                                        <CardMedia className={classes.cover} image={currentAboutInfo.about1.url} title={currentAboutInfo.about1.title} />
+                                        <CardMedia  className={classes.cover} image={currentAboutInfo.about1.url} title={currentAboutInfo.about1.title} />
                                     </Card>
                                 </Grid>
 
                                 <Grid item xl={12} lg={12} md={12} sm={12} xs={12} >
                                     <Card className={classes.root}>
+                                        
                                             <CardContent className={classes.content}>
                                                 <Typography  style={{fontFamily: font}} variant="h3">
                                                     {currentAboutInfo.about2.title}
@@ -120,7 +125,7 @@ const HeroSection = () => {
                                                     {currentAboutInfo.about2.text}
                                                 </Typography>
                                             </CardContent>
-                                        <CardMedia sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'block' }}} className={classes.cover} image={currentAboutInfo.about2.url} title={currentAboutInfo.about1.title} />
+                                        <CardMedia className={classes.cover} image={currentAboutInfo.about2.url} title={currentAboutInfo.about1.title} />
                                     </Card>
                                 </Grid>
                             </Grid>

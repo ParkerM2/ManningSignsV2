@@ -150,7 +150,7 @@ const Offers = () => {
                         </Grid>
                       
 
-                    <Grid item className={classes.scrollingWrapper}>
+                    <Grid item lg={12} sm={12} className={classes.scrollingWrapper}>
                         {!loading ? (
                             images && images.map((image) => (   
                                 <div className={classes.imgCard}>

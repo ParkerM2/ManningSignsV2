@@ -18,6 +18,7 @@ import SignForm from './SignForm';
 import VehicleForm from './VehicleWrapForm';
 import ShirtForm from './ShirtForm';
 import shirtEmailTemplate from '../../../lib/shirtTemplate';
+import sendEmail from '../../../lib/emailJS';
 import signEmailTemplate from '../../../lib/signTemplate';
 const signTemplate = "template_u7olvj9";
 const shirtTemplate = "template_6u0hilf";
@@ -55,7 +56,7 @@ function QuoteForm({font}) {
         case 'sign':
           setEmailTemplate(signTemplate)
           setOrderType('sign')
-          setRecipient("parkerlmanning@hotmail.com")
+          setRecipient("dale@manningsigns.net")
           return <SignForm materials={materials} onSubmit={onSubmit} />
         case 'shirt':
           setEmailTemplate(shirtTemplate)
@@ -65,7 +66,7 @@ function QuoteForm({font}) {
         case 'vehicle':
           setEmailTemplate(signTemplate)
           setOrderType('vehicle')
-          setRecipient("parkerlmanning@hotmail.com")
+          setRecipient("dale@manningsigns.net")
               return <VehicleForm onSubmit={onSubmit} />
           default:
               return <Typography>Please Select an Option!</Typography>
@@ -119,7 +120,7 @@ function QuoteForm({font}) {
       data.model = values.model
       signEmailTemplate(data)
     };
-    console.log(data)
+    // console.log(data)
     // sendEmail(data);
     setSending("Sent!")
   };
@@ -257,7 +258,7 @@ function QuoteForm({font}) {
                 {handleQuoteForm(orderType)} 
             </Grid>
               <br></br>
-              <Button variant="outlined" component={Link} to="/sent" color="inherit" type="submit">{sending}</Button>
+              <Button variant="outlined" color="inherit" type="submit">{sending}</Button>
             </Paper>
           </form>
         )}
