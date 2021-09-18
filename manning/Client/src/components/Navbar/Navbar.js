@@ -9,8 +9,7 @@ import {
 } from '@material-ui/core';
 import { useAuth } from '../../context/AuthContext';
 import { useHistory } from 'react-router';
-
-// import { Link as LinkS } from 'react-scroll';
+const font = "Niconne";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,8 +23,6 @@ const useStyles = makeStyles((theme) => ({
         color: "lightblue"
     }
 }));
-const font = "Niconne";
-
 
 const Navbar = () => {
     const classes = useStyles();

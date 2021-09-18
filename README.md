@@ -11,7 +11,7 @@
 
 ![HomePage](https://github.com/ParkerM2/EcommercePractice/blob/addcc809a2fef5688f7a5beee512c93d500a4b63/reactecommerceproject/src/assets/Updatedhomepage.PNG)
 
-### 🏠 [Project Homepage](https://github.com/ParkerM2/Manningsigns)
+### 🏠 [Project Homepage](https://github.com/ParkerM2/ManningsignsV2)
 
 ---
 ## ✍ Creator
