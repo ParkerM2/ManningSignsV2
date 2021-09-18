@@ -106,7 +106,7 @@ const Offers = () => {
                     
                         <Grid item md={12} lg={12} sm={12} xs={12} className={classes.mainFeaturedPostContent}>
                             <Container>
-                                <Typography align="center" variant="h5" style={{ fontFamily: font }} >
+                                <Typography align="center" variant="h4" style={{ fontFamily: font }} >
                                     We offer a wide variety of <b>Sign</b> and <b>Shirt</b> solutions!
                                 </Typography>
                             </Container>
