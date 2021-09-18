@@ -7,7 +7,7 @@
 
 </p>
 
-## [Click here to go to the Website!](https://manningsigns.netlify.app/)
+## [Click here to go to the Website!](https://www.manningsigns.org)
 
 ![HomePage](https://github.com/ParkerM2/EcommercePractice/blob/addcc809a2fef5688f7a5beee512c93d500a4b63/reactecommerceproject/src/assets/Updatedhomepage.PNG)
 
@@ -20,37 +20,23 @@
 
 ---
 ## 👀 Description 👀
-**The Manning Signs website has multiple purposes**
+**The Manning Signs website main purpose**
 <div>
-   1. Creating an easier way to Quote orders - Previously, all orders were done in-person or over the phone. This simplifies the process allowing the owner to specify the requirements of an order beforehand. This saves valuable time during the work day.  
+     Creating an easier way to Quote orders - Previously, all orders were done in-person or over the phone. This simplifies the process allowing the owner to specify the requirements of an order beforehand. This saves valuable time during the work day.  
 </div>
 <br></br>
-<div>
-    2. Gives the owners a Point Of Sale - This new revenue stream will take the place of an outdated system of selling shirts and election signs through a singular facebook post. This online store is centered around commerce.js API. CommerceJS offers a back-end solution for the store and gallery. The checkout form and checkout information are built utilizing StripeJS software.
-</div>
 
 ---
 
 ## Techonologies Used
-![CommerceJS](https://github.com/ParkerM2/EcommercePractice/blob/b0881018892ede4aef17f9b91809bd56ea7eacdb/reactecommerceproject/src/assets/Commercejslogo.png)
+
 ![React](https://github.com/ParkerM2/EcommercePractice/blob/b0881018892ede4aef17f9b91809bd56ea7eacdb/reactecommerceproject/src/assets/ReactJs.png)
 ![Node](https://github.com/ParkerM2/EcommercePractice/blob/b0881018892ede4aef17f9b91809bd56ea7eacdb/reactecommerceproject/src/assets/Nodejs.png)
 ![Material UI](https://github.com/ParkerM2/EcommercePractice/blob/b0881018892ede4aef17f9b91809bd56ea7eacdb/reactecommerceproject/src/assets/materialuilogo.png)
-![Stripe](https://github.com/ParkerM2/EcommercePractice/blob/b0881018892ede4aef17f9b91809bd56ea7eacdb/reactecommerceproject/src/assets/Stripelogo.png)
 ![Node](https://github.com/ParkerM2/EcommercePractice/blob/b0881018892ede4aef17f9b91809bd56ea7eacdb/reactecommerceproject/src/assets/Nodejs.png)
+![Firebase](https://github.com/ParkerM2/ManningSignsV2/blob/main/manning/Client/src/images/firebase.png)
 ---
-## Installation 🔧
 
-
-npm install
-
----
-## Usage 🔱
-
-To be able to start the application:
-type `npm start`
-
----
 ## 👨‍👨‍👦‍👦 Contributing
 
 <br />Checkout this link to see my [contributions and commits](https://github.com/ParkerM2/ManningSignsV2/graphs/contributors).
