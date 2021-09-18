@@ -30,10 +30,9 @@
 
 ## Techonologies Used
 
-![React](https://github.com/ParkerM2/EcommercePractice/blob/b0881018892ede4aef17f9b91809bd56ea7eacdb/reactecommerceproject/src/assets/ReactJs.png)
+
 ![Node](https://github.com/ParkerM2/EcommercePractice/blob/b0881018892ede4aef17f9b91809bd56ea7eacdb/reactecommerceproject/src/assets/Nodejs.png)
 ![Material UI](https://github.com/ParkerM2/EcommercePractice/blob/b0881018892ede4aef17f9b91809bd56ea7eacdb/reactecommerceproject/src/assets/materialuilogo.png)
-![Node](https://github.com/ParkerM2/EcommercePractice/blob/b0881018892ede4aef17f9b91809bd56ea7eacdb/reactecommerceproject/src/assets/Nodejs.png)
 ![Firebase](https://github.com/ParkerM2/ManningSignsV2/blob/main/manning/Client/src/images/firebase.png)
 ---
 
