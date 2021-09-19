@@ -55,19 +55,19 @@ const data = [
         id: 0,
         img : sign,
         primaryText: 'Signs',
-        secondaryText: 'Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica blah blah blah lakjd;lakjf'
+        secondaryText: 'Manning Signs specializes in all types of signs including: banners, store-front, metal, pvc, election, and many more. Please send in a quote or look through our gallery to see examples!'
     },
     {
         id: 1,
         img : tshirt,
         primaryText: 'Apparel',
-        secondaryText: 'Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica blah blah blah lakjd;lakjf'
+        secondaryText: 'Manning Signs provides all types of apparel options. We can offer many brands of shirts, hoodies, and long sleeves. Please feel free to ask for a quote or look through our gallery!'
     },
     {
         id: 2,
         img: vehicle,
         primaryText: 'Vehicle Graphics',
-        secondaryText: 'Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica blah blah blah lakjd;lakjf'
+        secondaryText: 'Manning Signs can deliver a top-notch vehicle wrap, partial-wrap, graphics, or magnets. We can also match your design or help you come up with one of your liking. Check out our gallery for examples!'
     }
 ]
 
