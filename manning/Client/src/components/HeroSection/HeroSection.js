@@ -55,31 +55,29 @@ const HeroSection = () => {
     const classes = useStyles();
     return (
         <>
-            
-                <Grid className={classes.box}>
-                    <VideoPlayer 
-                        className={classes.video}
-                        src={backgroundVideo}
-                        autoPlay={true}
-                        muted={true}
-                    />
-                    <Grid container>
-                        <Grid item md={12}>
-                            <div className={classes.mainFeaturedPostContent}>
-                                <Typography variant="h2" style={{ fontFamily: font, color : "white" }} gutterBottom>
-                                    <b>Discover how we can fulfill your sign and shirt needs</b>
-                                </Typography>
-                                <Link to="service" smooth={true}>
-                                <Button  variant="contained" style={{backgroundColor: "#0276aa", color: 'white'}} >
-                                    View our Services!
-                                </Button>
-                                </Link>
-                            </div>
-                        </Grid>
+            <Grid className={classes.box}>
+                <VideoPlayer 
+                    className={classes.video}
+                    src={backgroundVideo}
+                    autoPlay={true}
+                    muted={true}
+                />
+                <Grid container>
+                    <Grid item md={12}>
+                        <div className={classes.mainFeaturedPostContent}>
+                            <Typography variant="h2" style={{ fontFamily: font, color : "white" }} gutterBottom>
+                                <b>Discover how we can fulfill your sign and shirt needs</b>
+                            </Typography>
+                            <Link to="service" smooth={true}>
+                            <Button  variant="contained" style={{backgroundColor: "#0276aa", color: 'white'}} >
+                                View our Services!
+                            </Button>
+                            </Link>
+                        </div>
                     </Grid>
-                    {/* ADD BUTTON TO GO DOWN */}
                 </Grid>
-            
+                {/* ADD BUTTON TO GO DOWN */}
+            </Grid>      
         </>
     )
 };
