@@ -120,8 +120,6 @@ function QuoteForm({font}) {
       data.model = values.model
       signEmailTemplate(data)
     };
-    // console.log(data)
-    // sendEmail(data);
     setSending("Sent!")
   };
 

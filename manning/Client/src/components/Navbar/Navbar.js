@@ -39,7 +39,7 @@ const Navbar = () => {
            
             <Grid maxwidth="100%">
             <AppBar position="static" className={classes.navBar}>
-                    <Toolbar>
+                    <Toolbar variant="dense">
                     <Typography color="inherit" className={classes.title} >
                             <Button style={{color: 'lightblue', fontFamily: font}} href="/">Home</Button>
                     </Typography>

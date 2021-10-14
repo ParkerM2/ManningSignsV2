@@ -80,21 +80,18 @@ const AboutSection = () => {
     
 
     const sendNewImage1 = () => {
-        console.log(newImage1)
         let data = newImage1[0]
         data.id = 1;
         setFile1(data)
     }
 
     const sendNewImage2 = () => {
-        console.log(newImage2)
         let data = newImage2[0];
         data.id = 2
         setFile2(data)
     }
 
     const sendNewText1 =() => {
-        console.log(about1Text);
         updateDoc(galleryRef, 
             {'about1.text': about1Text,},
             {merge: true}
@@ -103,7 +100,6 @@ const AboutSection = () => {
     }
 
     const sendNewText2 =() => {
-        console.log(about2Text);
         updateDoc(galleryRef, 
             {'about2.text': about2Text},
             {merge: true}
