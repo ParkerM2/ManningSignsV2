@@ -31,13 +31,13 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
     minHeight: '20vh',
+    color: 'white'
 },
-    mainFeaturedPostContent: {
-        color: 'white',
-        position: 'relative',
-        textAlign: 'center',
-        paddingTop: '5vh',
-    },
+  mainFeaturedPostContent: {
+    position: 'relative',
+    textAlign: 'center',
+    paddingTop: '5vh',
+},
 }));
 export default function Footer() {
   const classes = useStyles();
