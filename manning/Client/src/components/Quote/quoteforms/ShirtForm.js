@@ -61,7 +61,6 @@ const clothingArticle = [
 const ShirtForm = () => {
     return (
         <>
-        <br></br>
     <CssBaseline />
     <Grid container>
     <br></br>

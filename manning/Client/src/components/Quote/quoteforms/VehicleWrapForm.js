@@ -32,10 +32,11 @@ const VehicleWrapForm = () => {
     return (
         <>
     <br></br>
-        <div style={{ margin: 'auto', maxWidth: 600 }}>
+        <div style={{ maxWidth: 600 }}>
         <CssBaseline />
         <Grid container>
         <FormLabel component="legend" color="primary">Please answer these questions about your Vehicle Wrap!</FormLabel>
+        <br></br>
         </Grid>
             <Grid container spacing={3}>
             <Grid item xs={6}>
