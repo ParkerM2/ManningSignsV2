@@ -67,7 +67,7 @@ const data = [
         id: 2,
         img: vehicle,
         primaryText: 'Vehicle Graphics',
-        secondaryText: 'Manning Signs can deliver a top-notch vehicle wrap, partial-wrap, graphics, or magnets. We can also match your design or help you come up with one of your liking. Check out our gallery for examples!'
+        secondaryText: 'Manning Signs can deliver a top-notch vehicle wrap, partial-wrap, graphics, or magnets. We can also match your design or help you come up with one of your liking.'
     }
 ]
 
